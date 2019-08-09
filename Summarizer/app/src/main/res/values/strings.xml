@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Summarizer</string>
+    <string name="title_howto_list">Steps</string>
+    <string name="title_howto_detail">HowTo Detail</string>
 </resources>
