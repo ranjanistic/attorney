@@ -1,6 +1,25 @@
 <resources>
-    <string name="app_name">Summarizer</string>
+    <string name="app_name">Summaryzer</string>
     <string name="title_howto_list">Steps</string>
     <string name="title_howto_detail">HowTo Detail</string>
     <string name="pastehint">Paste here to summarize</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="welcomeGreet">Welcome!</string>
+    <string name="go">Go!</string>
+    <string name="todo">TODO</string>
+    <string name="or">Or</string>
+    <string name="already_have_account">Already have account?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
+    <string name="email_id">Email ID</string>
+    <string name="register">Register</string>
 </resources>

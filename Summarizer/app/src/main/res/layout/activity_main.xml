@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,31 +8,41 @@
     android:backgroundTint="@color/dark_yellow"
     tools:context=".MainActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_report"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        android:elevation="12dp"
+        android:foreground="@drawable/ic_launcher_foreground"
+        android:gravity="bottom|end"
+        app:backgroundTint="@color/deep_red"
+        app:layout_constraintBottom_toTopOf="@+id/fab_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.975"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.981"
+        app:pressedTranslationZ="12dp"
+        app:rippleColor="@color/black" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_menu"
         android:layout_width="81dp"
         android:layout_height="81dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-
-        android:accessibilityLiveRegion="polite"
-        android:adjustViewBounds="true"
-        android:alpha="1"
-        android:clickable="true"
-        android:cropToPadding="true"
-        android:drawingCacheQuality="high"
         android:elevation="12dp"
-        android:fadeScrollbars="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
+        android:gravity="bottom|end"
         android:foreground="@drawable/ic_text"
         android:foregroundGravity="center"
-        android:scaleType="centerInside"
         app:backgroundTint="@color/deep_blue"
-        app:borderWidth="8dp"
-        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -42,7 +52,7 @@
         app:rippleColor="@color/black" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/registerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -50,7 +60,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/raleway"
-        android:text="Welcome!"
+        android:text="@string/welcomeGreet"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -78,13 +88,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.119" />
+        app:layout_constraintTop_toBottomOf="@+id/registerTitle"
+        app:layout_constraintVertical_bias="0.119"
+        android:importantForAutofill="no" tools:targetApi="o" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="414dp"
-        android:layout_height="417dp"
+        android:layout_width="337dp"
+        android:layout_height="280dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -98,24 +109,48 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_node_pattern" />
+        app:layout_constraintVertical_bias="0.939"
+        app:srcCompat="@drawable/ic_node_pattern"
+        android:contentDescription="@string/todo" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/accountbtn"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/round_btn"
-        android:backgroundTint="@color/dark_yellow"
+        android:backgroundTint="@color/blue_grey"
         app:layout_constraintBottom_toTopOf="@+id/subjecttext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.91"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/registerTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@drawable/ic_face" />
+        app:srcCompat="@drawable/ic_face"
+        android:contentDescription="@string/todo" />
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/gobtn"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/round_btn"
+        android:backgroundTint="@color/deep_orange"
+        android:fontFamily="@font/raleway"
+        android:text="@string/go"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.936"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subjecttext"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

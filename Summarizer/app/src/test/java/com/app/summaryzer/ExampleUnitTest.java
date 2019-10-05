@@ -1,4 +1,4 @@
-package com.app.summarizer;
+package com.app.summaryzer;
 
 import org.junit.Test;
 

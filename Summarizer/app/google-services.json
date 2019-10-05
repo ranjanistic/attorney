@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "75238713603",
+    "firebase_url": "https://summaryzer-c0f4c.firebaseio.com",
+    "project_id": "summaryzer-c0f4c",
+    "storage_bucket": "summaryzer-c0f4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75238713603:android:242171803a8335d80b2136",
+        "android_client_info": {
+          "package_name": "com.app.summaryzer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75238713603-10eo28mnpe629vllmai6if83d4191a95.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiX7DL8X1sSs6uIW3PnJ5QS03ut4S2t-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75238713603-10eo28mnpe629vllmai6if83d4191a95.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
