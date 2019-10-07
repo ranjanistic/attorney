@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.app.summaryzer">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <dist:module dist:instant="true" />
 
     <application
@@ -14,7 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Register"/>
+        <activity android:name=".Login"></activity>
+        <activity android:name=".ConfirmationActivity" />
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" /> <!-- To use multiple models: android:value="ocr,model2,model3" -->
+        <activity android:name=".Register" />
         <activity android:name=".Summary" />
         <activity
             android:name=".Splash"
