@@ -10,9 +10,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +28,9 @@ public class Register extends AppCompatActivity {
     EditText editMail, editPass;
     ImageButton signup;
     FirebaseAuth mAuth;
+    boolean isOpen =true;
 
+    Animation loadOpen, loadClose;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,17 +38,19 @@ public class Register extends AppCompatActivity {
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.white));
-        window.setNavigationBarColor(this.getResources().getColor(R.color.white));
+        window.setStatusBarColor(this.getResources().getColor(R.color.black));
+        window.setNavigationBarColor(this.getResources().getColor(R.color.nav_red));
 
         mAuth = FirebaseAuth.getInstance();
-
+        final ProgressBar regload = findViewById(R.id.regisload);
         editMail = findViewById(R.id.addemailID);
         editPass = findViewById(R.id.newpassword);
         signup = findViewById(R.id.signupbtn);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //regload.setVisibility(View.VISIBLE);
+                //signup.setVisibility(View.INVISIBLE);
                 register();
             }
         });
@@ -70,8 +77,10 @@ public class Register extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        //loadOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+        //loadClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
 
-        Button signin = findViewById(R.id.signinbutt);
+        final Button signin = findViewById(R.id.signinbutt);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,19 +90,27 @@ public class Register extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     private void register(){
         String email, pass;
         email = editMail.getText().toString();
         pass = editPass.getText().toString();
-
+        final ProgressBar regiload = findViewById(R.id.regisload);
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
+            //regiload.setVisibility(View.INVISIBLE);
+            //signup.setVisibility(View.VISIBLE);
+            //isOpen= false;
             return;
         }
         if (TextUtils.isEmpty(pass)) {
             Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
+         //   regiload.setVisibility(View.INVISIBLE);
+            //signup.setVisibility(View.VISIBLE);
+            //isOpen = false;
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, pass)
@@ -102,9 +119,13 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
+                            isOpen = true;
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
+                     //       regiload.setVisibility(View.INVISIBLE);
+                          //  signup.setVisibility(View.VISIBLE);
+                            isOpen = false;
                         }
                     }
                 });

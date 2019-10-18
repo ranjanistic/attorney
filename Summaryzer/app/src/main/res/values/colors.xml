@@ -39,4 +39,7 @@
     <color name="pale_green">#ddffdd</color>
     <color name="pale_yellow">#ffffcc</color>
     <color name="pale_blue">#ddffff</color>
+    <color name="nav_red">#d40000</color>
+    <color name="dark_red">#a1000000</color>
+    <color name="dark_red1">#c3000022</color>
 </resources>
