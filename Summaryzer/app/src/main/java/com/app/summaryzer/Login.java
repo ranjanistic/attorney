@@ -37,8 +37,8 @@ public class Login extends AppCompatActivity {
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.black));
-        window.setNavigationBarColor(this.getResources().getColor(R.color.nav_red));
+        window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
+        window.setNavigationBarColor(this.getResources().getColor(R.color.charcoal));
         mAuth = FirebaseAuth.getInstance();
 
         emailid = findViewById(R.id.emailID);

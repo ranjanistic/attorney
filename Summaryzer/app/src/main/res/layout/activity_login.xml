@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradredback"
+    android:backgroundTint="@color/charcoal"
+    android:background="@color/charcoal"
     tools:context=".Login">
 
     <TextView
@@ -80,7 +81,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/round_btn"
-        android:backgroundTint="@color/deep_red"
+        android:backgroundTint="@color/spruce"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.867"
@@ -132,7 +133,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/square_btn"
-            android:backgroundTint="@color/deep_purple"
+            android:backgroundTint="@color/spruce"
             android:fontFamily="@font/raleway"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"

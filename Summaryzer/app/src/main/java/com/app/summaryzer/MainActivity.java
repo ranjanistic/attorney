@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
          final    Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.black));
-            window.setNavigationBarColor(this.getResources().getColor(R.color.nav_red));
+            window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
+            window.setNavigationBarColor(this.getResources().getColor(R.color.charcoal));
 
-        fab_menu  = findViewById(R.id.fab_menu);
-        fab_report = findViewById(R.id.fab_report);
-        fabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        fabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
+      //  fab_menu  = findViewById(R.id.fab_menu);
+       // fab_report = findViewById(R.id.fab_report);
+    //    fabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
+      /*  fabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
         fabAclk = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_aclk);
         fabClk = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clk);
         fab_menu.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     isOpen = true;
                 }
             }
-        });
+        });*/
         final Intent sumintent = new Intent(MainActivity.this, Summary.class);
         Button go = findViewById(R.id.gobtn);
         go.setOnClickListener(new View.OnClickListener() {

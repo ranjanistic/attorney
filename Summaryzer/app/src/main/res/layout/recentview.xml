@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <merge xmlns:app="http://schemas.android.com/apk/res-auto">
+        <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent" android:layout_height="3500dp"
+            android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="32dp"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:paddingTop="16dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_marginEnd="32dp"
+                    app:cardBackgroundColor="@color/spruce"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="24dp"
+                    android:background="@drawable/square_btn"
+                    android:backgroundTint="@color/spruce"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_marginEnd="32dp"
+                    app:cardCornerRadius="16dp"
+                    android:background="@color/spruce"
+                    android:backgroundTint="@color/spruce"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@color/spruce"
+                    app:cardCornerRadius="16dp"
+                    android:backgroundTint="@color/spruce"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </merge>

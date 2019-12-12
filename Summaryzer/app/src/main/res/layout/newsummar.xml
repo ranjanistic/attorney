@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    android:background="@color/spruce"
+    app:cardCornerRadius="32dp"
+    android:backgroundTint="@color/spruce">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="32dp">
+
+        <Button
+            android:id="@+id/gobtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:textColor="@color/white"
+            android:text="@string/go"
+            android:background="@drawable/round_btn"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/abtbtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/round_btn"
+            android:textColor="@color/white"
+            android:text="about"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/settbtn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/round_btn"
+            android:text="settings"
+            android:padding="5dp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
