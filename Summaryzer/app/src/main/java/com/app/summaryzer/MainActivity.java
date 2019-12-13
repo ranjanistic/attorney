@@ -5,10 +5,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +22,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 
 public class MainActivity extends AppCompatActivity {
-    FloatingActionButton fab_menu, fab_report;
+    ImageButton regist, log;
     Animation fabOpen, fabClose,fabClk, fabAclk;
     boolean isOpen =false;
     @Override
@@ -36,7 +39,15 @@ public class MainActivity extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
             window.setNavigationBarColor(this.getResources().getColor(R.color.charcoal));
 
-      //  fab_menu  = findViewById(R.id.fab_menu);
+        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.refreshhome);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // your code
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
        // fab_report = findViewById(R.id.fab_report);
     //    fabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
       /*  fabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
@@ -58,11 +69,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });*/
+
         final Intent sumintent = new Intent(MainActivity.this, Summary.class);
         Button go = findViewById(R.id.gobtn);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this,R.style.DialogTheme);
                 View mView = getLayoutInflater().inflate(R.layout.privacy_notice, null);
                 CheckBox mCheckBox = mView.findViewById(R.id.checkBox);

@@ -1,43 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
-    android:background="@color/spruce"
-    app:cardCornerRadius="32dp"
-    android:backgroundTint="@color/spruce">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="32dp">
 
-        <Button
-            android:id="@+id/gobtn"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:textColor="@color/white"
-            android:text="@string/go"
-            android:background="@drawable/round_btn"
-            android:layout_gravity="center"/>
-        <Button
-            android:id="@+id/abtbtn"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:background="@drawable/round_btn"
-            android:textColor="@color/white"
-            android:text="about"
-            android:layout_gravity="center"/>
-        <Button
-            android:id="@+id/settbtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/round_btn"
-            android:text="settings"
-            android:padding="5dp"
-            android:textColor="@color/white"
-            android:layout_gravity="center"/>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    android:layout_height="1000dp"
+    android:background="@drawable/toproundview"
+
+    android:backgroundTint="@color/spruce">
+
+    <Button
+        android:id="@+id/gobtn"
+        android:layout_width="111dp"
+        android:layout_height="105dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/charcoal"
+        android:background="@drawable/round_btn"
+        android:text="@string/go"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.109" />
+
+    <Button
+        android:id="@+id/abtbtn"
+        android:layout_width="96dp"
+        android:layout_height="104dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_btn"
+        android:text="about"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gobtn"
+        app:layout_constraintVertical_bias="0.214" />
+
+    <Button
+        android:id="@+id/settbtn"
+        android:layout_width="86dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_btn"
+        android:padding="5dp"
+        android:text="settings"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gobtn"
+        app:layout_constraintVertical_bias="0.21" />
+</androidx.constraintlayout.widget.ConstraintLayout>
