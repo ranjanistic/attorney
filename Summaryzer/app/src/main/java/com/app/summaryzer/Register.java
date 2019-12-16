@@ -29,7 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Register extends AppCompatActivity {
 
-    EditText editMail, editPass;
+    EditText editMail, editPass, cnfpass;
     ImageButton signup;
     FirebaseAuth mAuth;
     boolean isOpen =true, stopFlag = true, isOpenload = false;
@@ -48,8 +48,9 @@ public class Register extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         editMail = findViewById(R.id.addemailID);
         editPass = findViewById(R.id.newpassword);
+        cnfpass = findViewById(R.id.cnfpassword);
         signup = findViewById(R.id.signupbtn);
-        loadanim = findViewById(R.id.regisload);
+       // //loadanim = findViewById(R.id.regisload);
         loadrot = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clk);
         loadarot = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_aclk);
         //signup.setEnabled(true);
@@ -107,22 +108,23 @@ public class Register extends AppCompatActivity {
     private void register(){
         if(isOpenload){
             //signup.startAnimation(loadrot);
-            loadanim.startAnimation(loadarot);
+            //loadanim.startAnimation(loadarot);
             isOpenload = false;
         } else{
             signup.startAnimation(loadarot);
-            loadanim.startAnimation(loadrot);
+            //loadanim.startAnimation(loadrot);
             isOpenload = true;
         }
-        String email, pass;
+        String email, pass, cpass;
         email = editMail.getText().toString();
         pass = editPass.getText().toString();
+        cpass = cnfpass.getText().toString();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
             //regiload.setVisibility(View.INVISIBLE);
             //signup.setVisibility(View.VISIBLE);
             //isOpen= false;
-            loadanim.startAnimation(loadarot);
+            //loadanim.startAnimation(loadarot);
             isOpenload = false;
             stopFlag = true;
             return;
@@ -133,30 +135,47 @@ public class Register extends AppCompatActivity {
          //   regiload.setVisibility(View.INVISIBLE);
             //signup.setVisibility(View.VISIBLE);
             //isOpen = false;
-            loadanim.startAnimation(loadarot);
+            //loadanim.startAnimation(loadarot);
             isOpenload = false;
             stopFlag = true;
             return;
         }
-        mAuth.createUserWithEmailAndPassword(email, pass)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
-                            isOpen = true;
-                            isOpenload = true;
-                            finish();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
-                     //       regiload.setVisibility(View.INVISIBLE);
-                          //  signup.setVisibility(View.VISIBLE);
-                            loadanim.startAnimation(loadarot);
-                            isOpenload = false;
-                            stopFlag = true;
-                            isOpen = false;
+
+        if (TextUtils.isEmpty(cpass)) {
+            Toast.makeText(getApplicationContext(), "Please confirm password!", Toast.LENGTH_LONG).show();
+
+            //   regiload.setVisibility(View.INVISIBLE);
+            //signup.setVisibility(View.VISIBLE);
+            //isOpen = false;
+            //loadanim.startAnimation(loadarot);
+            isOpenload = false;
+            stopFlag = true;
+            return;
+        }
+        if(pass!=cpass){
+            Toast.makeText(getApplicationContext(), "Passwords don't match", Toast.LENGTH_LONG).show();
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, pass)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
+                                isOpen = true;
+                                isOpenload = true;
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
+                                //       regiload.setVisibility(View.INVISIBLE);
+                                //  signup.setVisibility(View.VISIBLE);
+                                //loadanim.startAnimation(loadarot);
+                                isOpenload = false;
+                                stopFlag = true;
+                                isOpen = false;
+                            }
                         }
-                    }
-                });
-    }
+                    });
+        }
+
+        }
 }

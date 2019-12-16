@@ -10,6 +10,8 @@
             android:fillColor="#40545F"
             android:strokeColor="#40545F"
             android:strokeWidth="3.718392"
+            android:fillAlpha="0"
+            android:strokeAlpha="0"
             android:strokeLineCap="round" />
         <group
             android:scaleX="0.9953923"

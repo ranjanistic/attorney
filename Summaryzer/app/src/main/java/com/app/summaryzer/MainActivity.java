@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         final Intent sumintent = new Intent(MainActivity.this, Summary.class);
-        Button go = findViewById(R.id.gobtn);
+        ImageButton go = findViewById(R.id.gobtn);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

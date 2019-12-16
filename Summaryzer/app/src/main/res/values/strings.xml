@@ -24,4 +24,5 @@
     <string name="register">Register</string>
     <string name="anonym_loginInfo">Continuing anonymously does not affect your experience with this app, but changes the way this application works for you. Data is still collected but without associating you with it.\nAlso the way in which this app functions changes, though it will not affect you in any way.\n\nAre you in?</string>
     <string name="create_password">Create password</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
