@@ -8,8 +8,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-public class ConfirmationActivity extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+public class ConfirmationActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +23,9 @@ public class ConfirmationActivity extends AppCompatActivity {
         window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
         window.setNavigationBarColor(this.getResources().getColor(R.color.charcoal));
 
+// ...
+// Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
         Button abortlogin = findViewById(R.id.cancelLogin);
         abortlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,5 +33,12 @@ public class ConfirmationActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+     //   updateUI(currentUser);
     }
 }

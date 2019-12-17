@@ -2,6 +2,7 @@ package com.app.summaryzer;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +28,13 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     ImageButton regist, log;
     Animation fabOpen, fabClose,fabClk, fabAclk;
     boolean isOpen =false;
+    private FirebaseAuth mauth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,8 +44,11 @@ public class MainActivity extends AppCompatActivity {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
-            window.setNavigationBarColor(this.getResources().getColor(R.color.charcoal));
+            window.setNavigationBarColor(this.getResources().getColor(R.color.spruce));
 
+        ImageButton accountbtn = findViewById(R.id.accountbtn);
+
+        mauth = FirebaseAuth.getInstance();
         final SwipeRefreshLayout pullToRefresh = findViewById(R.id.refreshhome);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -48,34 +58,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       // fab_report = findViewById(R.id.fab_report);
-    //    fabOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-      /*  fabClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
-        fabAclk = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_aclk);
-        fabClk = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clk);
-        fab_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(isOpen){
-                    fab_report.startAnimation(fabClose);
-                    fab_menu.startAnimation(fabAclk);
-                    fab_report.setClickable(false);
-                    isOpen = false;
-                }else{
-                    fab_report.startAnimation(fabOpen);
-                    fab_menu.startAnimation(fabClk);
-                    fab_report.setClickable(true);
-                    isOpen = true;
-                }
-            }
-        });*/
-
         final Intent sumintent = new Intent(MainActivity.this, Summary.class);
         ImageButton go = findViewById(R.id.gobtn);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                CustomDialogClass cdd = new CustomDialogClass(MainActivity.this);
+                Objects.requireNonNull(cdd.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                cdd.show();
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this,R.style.DialogTheme);
                 View mView = getLayoutInflater().inflate(R.layout.privacy_notice, null);
                 CheckBox mCheckBox = mView.findViewById(R.id.checkBox);
@@ -117,12 +108,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton accountbtn = findViewById(R.id.accountbtn);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            accountbtn.setTooltipText("Settings");
+        }
+
+
         accountbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registeract = new Intent(MainActivity.this, Register.class);
-                startActivity(registeract);
+                Intent accountact = new Intent(MainActivity.this, AccountView.class);
+                startActivity(accountact);
             }
         });
     }

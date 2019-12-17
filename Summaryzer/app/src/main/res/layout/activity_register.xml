@@ -11,10 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_margin="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +63,14 @@
                 app:srcCompat="@drawable/test"
                 android:contentDescription="@string/app_name" />
         </LinearLayout>
-
+        <com.google.android.material.textfield.TextInputLayout
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColorHint="@color/edittextcolor"
+            android:hint="@string/email_id"
+            android:padding="4dp">
         <EditText
             android:id="@+id/addemailID"
             android:layout_width="340dp"
@@ -82,17 +86,22 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:background="@drawable/textbox"
-            android:fontFamily="@font/raleway"
-            android:hint="@string/email_id"
             android:inputType="textEmailAddress"
             android:textColor="@color/white"
-            android:textColorHint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/registerTitle"
             app:layout_constraintVertical_bias="0.0" />
-
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColorHint="@color/edittextcolor"
+            android:hint="@string/create_password"
+            android:padding="4dp">
         <EditText
             android:id="@+id/newpassword"
             android:layout_width="340dp"
@@ -107,14 +116,19 @@
             android:paddingEnd="12dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:defaultFocusHighlightEnabled="true"
             android:background="@drawable/textbox"
             android:fontFamily="@font/raleway"
-            android:hint="@string/create_password"
             android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/colorAccent" />
-
+            android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColorHint="@color/edittextcolor"
+            android:hint="@string/confirm_password"
+            android:padding="4dp">
         <EditText
             android:id="@+id/cnfpassword"
             android:layout_width="340dp"
@@ -130,20 +144,20 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:background="@drawable/textbox"
-            android:fontFamily="@font/raleway"
-            android:hint="@string/confirm_password"
             android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/colorAccent" />
-
+            android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
             <ImageButton
                 android:id="@+id/signupbtn"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
+                android:tooltipText="@string/register"
+                android:layout_gravity="end"
+                tools:targetApi="P"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/sign_up"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/round_btn"
                 android:backgroundTint="@color/spruce"
@@ -235,19 +249,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 android:gravity="center"
+                android:paddingBottom="22dp"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/googleloginbtn"
+                    android:tooltipText="@string/logviagoogle"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:layout_marginStart="52dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@drawable/square_btn"
-                    android:backgroundTint="#00000000"
+                    android:background="@drawable/round_btn"
+                    android:backgroundTint="@color/white"
                     android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/common_google_signin_btn_icon_dark_focused" />
+                    app:srcCompat="@drawable/ic_google"
+                    tools:targetApi="o" />
 
                 <!--ImageButton
                     android:id="@+id/phoneloginbtn"
@@ -259,7 +276,7 @@
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/round_btn"
                     android:backgroundTint="@color/green"
-                    android:contentDescription="@string/todo"
+                    android:contentDescription="@string/"
                     android:foregroundTint="@color/deep_blue"
                     android:foregroundTintMode="screen"
                     app:srcCompat="@android:drawable/stat_sys_speakerphone"/-->
@@ -269,6 +286,7 @@
                     android:layout_weight="1" />
                 <ImageButton
                     android:id="@+id/anonymloginbtn"
+                    android:tooltipText="@string/anonym_login"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:layout_marginTop="8dp"
@@ -276,11 +294,18 @@
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/round_btn"
                     android:backgroundTint="@color/spruce"
-                    android:contentDescription="Anonym login button"
+                    android:contentDescription="@string/anonym_login_button"
                     app:srcCompat="@drawable/ic_icognitoman"
                     android:scaleType="fitCenter"
                     android:padding="5dp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/register"
+        app:srcCompat="@drawable/ic_handingkey"
+        android:translationZ="-4dp"
+        android:alpha="0.4"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,9 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,11 +64,14 @@
                 app:srcCompat="@drawable/test" />
         </LinearLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout"
-            android:layout_width="match_parent"
             android:gravity="center"
-            android:layout_height="match_parent">
-        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColorHint="@color/edittextcolor"
+            android:hint="@string/email_id"
+            android:padding="4dp">
+            <EditText
             android:id="@+id/emailID"
             android:layout_width="340dp"
             android:layout_height="65dp"
@@ -80,25 +81,22 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/textbox"
-            android:ems="10"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:focusedByDefault="true"
-            android:fontFamily="@font/raleway"
-            android:hint="@string/email_id"
             android:inputType="textEmailAddress"
             android:nextFocusDown="@id/password"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginTitle"
-            app:layout_constraintVertical_bias="0.0" />
-
+            android:textColor="@color/edittextcolor" />
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColorHint="@color/edittextcolor"
+            android:hint="@string/password"
+            android:padding="4dp">
         <EditText
             android:id="@+id/password"
             android:layout_width="340dp"
@@ -112,33 +110,26 @@
             android:ems="10"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:focusedByDefault="true"
-            android:fontFamily="@font/raleway"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailID"
-            app:layout_constraintVertical_bias="0.00999999" />
-
+            android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
         <ImageButton
             android:id="@+id/signinbtn"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="end"
-
+            android:tooltipText="@string/sign_in"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/round_btn"
             android:backgroundTint="@color/spruce"
-            app:srcCompat="@drawable/ic_arrowright" />
+            app:srcCompat="@drawable/ic_arrowright"
+            tools:targetApi="q" />
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -209,21 +200,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 android:gravity="center"
+                android:paddingBottom="22dp"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/googleloginbtn"
+                    android:tooltipText="@string/logviagoogle"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:layout_marginStart="52dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-
-                    android:background="@drawable/square_btn"
-                    android:backgroundTint="#00000000"
+                    android:background="@drawable/round_btn"
+                    android:backgroundTint="#fff"
                     android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/common_google_signin_btn_icon_dark_focused" />
+                    app:srcCompat="@drawable/ic_google"
+                    tools:targetApi="p" />
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
@@ -238,7 +231,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/round_btn"
             android:backgroundTint="@color/green"
-            android:contentDescription="@string/todo"
+            android:contentDescription="@string/
             android:foregroundTint="@color/deep_blue"
             android:foregroundTintMode="screen"
             app:srcCompat="@android:drawable/stat_sys_speakerphone"/-->
@@ -251,12 +244,14 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="52dp"
                     android:layout_marginBottom="8dp"
+                    android:tooltipText="@string/anonym_login"
                     android:background="@drawable/round_btn"
                     android:backgroundTint="@color/spruce"
-                    android:contentDescription="Anonym login button"
+                    android:contentDescription="@string/anonym_login"
                     android:padding="5dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_icognitoman" />
+                    app:srcCompat="@drawable/ic_icognitoman"
+                    tools:targetApi="p" />
 
             </LinearLayout>
 

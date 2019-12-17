@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.LoginFilter;
@@ -47,6 +48,7 @@ public class Register extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         editMail = findViewById(R.id.addemailID);
+
         editPass = findViewById(R.id.newpassword);
         cnfpass = findViewById(R.id.cnfpassword);
         signup = findViewById(R.id.signupbtn);
@@ -54,24 +56,20 @@ public class Register extends AppCompatActivity {
         loadrot = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_clk);
         loadarot = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate_aclk);
         //signup.setEnabled(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            signup.setTooltipText("Register now");
+        }
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
                     register();
-                    stopFlag = false;
-                } catch (NullPointerException e){
-                    Log.e("hey", "onClick: Bruhh", e);
-                }
             }
         });
 
-/*                    Snackbar.make(view, Html.fromHtml("<font color=\"#ffffff\">Database error Oof</font>"), Snackbar.LENGTH_LONG)
-                                .setActionTextColor(getResources().getColor(R.color.white))
-                                .setAction("Action", null).show();
-                        Toast.makeText(Register.this,"Registered!Not", Toast.LENGTH_LONG).show();
-*/
         ImageButton anonymlogbtn  = findViewById(R.id.anonymloginbtn);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            anonymlogbtn.setTooltipText("Login Anonymously");
+        }
         anonymlogbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +79,9 @@ public class Register extends AppCompatActivity {
         });
 
         ImageButton googlelogbtn = findViewById(R.id.googleloginbtn);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+           googlelogbtn.setTooltipText("Login with Google");
+        }
         googlelogbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,15 +89,14 @@ public class Register extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        //loadOpen = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_open);
-        //loadClose = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fab_close);
 
-        final Button signin = findViewById(R.id.signinbutt);
+        Button signin = findViewById(R.id.signinbutt);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent loginintent = new Intent(Register.this, Login.class);
                 startActivity(loginintent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             }
         });
@@ -106,53 +106,25 @@ public class Register extends AppCompatActivity {
     }
 
     private void register(){
-        if(isOpenload){
-            //signup.startAnimation(loadrot);
-            //loadanim.startAnimation(loadarot);
-            isOpenload = false;
-        } else{
-            signup.startAnimation(loadarot);
-            //loadanim.startAnimation(loadrot);
-            isOpenload = true;
-        }
         String email, pass, cpass;
         email = editMail.getText().toString();
         pass = editPass.getText().toString();
         cpass = cnfpass.getText().toString();
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
-            //regiload.setVisibility(View.INVISIBLE);
-            //signup.setVisibility(View.VISIBLE);
-            //isOpen= false;
-            //loadanim.startAnimation(loadarot);
-            isOpenload = false;
-            stopFlag = true;
             return;
 
         }
         if (TextUtils.isEmpty(pass)) {
             Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
-         //   regiload.setVisibility(View.INVISIBLE);
-            //signup.setVisibility(View.VISIBLE);
-            //isOpen = false;
-            //loadanim.startAnimation(loadarot);
-            isOpenload = false;
-            stopFlag = true;
             return;
         }
 
         if (TextUtils.isEmpty(cpass)) {
             Toast.makeText(getApplicationContext(), "Please confirm password!", Toast.LENGTH_LONG).show();
-
-            //   regiload.setVisibility(View.INVISIBLE);
-            //signup.setVisibility(View.VISIBLE);
-            //isOpen = false;
-            //loadanim.startAnimation(loadarot);
-            isOpenload = false;
-            stopFlag = true;
             return;
         }
-        if(pass!=cpass){
+        if(!pass.equals(cpass)){
             Toast.makeText(getApplicationContext(), "Passwords don't match", Toast.LENGTH_LONG).show();
         } else {
             mAuth.createUserWithEmailAndPassword(email, pass)
@@ -162,15 +134,9 @@ public class Register extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
                                 isOpen = true;
-                                isOpenload = true;
                                 finish();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
-                                //       regiload.setVisibility(View.INVISIBLE);
-                                //  signup.setVisibility(View.VISIBLE);
-                                //loadanim.startAnimation(loadarot);
-                                isOpenload = false;
-                                stopFlag = true;
+                                Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();;
                                 isOpen = false;
                             }
                         }

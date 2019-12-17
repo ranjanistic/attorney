@@ -25,4 +25,23 @@
     <string name="anonym_loginInfo">Continuing anonymously does not affect your experience with this app, but changes the way this application works for you. Data is still collected but without associating you with it.\nAlso the way in which this app functions changes, though it will not affect you in any way.\n\nAre you in?</string>
     <string name="create_password">Create password</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="anonym_login_button">Anonym login button</string>
+    <string name="title_activity_account_view">AccountView</string>
+    <string name="title_account">Account</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_about">About</string>
+    <string name="none"> </string>
+    <string name="loggedas">You haven\'t signed in yet.</string>
+    <string name="recently">Recently,</string>
+    <string name="logviagoogle">Login via Google</string>
+    <string name="anonym_login">Anonymous login</string>
+    <string name="app_version">Version 0.0 singularity.</string>
+    <string name="check_for_updates">Check for updates</string>
+    <string name="rate_on_google_play_store">Rate on Google Play Store</string>
+    <string name="report_bug_s">Report bug(s)</string>
+    <string name="tell_us_anything_about_the_app">Tell us anything about the app</string>
+    <string name="log_out">Log Out</string>
+    <string name="delete_my_account_permanently">Delete my account permanently</string>
+    <string name="factory_reset_the_applicaton">Factory reset the applicaton</string>
+    <string name="remove_my_data_everywhere">Remove my data everywhere</string>
 </resources>
