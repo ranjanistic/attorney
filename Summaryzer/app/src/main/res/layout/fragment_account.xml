@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:backgroundTint="@color/charcoal"
     android:background="@color/charcoal"
@@ -46,7 +45,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
             <ImageView
-                android:id="@+id/appiconsignin"
+                android:id="@+id/accounticon"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginStart="8dp"
@@ -68,19 +67,13 @@
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:padding="16dp">
-
             <TextView
-                android:id="@+id/accountdisptext"
-                android:layout_width="match_parent"
+                android:id="@+id/loggedouttext"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_gravity="center"
+                android:fontFamily="@font/raleway"
+                android:textSize="22sp"/>
 
             <Button
                 android:id="@+id/signinbuttabout"
@@ -98,7 +91,146 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>
+        <ScrollView
+            android:id="@+id/loginscrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:text="We know you as"
+                            android:paddingTop="6dp"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="You may tell us your name"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="20sp"/>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                    <ImageButton
+                        android:id="@+id/editname"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="8dp"
+                        android:background="@drawable/square_btn"
+                        android:backgroundTint="@color/pale_red"
+                        app:srcCompat="@drawable/ic_trashico"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="6dp"
+                            android:text="Logged in as"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:id="@+id/accountdisptext"
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="20sp"/>
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/resetbtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:background="@drawable/square_btn"
+                        app:srcCompat="@drawable/ic_resetting"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="6dp"
+                            android:text="Authenticity"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:id="@+id/verifystatustxt"
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="@string/unverified_verify_now"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="20sp"/>
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/mailverifybtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="30dp"
+                        android:background="@drawable/square_btn"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/dark_red"
+                        app:srcCompat="@drawable/ic_accountremove"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
     </LinearLayout>
+
     <ImageView
         android:id="@+id/loginback"
         android:layout_width="match_parent"

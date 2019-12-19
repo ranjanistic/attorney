@@ -45,6 +45,7 @@
     <string name="factory_reset_the_applicaton">Factory reset the applicaton</string>
     <string name="remove_my_data_everywhere">Remove my data everywhere</string>
     <string name="account">Account</string>
+    <string name="verified_text">Hooray! You are authentic.</string>
     <string name="share_with_others">Share with humans</string>
     <string name="kill_the_app_and_restart">Kill the app and restart</string>
     <string name="in_case_any_problem_occurs_try_this">In case any problem occurs, try this.</string>
@@ -54,4 +55,5 @@
     <string name="updates_are_important_keep_ths_app_up_to_date">Updates are important. Keep ths app up-to-date.</string>
     <string name="you_liked_this_tell_it_to_google">You liked this? Tell it to Google.</string>
     <string name="need_your_credentials_to_proceed">Need your credentials to proceed.</string>
+    <string name="unverified_verify_now">Unverified. Verify now.</string>
 </resources>
