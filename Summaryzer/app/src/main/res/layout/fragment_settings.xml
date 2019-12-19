@@ -57,7 +57,7 @@
                 app:layout_constraintStart_toEndOf="@+id/loginTitle"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.615"
-                app:srcCompat="@drawable/ic_settingico2" />
+                app:srcCompat="@drawable/ic_settingico" />
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -73,13 +73,27 @@
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="@string/remove_my_data_everywhere"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/delete_all_of_your_stored_data_and_activities"
+                            android:paddingTop="6dp"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -101,13 +115,27 @@
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="@string/factory_reset_the_applicaton"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="6dp"
+                            android:text="@string/reset_the_application_to_its_initial_state"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -128,19 +156,76 @@
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="@string/delete_my_account_permanently"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="6dp"
+                            android:text="@string/delete_your_account_and_we_don_t_know_you"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1" />
                     <ImageButton
                         android:id="@+id/accdeletebtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/square_btn"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/dark_red"
+                        app:srcCompat="@drawable/ic_accountremove"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="@string/kill_the_app_and_restart"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="6dp"
+                            android:text="@string/in_case_any_problem_occurs_try_this"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                    <ImageButton
+                        android:id="@+id/killrestartbtn"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/square_btn"
@@ -166,13 +251,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:background="@drawable/square_btn"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/dark_red"
 
                         android:fontFamily="@font/raleway"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:scaleType="fitCenter"
-
                         android:text="@string/log_out"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textColor="@color/colorAccent"
@@ -184,7 +268,7 @@
 
     </LinearLayout>
     <ImageView
-        android:id="@+id/loginback"
+        android:id="@+id/settingback"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="0dp"
@@ -198,5 +282,5 @@
         app:layout_constraintTop_toTopOf="parent"
         android:translationZ="-1dp"
         android:padding="22dp"
-        app:srcCompat="@drawable/ic_settingico2" />
+        app:srcCompat="@drawable/setting_back" />
 </androidx.constraintlayout.widget.ConstraintLayout>

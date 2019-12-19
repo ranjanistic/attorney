@@ -80,21 +80,34 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:text="@string/check_for_updates"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="6dp"
+                            android:text="@string/updates_are_important_keep_ths_app_up_to_date"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -116,13 +129,27 @@
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="@string/rate_on_google_play_store"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/you_liked_this_tell_it_to_google"
+                            android:fontFamily="@font/raleway"
+                            android:paddingTop="6dp"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -144,13 +171,27 @@
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="@string/report_bug_s"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:text="Preemptive apology for any error. Please tell us."
+                            android:fontFamily="@font/raleway"
+                            android:paddingTop="6dp"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -171,13 +212,27 @@
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="@string/tell_us_anything_about_the_app"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:paddingTop="6dp"
+                            android:layout_height="wrap_content"
+                            android:text="Like? Dislike? Feautre request? We'd love to hear."
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -199,13 +254,27 @@
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:textStyle="bold"
                         android:text="For developers"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:text="*Tough guy finger snapping starts*"
+                            android:paddingTop="6dp"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -218,6 +287,48 @@
                         android:backgroundTint="@color/colorAccent"
                         android:background="@drawable/square_btn"
                         app:srcCompat="@drawable/ic_github"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/share_with_others"
+                        android:fontFamily="@font/raleway"
+                        android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:text="Marketing of this app at your level. Keep sharing!"
+                            android:paddingTop="6dp"
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                    <ImageButton
+                        android:id="@+id/shareappbtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/deep_purple"
+                        android:background="@drawable/square_btn"
+                        app:srcCompat="@drawable/ic_share_alt"
                         android:scaleType="fitCenter"
                         />
                 </LinearLayout>

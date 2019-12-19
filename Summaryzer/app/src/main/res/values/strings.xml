@@ -44,4 +44,14 @@
     <string name="delete_my_account_permanently">Delete my account permanently</string>
     <string name="factory_reset_the_applicaton">Factory reset the applicaton</string>
     <string name="remove_my_data_everywhere">Remove my data everywhere</string>
+    <string name="account">Account</string>
+    <string name="share_with_others">Share with humans</string>
+    <string name="kill_the_app_and_restart">Kill the app and restart</string>
+    <string name="in_case_any_problem_occurs_try_this">In case any problem occurs, try this.</string>
+    <string name="delete_all_of_your_stored_data_and_activities">Delete all of your stored data and activities.</string>
+    <string name="reset_the_application_to_its_initial_state">Reset the application to its initial state.</string>
+    <string name="delete_your_account_and_we_don_t_know_you">Delete your account and we don\'t know you.</string>
+    <string name="updates_are_important_keep_ths_app_up_to_date">Updates are important. Keep ths app up-to-date.</string>
+    <string name="you_liked_this_tell_it_to_google">You liked this? Tell it to Google.</string>
+    <string name="need_your_credentials_to_proceed">Need your credentials to proceed.</string>
 </resources>

@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                CustomDialogClass cdd = new CustomDialogClass(MainActivity.this);
-                Objects.requireNonNull(cdd.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                cdd.show();
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this,R.style.DialogTheme);
                 View mView = getLayoutInflater().inflate(R.layout.privacy_notice, null);
                 CheckBox mCheckBox = mView.findViewById(R.id.checkBox);

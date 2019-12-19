@@ -32,6 +32,7 @@ public class Login extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
+    private static String email = "", password = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,10 +94,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-
     private void loginUser() {
-
-        final String email, password;
         email = emailid.getText().toString();
         password = passlogin.getText().toString();
 
@@ -122,5 +120,11 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    public static String getEmail() {
+        return email;
+    }
+    public static String getPassword() {
+        return password;
     }
 }

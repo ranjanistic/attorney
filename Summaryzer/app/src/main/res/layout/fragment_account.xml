@@ -31,7 +31,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/raleway"
-                android:text="Account"
+                android:text="@string/account"
                 android:textColor="@color/white"
                 android:textSize="36sp"
                 android:textStyle="bold"
@@ -59,7 +59,7 @@
                 app:layout_constraintStart_toEndOf="@+id/loginTitle"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.615"
-                app:srcCompat="@drawable/test" />
+                app:srcCompat="@drawable/ic_accountico" />
         </LinearLayout>
 
         <LinearLayout
@@ -70,15 +70,13 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/text_home"
+                android:id="@+id/accountdisptext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="@string/loggedas"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +114,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:translationZ="-1dp"
         android:padding="22dp"
-        app:srcCompat="@drawable/ic_locknkey" />
+        app:srcCompat="@drawable/ic_accountview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
