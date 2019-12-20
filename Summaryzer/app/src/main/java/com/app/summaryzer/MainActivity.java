@@ -45,18 +45,19 @@ public class MainActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
             window.setNavigationBarColor(this.getResources().getColor(R.color.spruce));
+     //   Objects.requireNonNull(this.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         ImageButton accountbtn = findViewById(R.id.accountbtn);
 
         mauth = FirebaseAuth.getInstance();
-        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.refreshhome);
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
+        //final SwipeRefreshLayout pullToRefresh = findViewById(R.id.refreshhome);
+        //pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            //@Override
+            //public void onRefresh() {
                 // your code
-                pullToRefresh.setRefreshing(false);
-            }
-        });
+             //   pullToRefresh.setRefreshing(false);
+            //}
+        //});
 
         final Intent sumintent = new Intent(MainActivity.this, Summary.class);
         ImageButton go = findViewById(R.id.gobtn);

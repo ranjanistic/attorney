@@ -187,7 +187,7 @@
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
-                            android:text="Preemptive apology for any error. Please tell us."
+                            android:text="@string/preemptive_apology_for_any_error_please_tell_us"
                             android:fontFamily="@font/raleway"
                             android:paddingTop="6dp"
                             android:textSize="12sp"/>
@@ -229,7 +229,7 @@
                             android:textColor="@color/colorAccent"
                             android:paddingTop="6dp"
                             android:layout_height="wrap_content"
-                            android:text="Like? Dislike? Feautre request? We'd love to hear."
+                            android:text="@string/like_dislike_feautre_request_we_d_love_to_hear"
                             android:fontFamily="@font/raleway"
                             android:textSize="12sp"/>
                     </LinearLayout>
@@ -263,14 +263,14 @@
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="For developers"
+                        android:text="@string/for_developers"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
-                            android:text="*Tough guy finger snapping starts*"
+                            android:text="@string/tough_guy_finger_snapping_starts"
                             android:paddingTop="6dp"
                             android:fontFamily="@font/raleway"
                             android:textSize="12sp"/>
@@ -312,7 +312,7 @@
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
-                            android:text="Marketing of this app at your level. Keep sharing!"
+                            android:text="@string/marketing_of_this_app_at_your_level_keep_sharing"
                             android:paddingTop="6dp"
                             android:fontFamily="@font/raleway"
                             android:textSize="12sp"/>

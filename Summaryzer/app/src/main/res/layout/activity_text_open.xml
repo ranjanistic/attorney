@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".TextOpenActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/charcoal"
+        android:layout_height="300dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/charcoal"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginBottom="14dp"
+                app:layout_collapseMode="pin"
+                android:backgroundTint="@color/charcoal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textfilecaption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:paddingBottom="8dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorAccent"
+                    android:text="Viewing"/>
+                <TextView
+                    android:id="@+id/textfilename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:textSize="32sp"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+            <TextView
+                android:id="@+id/textfilecontentcaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway"
+                android:layout_marginStart="14dp"
+                android:paddingBottom="14dp"
+                android:textColor="@color/colorAccent"
+                app:layout_collapseMode="pin"
+                android:layout_gravity="bottom"
+                android:textSize="26sp"
+                android:text="Content"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_text_open" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="70dp"
+        android:layout_gravity="bottom|end"
+        android:layout_height="70dp"
+        android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/charcoal"
+        android:scaleType="centerCrop"
+        app:elevation="10dp"
+
+        app:srcCompat="@drawable/ic_settingico_mini" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

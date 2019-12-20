@@ -23,7 +23,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.Objects;
 
 public class CustomDialogClass extends AppCompatDialog {
-    OnDialogConfirmListener onDialogConfirmListener;
+    private OnDialogConfirmListener onDialogConfirmListener;
     public CustomDialogClass(Context context, OnDialogConfirmListener onDialogConfirmListener){
         super(context);
         this.onDialogConfirmListener = onDialogConfirmListener;

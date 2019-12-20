@@ -17,30 +17,35 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".AccountView"
-            android:label="@string/title_activity_account_view"></activity>
-        <activity android:name=".Login">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
+            android:name=".TextOpenActivity"
+
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+                <data android:scheme="file"/>
+                <data android:scheme="content"/>
+                <data android:host="*"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AccountView"
+            android:label="@string/title_activity_account_view" />
+        <activity android:name=".Login"/>
         <activity android:name=".ConfirmationActivity" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" /> <!-- To use multiple models: android:value="ocr,model2,model3" -->
-        <activity android:name=".Register">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Register"/>
         <activity android:name=".Summary" />
         <activity
             android:name=".Splash"
             android:theme="@style/splashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

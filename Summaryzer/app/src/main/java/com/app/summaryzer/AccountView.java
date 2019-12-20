@@ -27,17 +27,7 @@ public class AccountView extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
         window.setNavigationBarColor(this.getResources().getColor(R.color.spruce));
-        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.accountrefresh);
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
 
-                finish();
-                startActivity(getIntent());
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                pullToRefresh.setRefreshing(false);
-            }
-        });
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

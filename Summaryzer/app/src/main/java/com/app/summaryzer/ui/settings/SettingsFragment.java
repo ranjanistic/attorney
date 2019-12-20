@@ -1,14 +1,16 @@
 package com.app.summaryzer.ui.settings;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
+import java.lang.*;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.PrecomputedText;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,16 +25,19 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.app.summaryzer.CustomDialogClass;
+import com.app.summaryzer.CustomLoadDialogClass;
 import com.app.summaryzer.Login;
 import com.app.summaryzer.MainActivity;
 import com.app.summaryzer.OnDialogApplyListener;
 import com.app.summaryzer.OnDialogConfirmListener;
+import com.app.summaryzer.OnDialogLoadListener;
 import com.app.summaryzer.R;
 import com.app.summaryzer.VerificationDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,7 +67,7 @@ public class SettingsFragment extends Fragment {
                 ViewModelProviders.of(this).get(SettingsViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        ImageButton killbutt, remdatabutt, factresetbutt,delaccbutt;
+        final ImageButton killbutt, remdatabutt, factresetbutt,delaccbutt;
         Button logoutbutt;
         killbutt = root.findViewById(R.id.killrestartbtn);
         remdatabutt = root.findViewById(R.id.removedatabtn);
@@ -76,7 +81,8 @@ public class SettingsFragment extends Fragment {
                 Toast.makeText(getContext(), "Assigning values.", Toast.LENGTH_LONG).show();
                 emailid = demail;
                 pass = dpassword;
-                authenticate(emailid, pass);
+                new AuthTask().execute(emailid, pass);
+                //authenticate(emailid, pass);
 
             }
         });
@@ -84,7 +90,7 @@ public class SettingsFragment extends Fragment {
         dialogClassremdata = new CustomDialogClass(getActivity(), new OnDialogConfirmListener() {
             @Override
             public void onApply(Boolean ok) {
-                removedata();
+              new SettingTask().execute(1);
             }
 
             @Override
@@ -123,7 +129,7 @@ public class SettingsFragment extends Fragment {
         dialogClassfactreset = new CustomDialogClass(getActivity(), new OnDialogConfirmListener() {
             @Override
             public void onApply(Boolean ok) {
-                factreset();
+                new SettingTask().execute(2);
             }
 
             @Override
@@ -161,8 +167,9 @@ public class SettingsFragment extends Fragment {
 
         dialogClassdelacc = new CustomDialogClass(getActivity(), new OnDialogConfirmListener() {
             @Override
-            public void onApply(Boolean ok) {
-                deleteaccount();
+            public void onApply(Boolean ok)
+            {
+                new SettingTask().execute(3);
             }
 
             @Override
@@ -200,7 +207,7 @@ public class SettingsFragment extends Fragment {
         dialogClasskillres = new CustomDialogClass(getActivity(), new OnDialogConfirmListener() {
             @Override
             public void onApply(Boolean ok) {
-                killrestart();
+                new SettingTask().execute(4);
             }
 
             @Override
@@ -238,7 +245,7 @@ public class SettingsFragment extends Fragment {
         dialogClasslogout = new CustomDialogClass(getActivity(), new OnDialogConfirmListener() {
             @Override
             public void onApply(Boolean ok) {
-                logout();
+                new SettingTask().execute(5);
             }
 
             @Override
@@ -297,7 +304,6 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
         delaccbutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -313,22 +319,107 @@ public class SettingsFragment extends Fragment {
         logoutbutt.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                actioncode = 5;
                 dialogbox(R.drawable.ic_settingico,"Sure to log out?","This will log you out from application","Log out","No, abort");
                 dialogClasslogout.show();
-                actioncode = 0;
             }
         });
 
         return root;
     }
 
+
+    public class SettingTask extends AsyncTask<Integer,String,String>{
+        CustomLoadDialogClass loadAnim;
+        @Override
+        protected void onPreExecute(){
+            loadAnim = new CustomLoadDialogClass(getActivity(), new OnDialogLoadListener() {
+                @Override
+                public String onLoadText() {
+                    return "Please wait";
+                }
+            });
+            loadAnim.show();
+        }
+
+        @Override
+        protected String doInBackground(Integer... params){
+            String text;
+            int my  = params[0];
+            switch (my){
+                case 1: publishProgress("Removing your data");removedata(); text ="Data removed successfully.";  break;
+                case 2:publishProgress("Performing reset");factreset(); text="Application reset"; break;
+                case 3: publishProgress("Deleting your account");deleteaccount(); text="Account deleted successfully";break;
+                case 4: publishProgress("Restarting");killrestart(); text="Restarting..."; break;
+                case 5: publishProgress("Logging you out");logout(); text="Logged out successfully"; break;
+                default: text="error in code passed";
+            }
+            return text;
+        }
+        @Override
+        protected void onProgressUpdate(final String... value){
+            final String cap = value[0];
+            loadAnim = new CustomLoadDialogClass(getActivity(), new OnDialogLoadListener() {
+                @Override
+                public String onLoadText() {
+                    return cap;
+                }
+            });
+            loadAnim.show();
+        }
+        @Override
+        protected void onPostExecute(String result){
+            super.onPostExecute(result);
+            Toast.makeText(getActivity(),result,Toast.LENGTH_LONG).show();
+            loadAnim = new CustomLoadDialogClass(getActivity(), null);
+            loadAnim.dismiss();
+        }
+    }
+
+    public class AuthTask extends AsyncTask<String,String,Void>{
+        CustomLoadDialogClass loadAnim;
+        @Override
+        protected void onPreExecute(){
+            loadAnim = new CustomLoadDialogClass(getActivity(), new OnDialogLoadListener() {
+                @Override
+                public String onLoadText() {
+                    return "Please wait";
+                }
+            });
+            loadAnim.show();
+        }
+
+        @Override
+        protected Void doInBackground(String... params){
+            String mail  = params[0];
+            String pass = params[1];
+            publishProgress("Authenticating");
+            authenticate(mail,pass);
+            return null;
+        }
+        @Override
+        protected void onProgressUpdate(final String... value){
+            final String cap = value[0];
+            loadAnim = new CustomLoadDialogClass(getActivity(), new OnDialogLoadListener() {
+                @Override
+                public String onLoadText() {
+                    return cap;
+                }
+            });
+            loadAnim.show();
+        }
+        @Override
+        protected void onPostExecute(Void v){
+            loadAnim = new CustomLoadDialogClass(getActivity(), null);
+            Toast.makeText(getActivity(), "onpostexecute", Toast.LENGTH_SHORT).show();
+            loadAnim.dismiss();
+        }
+    }
+
+
     private void authenticate(String uid, String passphrase){
         AuthCredential credential = EmailAuthProvider
                 .getCredential(uid, passphrase);
-        Toast.makeText(getContext(), "Credential Passed.", Toast.LENGTH_LONG).show();
         user.reauthenticate(credential)
-
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -343,12 +434,6 @@ public class SettingsFragment extends Fragment {
                 });
     }
 
-    //private void chooseAction(int actcode){
-        //switch (actcode){
-
-//            default: actcode = 0;
-//        }
-    //}
     private void factreset() {
         try {
             // clearing app data
@@ -366,6 +451,7 @@ public class SettingsFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "Deleted", Toast.LENGTH_SHORT).show();
+                            getActivity().finish();
                         } else {
                             Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
                         }
@@ -378,7 +464,6 @@ public class SettingsFragment extends Fragment {
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
             startActivity(i);
             FirebaseAuth.getInstance().signOut();
-            Toast.makeText(getActivity(), "logged out successfully", Toast.LENGTH_SHORT).show();
     }
     private void killrestart(){
         Intent i=new Intent(getActivity(), MainActivity.class);
