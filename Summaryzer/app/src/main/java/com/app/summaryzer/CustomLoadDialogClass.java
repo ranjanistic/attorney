@@ -24,6 +24,7 @@ public class CustomLoadDialogClass extends AppCompatDialog {
         setContentView(R.layout.custom_load_dialog);
         Objects.requireNonNull(this.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         TextView loadtext= findViewById(R.id.loadingcaption);
+        onDialogLoadListener.onLoad();
         String caption = onDialogLoadListener.onLoadText();
         assert loadtext != null;
         loadtext.setText(caption);

@@ -13,13 +13,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialog;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.Objects;
 
-public class VerificationDialog extends AppCompatDialog {
+public class CustomVerificationDialog extends AppCompatDialog {
     OnDialogApplyListener onDialogApplyListener;
-    public VerificationDialog(Context context, OnDialogApplyListener onDialogApplyListener){
+    public CustomVerificationDialog(Context context, OnDialogApplyListener onDialogApplyListener){
         super(context);
         this.onDialogApplyListener = onDialogApplyListener;
     }
@@ -27,7 +25,7 @@ public class VerificationDialog extends AppCompatDialog {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.cred_verify_dialog);
+        setContentView(R.layout.custom_verification_dialog);
         Objects.requireNonNull(this.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         final EditText etmail = findViewById(R.id.cred_email);
@@ -57,9 +55,7 @@ public class VerificationDialog extends AppCompatDialog {
 //                    return;
                 }
                 else{
-                    Toast.makeText(getContext(), "Passing.", Toast.LENGTH_LONG).show();
                     onDialogApplyListener.onApply(email,pass);
-                    Toast.makeText(getContext(), "Passed.", Toast.LENGTH_LONG).show();
                     dismiss();
                 }
 

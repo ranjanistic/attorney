@@ -51,12 +51,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/title_settings"
-                app:layout_constraintBottom_toTopOf="@+id/emailID"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.88"
-                app:layout_constraintStart_toEndOf="@+id/loginTitle"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.615"
                 app:srcCompat="@drawable/ic_settingico" />
         </LinearLayout>
         <ScrollView
@@ -76,12 +70,15 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:singleLine="false"
                         android:text="@string/remove_my_data_everywhere"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
@@ -91,6 +88,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/delete_all_of_your_stored_data_and_activities"
                             android:paddingTop="6dp"
+                            android:singleLine="false"
                             android:fontFamily="@font/raleway"
                             android:textSize="12sp"/>
                     </LinearLayout>
@@ -118,12 +116,15 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:singleLine="false"
                         android:text="@string/factory_reset_the_applicaton"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
@@ -131,6 +132,7 @@
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
+                            android:singleLine="false"
                             android:paddingTop="6dp"
                             android:text="@string/reset_the_application_to_its_initial_state"
                             android:fontFamily="@font/raleway"
@@ -159,11 +161,14 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:singleLine="false"
                         android:textStyle="bold"
                         android:text="@string/delete_my_account_permanently"
                         android:fontFamily="@font/raleway"
@@ -173,6 +178,7 @@
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
                             android:paddingTop="6dp"
+                            android:singleLine="false"
                             android:text="@string/delete_your_account_and_we_don_t_know_you"
                             android:fontFamily="@font/raleway"
                             android:textSize="12sp"/>
@@ -201,19 +207,24 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
+
                             android:text="@string/kill_the_app_and_restart"
                             android:fontFamily="@font/raleway"
+                            android:singleLine="false"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
+                            android:singleLine="false"
                             android:paddingTop="6dp"
                             android:text="@string/in_case_any_problem_occurs_try_this"
                             android:fontFamily="@font/raleway"

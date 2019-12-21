@@ -50,12 +50,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/app_name"
-            app:layout_constraintBottom_toTopOf="@+id/emailID"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.88"
-            app:layout_constraintStart_toEndOf="@+id/loginTitle"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.615"
             app:srcCompat="@drawable/ic_aboutico" />
     </LinearLayout>
         <LinearLayout
@@ -90,12 +84,15 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:textStyle="bold"
                         android:layout_height="wrap_content"
+                        android:singleLine="false"
                         android:text="@string/check_for_updates"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
@@ -104,6 +101,7 @@
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
                             android:paddingTop="6dp"
+                            android:singleLine="false"
                             android:text="@string/updates_are_important_keep_ths_app_up_to_date"
                             android:fontFamily="@font/raleway"
                             android:textSize="12sp"/>
@@ -132,12 +130,15 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:singleLine="false"
                         android:text="@string/rate_on_google_play_store"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
@@ -147,6 +148,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/you_liked_this_tell_it_to_google"
                             android:fontFamily="@font/raleway"
+                            android:singleLine="false"
                             android:paddingTop="6dp"
                             android:textSize="12sp"/>
                     </LinearLayout>
@@ -174,11 +176,14 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
+                        android:singleLine="false"
                         android:textStyle="bold"
                         android:text="@string/report_bug_s"
                         android:fontFamily="@font/raleway"
@@ -187,6 +192,7 @@
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
+                            android:singleLine="false"
                             android:text="@string/preemptive_apology_for_any_error_please_tell_us"
                             android:fontFamily="@font/raleway"
                             android:paddingTop="6dp"
@@ -215,12 +221,15 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:singleLine="false"
                         android:text="@string/tell_us_anything_about_the_app"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
@@ -229,6 +238,7 @@
                             android:textColor="@color/colorAccent"
                             android:paddingTop="6dp"
                             android:layout_height="wrap_content"
+                            android:singleLine="false"
                             android:text="@string/like_dislike_feautre_request_we_d_love_to_hear"
                             android:fontFamily="@font/raleway"
                             android:textSize="12sp"/>
@@ -257,6 +267,8 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -264,12 +276,14 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="@string/for_developers"
+                        android:singleLine="false"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
+                            android:singleLine="false"
                             android:text="@string/tough_guy_finger_snapping_starts"
                             android:paddingTop="6dp"
                             android:fontFamily="@font/raleway"
@@ -299,12 +313,15 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/colorAccent"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:singleLine="false"
                         android:text="@string/share_with_others"
                         android:fontFamily="@font/raleway"
                         android:textSize="18sp"/>
@@ -312,6 +329,7 @@
                             android:layout_width="wrap_content"
                             android:textColor="@color/colorAccent"
                             android:layout_height="wrap_content"
+                            android:singleLine="false"
                             android:text="@string/marketing_of_this_app_at_your_level_keep_sharing"
                             android:paddingTop="6dp"
                             android:fontFamily="@font/raleway"
