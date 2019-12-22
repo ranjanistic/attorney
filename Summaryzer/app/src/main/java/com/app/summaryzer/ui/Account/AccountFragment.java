@@ -27,7 +27,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.app.summaryzer.CustomLoadDialogClass;
 import com.app.summaryzer.Login;
+import com.app.summaryzer.OnDialogLoadListener;
 import com.app.summaryzer.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +44,7 @@ import java.util.Objects;
 public class AccountFragment extends Fragment {
     private FirebaseAuth auth;
     private FirebaseUser user;
+    CustomLoadDialogClass loadDialogWhileLinkGen;
     private AccountViewModel accountViewModel;
     private Boolean signed = false;
     private Button signin;
@@ -64,16 +67,17 @@ public class AccountFragment extends Fragment {
         verifybutt = root.findViewById(R.id.mailverifybtn);
         verifytxt = root.findViewById(R.id.verifystatustxt);
 
+
+
         if (user != null) {
-            signedin();
+            signedin(user);
         } else {
             signedout();
         }
         return root;
     }
 
-    private void signedin(){
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private void signedin(FirebaseUser firebaseUser){
         String name = "", email = "";
         String providerId = "", uid="";
         Uri photoUrl;
@@ -94,15 +98,26 @@ public class AccountFragment extends Fragment {
         logoutstatus.setVisibility(View.GONE);
         signin.setVisibility(View.GONE);
         final String text = email;
-        Toast.makeText(getActivity(),"lmao"+providerId,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(),uid,Toast.LENGTH_SHORT).show();
-        Toast.makeText(getActivity(),name,Toast.LENGTH_SHORT).show();
+
+        loadDialogWhileLinkGen = new CustomLoadDialogClass(getContext(), new OnDialogLoadListener() {
+            @Override
+            public void onLoad() {
+
+            }
+
+            @Override
+            public String onLoadText() {
+                return "Sending link at "+ text;
+            }
+        });
+
         mailtext.setText(text);
         mailtext.setTextColor(getResources().getColor(R.color.green));
         checkIfEmailVerified();
         verifybutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadDialogWhileLinkGen.show();
                 user.sendEmailVerification()
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -112,6 +127,7 @@ public class AccountFragment extends Fragment {
                                 } else {
                                     Toast.makeText(getActivity(),"error",Toast.LENGTH_LONG).show();
                                 }
+                                loadDialogWhileLinkGen.dismiss();
                             }
                         });
             }

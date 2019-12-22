@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/confirmationActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/charcoal"
-    android:background="@color/charcoal"
     tools:context=".ConfirmationActivity">
 
     <LinearLayout
@@ -24,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/confirmTitle"
+            android:id="@+id/continueTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -32,11 +31,10 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/raleway"
-            android:text="Continue as"
             android:textColor="@color/white"
             android:textSize="25sp" />
         <TextView
-            android:id="@+id/confirmID"
+            android:id="@+id/continueAs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -44,22 +42,15 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/raleway"
-            android:text="Anonymous?"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.129"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.084" />
+            android:textStyle="bold" />
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/continueInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -67,17 +58,9 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/raleway"
-            android:text="@string/anonym_loginInfo"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white"
-            android:textSize="22sp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.288"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmID"
-            app:layout_constraintVertical_bias="0.153" />
+            android:textSize="22sp" />
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -136,7 +119,7 @@
 
 
     <ImageView
-        android:id="@+id/anonymback"
+        android:id="@+id/continueBackImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="0dp"
@@ -148,7 +131,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:translationZ="-1dp"
-        app:srcCompat="@drawable/ic_icognitoman" />
+        android:translationZ="-5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

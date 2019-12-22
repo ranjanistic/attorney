@@ -5,7 +5,7 @@
     package="com.app.summaryzer">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <dist:module dist:instant="true" />
 
     <application
@@ -16,36 +16,43 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".TextProcessor"></activity>
+        <!--
+      FirebaseInstanceIdService performs security checks at runtime,
+      no need for explicit permissions despite exported="true"
+        -->
         <activity
             android:name=".TextOpenActivity"
-
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter tools:ignore="AppLinkUrlError">
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
-                <data android:scheme="file"/>
-                <data android:scheme="content"/>
-                <data android:host="*"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:host="*" />
             </intent-filter>
         </activity>
         <activity
             android:name=".AccountView"
             android:label="@string/title_activity_account_view" />
-        <activity android:name=".Login"/>
+        <activity android:name=".Login" />
         <activity android:name=".ConfirmationActivity" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" /> <!-- To use multiple models: android:value="ocr,model2,model3" -->
-        <activity android:name=".Register"/>
+        <activity android:name=".Register" />
         <activity android:name=".Summary" />
         <activity
             android:name=".Splash"
             android:theme="@style/splashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

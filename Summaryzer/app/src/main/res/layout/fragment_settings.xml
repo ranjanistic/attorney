@@ -51,7 +51,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/title_settings"
-                app:srcCompat="@drawable/ic_settingico" />
+                app:srcCompat="@drawable/ic_settingico_mini" />
         </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
@@ -237,6 +237,54 @@
                         android:layout_weight="1" />
                     <ImageButton
                         android:id="@+id/killrestartbtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/square_btn"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/dark_red"
+                        app:srcCompat="@drawable/ic_accountremove"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+
+                            android:text="Change password"
+                            android:fontFamily="@font/raleway"
+                            android:singleLine="false"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="@color/colorAccent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="false"
+                            android:paddingTop="6dp"
+                            android:text="Changing password is good for security."
+                            android:fontFamily="@font/raleway"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                    <ImageButton
+                        android:id="@+id/passchangebtn"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/square_btn"

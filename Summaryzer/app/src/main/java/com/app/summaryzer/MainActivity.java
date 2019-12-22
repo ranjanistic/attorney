@@ -8,14 +8,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -28,12 +31,11 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 
+import java.io.File;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton regist, log;
-    Animation fabOpen, fabClose,fabClk, fabAclk;
-    boolean isOpen =false;
+    private static final int PICKFILE_RESULT_CODE = 1;
     private FirebaseAuth mauth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
      //   Objects.requireNonNull(this.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         ImageButton accountbtn = findViewById(R.id.accountbtn);
-
+        ImageButton openFIle = findViewById(R.id.fileopenbtn);
+        ImageButton openLink = findViewById(R.id.linkopenbtn);
         mauth = FirebaseAuth.getInstance();
         //final SwipeRefreshLayout pullToRefresh = findViewById(R.id.refreshhome);
         //pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -106,6 +109,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        openFIle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+                chooseFile.addCategory(Intent.CATEGORY_OPENABLE);
+                chooseFile.setType("text/plain");
+                startActivityForResult(
+                        Intent.createChooser(chooseFile, "Choose a text file"), PICKFILE_RESULT_CODE);
+            }
+        });
+
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -121,6 +135,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICKFILE_RESULT_CODE && resultCode == Activity.RESULT_OK){
+            Uri content_describer = data.getData();
+            String src = content_describer.getPath();
+            String content = content_describer.getSchemeSpecificPart();     //TODO: get content
+            String filename = content_describer.getLastPathSegment();
+            Intent intent = new Intent(MainActivity.this, TextOpenActivity.class);
+            intent.putExtra("filename",filename);
+            intent.putExtra("filepath",src);
+            intent.putExtra("filecontent", content);
+            startActivity(intent);
+
+        }
+    }
     private void storeDialogStatus(boolean isChecked){
         SharedPreferences mSharedPreferences = getSharedPreferences("CheckItem", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
@@ -133,3 +163,4 @@ public class MainActivity extends AppCompatActivity {
         return mSharedPreferences.getBoolean("item", false);
     }
 }
+

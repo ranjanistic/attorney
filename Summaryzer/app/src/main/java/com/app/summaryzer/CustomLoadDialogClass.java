@@ -17,6 +17,7 @@ public class CustomLoadDialogClass extends AppCompatDialog {
         super(context);
         this.onDialogLoadListener = onDialogLoadListener;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

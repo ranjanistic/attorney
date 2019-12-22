@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
     CustomTextDialog passwordResetDialog;
     private FirebaseAuth mAuth;
     private static String emailforlogintask = "", passwordforlogintask = "";
-    String alheading,alsubheading, resetEmail, textDhead, textDsubhead, textsubmit, textCancel;
+    String alheading,alsubheading, resetEmail, textDhead, textDsubhead, textsubmit, textCancel, loginMessage;
     Drawable alertImage, textDimg;
     CustomAlertDialog netErrorDialog;
     @Override
@@ -176,10 +176,17 @@ public class Login extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             anonymlogbtn.setTooltipText("Login Anonymously");
         }
+
+
         anonymlogbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loginMessage  = getResources().getString(R.string.anonym_loginInfo);
                 Intent confirm =  new Intent(Login.this, ConfirmationActivity.class);
+                confirm.putExtra("contTitle", "Continue as");
+                confirm.putExtra("contVia", "Anonymous?");
+                confirm.putExtra("contText", loginMessage);
+                confirm.putExtra("contCode", "a");
                 startActivity(confirm);
             }
         });
@@ -189,11 +196,17 @@ public class Login extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             googlelogbtn.setTooltipText("Login with Google");
         }
+
         googlelogbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, Html.fromHtml("<font color=\"#ffffff\">Big Ooof</font><bgcolor=\"#000\"</bgcolor>"), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                loginMessage = getResources().getString(R.string.google_loginInfo);
+                Intent confIntent = new Intent(Login.this,ConfirmationActivity.class);
+                confIntent.putExtra("contTitle", "Continue with");
+                confIntent.putExtra("contVia", "Google?");
+                confIntent.putExtra("contText", loginMessage);
+                confIntent.putExtra("contCode", "g");
+                startActivity(confIntent);
             }
         });
 
@@ -224,7 +237,6 @@ public class Login extends AppCompatActivity {
 
         }
     }
-
 
     private void loginUserInit() {
         emailforlogintask = emailIdReceived.getText().toString();

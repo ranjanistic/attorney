@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,9 +8,11 @@
     android:orientation="vertical"
     android:backgroundTint="@color/charcoal"
     tools:context=".Register">
+
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,10 +45,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.050000012" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
+
             <ImageView
                 android:id="@+id/appiconregister"
                 android:layout_width="64dp"
@@ -54,142 +58,166 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                app:srcCompat="@drawable/test"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                app:srcCompat="@drawable/test" />
         </LinearLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColorHint="@color/edittextcolor"
-            android:hint="@string/email_id"
-            android:padding="4dp">
-        <EditText
-            android:id="@+id/emailIDRegisterActivity"
-            android:layout_width="340dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:background="@drawable/textbox"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registerTitle"
-            app:layout_constraintVertical_bias="0.0" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColorHint="@color/edittextcolor"
-            android:hint="@string/create_password"
-            android:padding="4dp">
-        <EditText
-            android:id="@+id/passwordNewRegisterActivity"
-            android:layout_width="340dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="8dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:background="@drawable/textbox"
-            android:fontFamily="@font/raleway"
-            android:inputType="textPassword"
-            android:textColor="@color/white" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColorHint="@color/edittextcolor"
-            android:hint="@string/confirm_password"
-            android:padding="4dp">
-        <EditText
-            android:id="@+id/passwordCnfRegisterActivity"
-            android:layout_width="340dp"
-            android:layout_height="65dp"
-            android:layout_marginStart="8dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:background="@drawable/textbox"
-            android:inputType="textPassword"
-            android:textColor="@color/white" />
-        </com.google.android.material.textfield.TextInputLayout>
-            <ImageButton
-                android:id="@+id/signupbtn"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:tooltipText="@string/register"
-                android:layout_gravity="end"
-                tools:targetApi="P"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="@string/sign_up"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/round_btn"
-                android:backgroundTint="@color/spruce"
-                app:srcCompat="@drawable/ic_arrowright" />
 
-            <!--ImageView
-                android:id="@+id/regisload"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/round_btn"
-                android:backgroundTint="@color/colorAccent"
-                android:padding="24dp"
-                android:scaleType="fitCenter"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_onethreeload" /-->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:hint="@string/email_id"
+                        android:padding="4dp"
+                        android:textColorHint="@color/edittextcolor">
+
+                        <EditText
+                            android:id="@+id/emailIDRegisterActivity"
+                            android:layout_width="340dp"
+                            android:layout_height="65dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/textbox"
+                            android:ems="10"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:inputType="textEmailAddress"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/registerTitle"
+                            app:layout_constraintVertical_bias="0.0" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:hint="@string/create_password"
+                        android:padding="4dp"
+                        android:textColorHint="@color/edittextcolor">
+
+                        <EditText
+                            android:id="@+id/passwordNewRegisterActivity"
+                            android:layout_width="340dp"
+                            android:layout_height="65dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/textbox"
+                            android:ems="10"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/raleway"
+                            android:inputType="textPassword"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:textColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:hint="@string/confirm_password"
+                        android:padding="4dp"
+                        android:textColorHint="@color/edittextcolor">
+
+                        <EditText
+                            android:id="@+id/passwordCnfRegisterActivity"
+                            android:layout_width="340dp"
+                            android:layout_height="65dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/textbox"
+                            android:ems="10"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:inputType="textPassword"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:textColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingTop="22dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="22dp">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageButton
+                        android:id="@+id/signupbtn"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/round_btn"
+                        android:backgroundTint="@color/blue"
+                        android:contentDescription="@string/sign_up"
+                        android:elevation="12dp"
+                        android:outlineSpotShadowColor="@color/black"
+                        android:tooltipText="@string/register"
+                        android:translationZ="12dp"
+                        app:srcCompat="@drawable/ic_arrowright"
+                        tools:targetApi="q" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/otherlogoptlinlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:foregroundGravity="bottom"
+        android:gravity="bottom"
+        android:orientation="vertical"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center">
+        android:layout_marginBottom="8dp">
+
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
@@ -238,68 +266,59 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
-                android:gravity="center"
-                android:paddingBottom="22dp"
-                android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="44dp"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/googleloginbtn"
-                    android:tooltipText="@string/logviagoogle"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/round_btn"
-                    android:backgroundTint="@color/white"
-                    android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/ic_google"
-                    tools:targetApi="o" />
+            <ImageButton
+                android:id="@+id/googleloginbtn"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/round_btn"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/todo"
+                android:tooltipText="@string/logviagoogle"
+                app:srcCompat="@drawable/ic_google"
+                tools:targetApi="o" />
 
-                <!--ImageButton
-                    android:id="@+id/phoneloginbtn"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/round_btn"
-                    android:backgroundTint="@color/green"
-                    android:contentDescription="@string/"
-                    android:foregroundTint="@color/deep_blue"
-                    android:foregroundTintMode="screen"
-                    app:srcCompat="@android:drawable/stat_sys_speakerphone"/-->
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-                <ImageButton
-                    android:id="@+id/anonymloginbtn"
-                    android:tooltipText="@string/anonym_login"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="52dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/round_btn"
-                    android:backgroundTint="@color/spruce"
-                    android:contentDescription="@string/anonym_login_button"
-                    app:srcCompat="@drawable/ic_icognitoman"
-                    android:scaleType="fitCenter"
-                    android:padding="5dp"/>
-            </LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@+id/anonymloginbtn"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/round_btn"
+                android:backgroundTint="@color/spruce"
+                android:contentDescription="@string/anonym_login_button"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:tooltipText="@string/anonym_login"
+                app:srcCompat="@drawable/ic_icognitoman" />
         </LinearLayout>
     </LinearLayout>
+
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:alpha="0.3"
         android:contentDescription="@string/register"
-        app:srcCompat="@drawable/ic_handingkey"
         android:translationZ="-4dp"
-        android:alpha="0.4"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2"
+        app:srcCompat="@drawable/ic_handingkey" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

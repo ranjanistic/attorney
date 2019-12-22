@@ -12,11 +12,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,12 +30,14 @@ import androidx.lifecycle.ViewModelProviders;
 import com.app.summaryzer.CustomAlertDialog;
 import com.app.summaryzer.CustomConfirmDialogClass;
 import com.app.summaryzer.CustomLoadDialogClass;
+import com.app.summaryzer.CustomTextDialog;
 import com.app.summaryzer.Login;
 import com.app.summaryzer.MainActivity;
 import com.app.summaryzer.OnDialogAlertListener;
 import com.app.summaryzer.OnDialogApplyListener;
 import com.app.summaryzer.OnDialogConfirmListener;
 import com.app.summaryzer.OnDialogLoadListener;
+import com.app.summaryzer.OnDialogTextListener;
 import com.app.summaryzer.R;
 import com.app.summaryzer.CustomVerificationDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,10 +52,13 @@ public class SettingsFragment extends Fragment {
     private SettingsViewModel settingsViewModel;
     private CustomConfirmDialogClass dialogClassremdata,dialogClassfactreset,dialogClassdelacc,dialogClasskillres, dialogClasslogout;
     private CustomAlertDialog alertDialogBox, netErrorDialog;
-    public CustomLoadDialogClass loadAnim;
-    private String emailid, pass;
+    public CustomLoadDialogClass loadAnim, loadDialogClassWhileReset;
+    Animation rotation;
+    CustomTextDialog passwordResetDialog;
+    ImageView settingIcon;
+    private String emailid, pass, resetEmail,textDhead, textDsubhead, textsubmit, textCancel;
     private  String heading, subheading, posbtntxt, negbtntxt, alheading, alsubheading;
-    private Drawable dialogimage, alertImage;
+    private Drawable dialogimage, alertImage, textDimg;
     //actcode 1(remove data), 2(fact reset), 3(delete account), 4(kill and restart)
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -58,12 +67,17 @@ public class SettingsFragment extends Fragment {
                 ViewModelProviders.of(this).get(SettingsViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        final ImageButton killbutt, remdatabutt, factresetbutt,delaccbutt;
+        final ImageButton killbutt, remdatabutt, factresetbutt,delaccbutt, passwordResetButt ;
         Button logoutbutt;
+        settingIcon = root.findViewById(R.id.appiconsetting);
+        rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
+        rotation.setFillAfter(true);
+        settingIcon.startAnimation(rotation);
         killbutt = root.findViewById(R.id.killrestartbtn);
         remdatabutt = root.findViewById(R.id.removedatabtn);
         factresetbutt = root.findViewById(R.id.resetbtn);
         delaccbutt = root.findViewById(R.id.accdeletebtn);
+        passwordResetButt = root.findViewById(R.id.passchangebtn);
         logoutbutt = root.findViewById(R.id.signoutbtn);
 
         /* Verification Dialog before account deletion */
@@ -276,11 +290,24 @@ public class SettingsFragment extends Fragment {
             }*/
         });
 
+        loadDialogClassWhileReset = new CustomLoadDialogClass(getContext(), new OnDialogLoadListener() {
+            @Override
+            public void onLoad() {
+                new SettingTask().execute(5);
+            }
+
+            @Override
+            public String onLoadText() {
+                return "Sending Link";
+            }
+        });
+
+
         //dialog class object for logging out
         dialogClasslogout = new CustomConfirmDialogClass(getActivity(), new OnDialogConfirmListener() {
             @Override
             public void onApply(Boolean ok) {
-                new SettingTask().execute(5);
+                new SettingTask().execute(6);
             }
 
             @Override
@@ -306,14 +333,39 @@ public class SettingsFragment extends Fragment {
             public Drawable onCallImg(){
                 return dialogimage;
             }
-            /*@Override  TODO:Button Color setting and dialogbox function change accordingly
-            public int onCallPoscol(){
-                return posbtncol;
-            }
+        });
+
+        passwordResetDialog = new CustomTextDialog(getContext(), new OnDialogTextListener() {
             @Override
-            public int onCallNegcol(){
-                return negbtncol;
-            }*/
+            public void onApply(String text) {
+                resetEmail = text;
+                loadDialogClassWhileReset.show();
+            }
+
+            @Override
+            public String onCallText() {
+                return textDhead;
+            }
+
+            @Override
+            public String onCallSubText() {
+                return textDsubhead;
+            }
+
+            @Override
+            public String onCallPos() {
+                return textsubmit;
+            }
+
+            @Override
+            public String onCallNeg() {
+                return textCancel;
+            }
+
+            @Override
+            public Drawable onCallImg() {
+                return textDimg;
+            }
         });
 
         //restart button listener
@@ -364,6 +416,25 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        //pass word change button
+        passwordResetButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(user == null){
+                    Toast.makeText(getContext(), "You need to sign in first.", Toast.LENGTH_LONG).show();
+                    Intent logint = new Intent(getActivity(), Login.class);
+                    startActivity(logint);
+                }else {
+                    if (checknet()) {
+                        editTextBox(R.drawable.ic_bug, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort");
+                        passwordResetDialog.show();
+                    } else {
+                        alertBox(R.drawable.ic_bug, "Network Failure", "Error reaching server. Check your internet connection.");
+                        netErrorDialog.show();
+                    }
+                }
+            }
+        });
         //logout button listener
         logoutbutt.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -377,6 +448,8 @@ public class SettingsFragment extends Fragment {
                 }
             }
         });
+
+
         return root;
     }
 
@@ -400,7 +473,8 @@ public class SettingsFragment extends Fragment {
                 case 2:publishProgress("Performing reset");factreset(); text="Application reset successfully"; break;
                 case 3: publishProgress("Deleting your account");deleteaccount(); text="Account deleted successfully";break;
                 case 4: publishProgress("Restarting");killrestart(); text="Restarted."; break;
-                case 5: publishProgress("Logging you out");logout(); text="Logged out successfully"; break;
+                case 5: changePass(); text="Link generated."; break;
+                case 6: publishProgress("Logging you out");logout(); text="Logged out successfully"; break;
                 default: text="error in code passed";
             }
             return text;
@@ -544,6 +618,27 @@ public class SettingsFragment extends Fragment {
         Toast.makeText(getActivity(), "data removal", Toast.LENGTH_SHORT).show();
     }
 
+    private void changePass(){
+        if (checknet()) {
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            auth.sendPasswordResetEmail(resetEmail)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("Success", "Email sent.");
+                                Toast.makeText(getContext(), "Link sent!", Toast.LENGTH_LONG).show();
+                                loadDialogClassWhileReset.dismiss();
+                            } else {
+                                Toast.makeText(getContext(), "Error link not sent", Toast.LENGTH_LONG).show();
+                                loadDialogClassWhileReset.dismiss();
+                            }
+                        }
+                    });
+        }
+    }
+
+
     //dialog box content loader
     private void dialogbox(int dimg,String h, String sh, String pbt, String nbt){
         dialogimage = getResources().getDrawable(dimg);
@@ -558,6 +653,15 @@ public class SettingsFragment extends Fragment {
         alertImage = getResources().getDrawable(aimg);
         alheading = h;
         alsubheading = sh;
+    }
+
+
+    private void editTextBox(int timg, String h, String sh, String tsubmit, String tcancel){
+        textDimg = getResources().getDrawable(timg);
+        textDhead = h;
+        textDsubhead = sh;
+        textsubmit = tsubmit;
+        textCancel = tcancel;
     }
     
 
