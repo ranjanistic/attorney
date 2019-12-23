@@ -1,17 +1,14 @@
 package com.app.summaryzer.ui.Account;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,13 +16,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.app.summaryzer.CustomLoadDialogClass;
 import com.app.summaryzer.Login;
@@ -37,8 +30,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 
-import java.net.URI;
-import java.net.URL;
 import java.util.Objects;
 
 public class AccountFragment extends Fragment {
@@ -48,6 +39,7 @@ public class AccountFragment extends Fragment {
     private AccountViewModel accountViewModel;
     private Boolean signed = false;
     private Button signin;
+    Animation partRotate;
     ScrollView scrollView;
     private TextView mailtext, logoutstatus, verifytxt;
     ImageButton verifybutt;
@@ -66,6 +58,11 @@ public class AccountFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         verifybutt = root.findViewById(R.id.mailverifybtn);
         verifytxt = root.findViewById(R.id.verifystatustxt);
+        accountico = root.findViewById(R.id.accounticon);
+        partRotate = AnimationUtils.loadAnimation(getActivity(), R.anim.ding_dong_ding);
+        partRotate.setFillAfter(true);
+        accountico.startAnimation(partRotate);
+
 
 
 

@@ -70,7 +70,7 @@ public class SettingsFragment extends Fragment {
         final ImageButton killbutt, remdatabutt, factresetbutt,delaccbutt, passwordResetButt ;
         Button logoutbutt;
         settingIcon = root.findViewById(R.id.appiconsetting);
-        rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate);
+        rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.cycle_recycle);
         rotation.setFillAfter(true);
         settingIcon.startAnimation(rotation);
         killbutt = root.findViewById(R.id.killrestartbtn);

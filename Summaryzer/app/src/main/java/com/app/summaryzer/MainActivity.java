@@ -6,18 +6,25 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,37 +37,70 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private static final int PICKFILE_RESULT_CODE = 1;
+    private static final int REQUEST_CODE_PERMISSIONS = 0;
     private FirebaseAuth mauth;
+    CustomConfirmDialogClass permitDialog;
+    CustomLoadDialogClass loadDialogWhileFileChoose;
+    ImageButton accountbtn;
+    ImageButton openFIle;
+    ImageButton openLink;
+    String fileLink, linkDhead, linkDsubhead, linkDpos, linkDneg, loadingtxt;
+    Drawable linkDimg;
+    private String[] storageReadPermission =  {Manifest.permission.READ_EXTERNAL_STORAGE};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         final    Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
-            window.setNavigationBarColor(this.getResources().getColor(R.color.spruce));
-     //   Objects.requireNonNull(this.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        final    Window window = this.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
+        window.setNavigationBarColor(this.getResources().getColor(R.color.spruce));
 
-        ImageButton accountbtn = findViewById(R.id.accountbtn);
-        ImageButton openFIle = findViewById(R.id.fileopenbtn);
-        ImageButton openLink = findViewById(R.id.linkopenbtn);
+        accountbtn = findViewById(R.id.accountbtn);
+        openFIle = findViewById(R.id.fileopenbtn);
+        openLink = findViewById(R.id.linkopenbtn);
         mauth = FirebaseAuth.getInstance();
-        //final SwipeRefreshLayout pullToRefresh = findViewById(R.id.refreshhome);
-        //pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            //@Override
-            //public void onRefresh() {
-                // your code
-             //   pullToRefresh.setRefreshing(false);
-            //}
-        //});
+
+        final CustomTextDialog pastelinkDialog = new CustomTextDialog(this, new OnDialogTextListener() {
+            @Override
+            public void onApply(String text) {
+                fileLink = text;
+            }
+
+            @Override
+            public String onCallText() {
+                return linkDhead;
+            }
+
+            @Override
+            public String onCallSubText() {
+                return linkDsubhead;
+            }
+
+            @Override
+            public String onCallPos() {
+                return linkDpos;
+            }
+
+            @Override
+            public String onCallNeg() {
+                return linkDneg;
+            }
+
+            @Override
+            public Drawable onCallImg() {
+                return linkDimg;
+            }
+        });
 
         final Intent sumintent = new Intent(MainActivity.this, Summary.class);
         ImageButton go = findViewById(R.id.gobtn);
@@ -109,17 +149,65 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        openFIle.setOnClickListener(new View.OnClickListener() {
+        permitDialog = new CustomConfirmDialogClass(this, new OnDialogConfirmListener() {
             @Override
-            public void onClick(View view) {
-                Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
-                chooseFile.addCategory(Intent.CATEGORY_OPENABLE);
-                chooseFile.setType("text/plain");
-                startActivityForResult(
-                        Intent.createChooser(chooseFile, "Choose a text file"), PICKFILE_RESULT_CODE);
+            public void onApply(Boolean confirm) {
+                requestPermissions(storageReadPermission,REQUEST_CODE_PERMISSIONS);
+            }
+
+            @Override
+            public String onCallText() {
+                return "Permission required";
+            }
+
+            @Override
+            public String onCallSub() {
+                return "Storage access permission is required to access text files.";
+            }
+
+            @Override
+            public String onCallPos() {
+                return "Okay, I'll permit";
+            }
+
+            @Override
+            public String onCallNeg() {
+                return "I can't permit";
+            }
+
+            @Override
+            public Drawable onCallImg() {
+                return getResources().getDrawable(R.drawable.ic_icognitoman);
             }
         });
 
+
+
+        openFIle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    permitDialog.show();
+                    permitDialog.setCanceledOnTouchOutside(false);
+
+                } else {
+                    new chooseFileTask().execute();
+                }
+            }
+        });
+
+        openLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                linkDhead = "Paste link here";
+                linkDsubhead = "txt, doc, docx extensions supported.";
+                linkDpos = "Next";
+                linkDneg = "Cancel";
+                linkDimg = getResources().getDrawable(R.drawable.ic_linkico);
+                pastelinkDialog.show();
+            }
+        });
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -135,22 +223,64 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICKFILE_RESULT_CODE && resultCode == Activity.RESULT_OK){
-            Uri content_describer = data.getData();
-            String src = content_describer.getPath();
-            String content = content_describer.getSchemeSpecificPart();     //TODO: get content
-            String filename = content_describer.getLastPathSegment();
-            Intent intent = new Intent(MainActivity.this, TextOpenActivity.class);
-            intent.putExtra("filename",filename);
-            intent.putExtra("filepath",src);
-            intent.putExtra("filecontent", content);
-            startActivity(intent);
 
+    public class chooseFileTask extends AsyncTask<Void,Void, String> {
+        @Override
+        public void onPreExecute(){
+            loadDialogWhileFileChoose = new CustomLoadDialogClass(MainActivity.this, new OnDialogLoadListener() {
+                @Override
+                public void onLoad() {
+                }
+                @Override
+                public String onLoadText() {
+                    return "Loading data";
+                }
+            });
+            loadDialogWhileFileChoose.show();
+        }
+        @Override
+        public String doInBackground(Void... v){
+            //Toast.makeText(MainActivity.this,"loading", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setType("text/*");
+            startActivityForResult(intent,PICKFILE_RESULT_CODE);
+//            Toast.makeText(getApplicationContext(), "Choose text file", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        @Override
+        public void onPostExecute(String value) {
+            super.onPostExecute(value);
+            loadDialogWhileFileChoose.dismiss();
         }
     }
+
+    @Override
+    public void onActivityResult(int reqCode, int resCode, Intent resData){
+        super.onActivityResult(reqCode,resCode,null);
+        if (resCode == Activity.RESULT_OK) {
+            Toast.makeText(getApplicationContext(),"result ok", Toast.LENGTH_SHORT).show();
+            Uri uri = null;
+            if (resData != null) {
+                uri = resData.getData();
+                Toast.makeText(getApplicationContext(),"resdata getdata", Toast.LENGTH_SHORT).show();
+                passFile(uri);
+                Toast.makeText(getApplicationContext(),"passed uri", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Data empty", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void passFile(Uri uri){
+        String UriString = uri.toString();
+            Intent viewintent = new Intent(MainActivity.this, TextOpenActivity.class);
+        Toast.makeText(getApplicationContext(),"put extra uri string", Toast.LENGTH_SHORT).show();
+            viewintent.putExtra("fileUri", UriString);
+            startActivity(viewintent);
+    }
+
     private void storeDialogStatus(boolean isChecked){
         SharedPreferences mSharedPreferences = getSharedPreferences("CheckItem", MODE_PRIVATE);
         SharedPreferences.Editor mEditor = mSharedPreferences.edit();
