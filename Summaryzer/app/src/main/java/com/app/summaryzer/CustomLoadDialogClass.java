@@ -23,6 +23,7 @@ public class CustomLoadDialogClass extends AppCompatDialog {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_load_dialog);
+        this.setCanceledOnTouchOutside(false);
         Objects.requireNonNull(this.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         TextView loadtext= findViewById(R.id.loadingcaption);
         onDialogLoadListener.onLoad();

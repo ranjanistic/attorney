@@ -46,7 +46,7 @@ public class TextOpenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
-        fpath = Objects.requireNonNull(bundle).getString("fileUri");
+
         setContentView(R.layout.activity_text_open);
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -56,9 +56,25 @@ public class TextOpenActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         contentScrollView = findViewById(R.id.contentView);
-        new loadFileTask().execute(fpath);
+        if(bundle!=null) {
+            fpath = Objects.requireNonNull(bundle).getString("fileUri");
+            new loadFileTask().execute(fpath);
+        }
 
-
+        if(bundle==null){
+            Intent textintent = getIntent();
+            if(textintent.getAction()!=null&&textintent.getAction().equals(Intent.ACTION_VIEW)){
+                String scheme = textintent.getScheme();
+                if(scheme!=null && scheme.equals(ContentResolver.SCHEME_CONTENT)){
+                    Uri uri = textintent.getData();
+                    if (uri != null) {
+                        getFileName(uri);
+                        getFileContent(uri);
+                        getFilePath(uri);
+                    }
+                }
+            }
+        }
 
         ImageButton processBtn = findViewById(R.id.processbutt);
         processBtn.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +173,7 @@ public class TextOpenActivity extends AppCompatActivity {
         filebody = findViewById(R.id.textfilecontent);
         filebody.setText(text.toString());
     }
+
     public void getFileName(Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {

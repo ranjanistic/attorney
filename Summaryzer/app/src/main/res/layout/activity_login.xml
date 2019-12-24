@@ -253,11 +253,13 @@
                     android:layout_marginStart="52dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
+                    android:scaleType="fitCenter"
+                    android:padding="18dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/round_btn"
                     android:backgroundTint="#fff"
                     android:contentDescription="@string/todo"
-                    app:srcCompat="@drawable/ic_google"
+                    app:srcCompat="@drawable/ic_googleglogo"
                     tools:targetApi="p" />
                 <View
                     android:layout_width="0dp"

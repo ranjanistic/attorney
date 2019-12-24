@@ -2,11 +2,14 @@ package com.app.summaryzer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.app.summaryzer.ui.Account.AccountFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,17 +19,33 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class AccountView extends AppCompatActivity {
+import java.util.Objects;
 
+public class AccountView extends AppCompatActivity {
+    String pname,pEmail,pPhoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!=null) {
+            pname = Objects.requireNonNull(bundle).getString("name");
+            pEmail = Objects.requireNonNull(bundle).getString("mailid");
+            pPhoto = Objects.requireNonNull(bundle).getString("photo");
+            Bundle newbundle = new Bundle();
+            newbundle.putString("name", pname);
+            newbundle.putString("mailid", pEmail);
+            newbundle.putString("photo", pPhoto);
+            AccountFragment Accfragobj = new AccountFragment();
+            Accfragobj.setArguments(newbundle);
+        }
         setContentView(R.layout.activity_account_view);
         final Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
         window.setNavigationBarColor(this.getResources().getColor(R.color.spruce));
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

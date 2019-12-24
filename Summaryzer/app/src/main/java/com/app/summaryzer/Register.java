@@ -38,7 +38,7 @@ public class Register extends AppCompatActivity {
     EditText emailIdReceived, passNewReceived, passCnfReceived;
     ImageButton signupbutt;
     FirebaseAuth mAuth;
-    String alheading,alsubheading;
+    String alheading,alsubheading, loginMessage;;
     Drawable alertImage;
     CustomAlertDialog netErrorDialog;
     CustomLoadDialogClass loadDialogClassWhileRegister;
@@ -103,27 +103,42 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        //anonymous login button listener
         ImageButton anonymlogbtn  = findViewById(R.id.anonymloginbtn);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             anonymlogbtn.setTooltipText("Login Anonymously");
         }
+
+
         anonymlogbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loginMessage  = getResources().getString(R.string.anonym_loginInfo);
                 Intent confirm =  new Intent(Register.this, ConfirmationActivity.class);
+                confirm.putExtra("contTitle", "Continue as");
+                confirm.putExtra("contVia", "Anonymous?");
+                confirm.putExtra("contText", loginMessage);
+                confirm.putExtra("contCode", "a");
                 startActivity(confirm);
             }
         });
 
+        //google login button listener
         ImageButton googlelogbtn = findViewById(R.id.googleloginbtn);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-           googlelogbtn.setTooltipText("Login with Google");
+            googlelogbtn.setTooltipText("Login with Google");
         }
+
         googlelogbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, Html.fromHtml("<font color=\"#ffffff\">Big Ooof</font><bgcolor=\"#000\"</bgcolor>"), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                loginMessage = getResources().getString(R.string.google_loginInfo);
+                Intent confIntent = new Intent(Register.this,ConfirmationActivity.class);
+                confIntent.putExtra("contTitle", "Continue with");
+                confIntent.putExtra("contVia", "Google?");
+                confIntent.putExtra("contText", loginMessage);
+                confIntent.putExtra("contCode", "g");
+                startActivity(confIntent);
             }
         });
 

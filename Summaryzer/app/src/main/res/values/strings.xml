@@ -27,7 +27,7 @@
         which this app functions changes, though it will not affect you in any way.\n\nAre you in?</string>
     <string name="google_loginInfo">
         Continuing with your Google account ensures that you are providing specific info of yours to us.\nWe never collect any account info allowed by even Google, without informing you prior to it.\nYou can trust us with your login credentials and personal info (your name, email ID, and account profile picture).
-        If you aren\'t assured, other login options still back there.\n\nAre you in?
+        If you aren\'t assured, other login options are still back there.\n\nAre you in?
     </string>
     <string name="create_password">Create password</string>
     <string name="confirm_password">Confirm Password</string>

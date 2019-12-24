@@ -280,11 +280,13 @@
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:scaleType="fitCenter"
+                android:padding="18dp"
                 android:background="@drawable/round_btn"
                 android:backgroundTint="@color/white"
                 android:contentDescription="@string/todo"
                 android:tooltipText="@string/logviagoogle"
-                app:srcCompat="@drawable/ic_google"
+                app:srcCompat="@drawable/ic_googleglogo"
                 tools:targetApi="o" />
 
             <View
