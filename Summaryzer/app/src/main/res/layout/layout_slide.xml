@@ -1,36 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:backgroundTint="?attr/basebackground"
-    android:background="?attr/basebackground">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_text_processor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/queryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="8dp"
-            android:text="Question is"
-            android:textColor="?attr/textcolor"
-            android:textSize="25sp" />
+            android:text="Before we proceed"
+            android:textSize="22sp"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="8dp"/>
         <TextView
-            android:id="@+id/querySubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/raleway"
-            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="Which category does your text fits best?"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="8dp"/>
+
+        <ViewFlipper
+            android:id="@+id/view_flipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="33dp">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_trashico"/>
+
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_locknkey"/>
+
+
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/setting_back" />
+
+        </ViewFlipper>
     </LinearLayout>
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -76,8 +76,8 @@ public class TextOpenActivity extends AppCompatActivity {
         processBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Snackbar.make(view, "To be added later", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+               Intent process = new Intent(TextOpenActivity.this, TextProcessor.class);
+               startActivity(process);
             }
         });
 
