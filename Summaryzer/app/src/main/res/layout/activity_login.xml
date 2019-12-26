@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/charcoal"
-    android:background="@color/charcoal"
+    android:backgroundTint="?attr/basebackground"
+    android:background="?attr/basebackground"
     tools:context=".Login">
 
     <LinearLayout
@@ -32,9 +32,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/raleway"
                 android:text="Sign In"
-                android:textColor="@color/white"
+                android:textColor="?attr/textcolor"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -119,11 +118,10 @@
             android:ems="10"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:hint="@string/password"
             android:inputType="textPassword"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:textColor="@color/white" />
+            android:textColor="?attr/textcolor"/>
         </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:id="@+id/forgotpassbtn"
@@ -168,7 +166,7 @@
             android:outlineSpotShadowColor="@color/black"
             android:elevation="12dp"
             android:background="@drawable/round_btn"
-            android:backgroundTint="@color/blue"
+            android:backgroundTint="?attr/buttoncolor"
             android:translationZ="12dp"
             app:srcCompat="@drawable/ic_arrowright"
             tools:targetApi="q" />
@@ -213,9 +211,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/raleway"
                     android:text="Not having an account?"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/textcolor"
                     android:textStyle="bold" />
 
                 <Button
@@ -227,13 +224,12 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/square_btn"
-                    android:backgroundTint="@color/spruce"
-                    android:fontFamily="@font/raleway"
+                    android:backgroundTint="?attr/buttoncolor"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:text="Register Now"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/buttontextcolor"
                     android:textStyle="bold" />
 
             </LinearLayout>

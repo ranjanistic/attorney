@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/spruce"
+    android:backgroundTint="?attr/foreground"
     android:translationZ="12dp"
     android:outlineAmbientShadowColor="@color/white"
     android:outlineSpotShadowColor="@color/white"
@@ -32,10 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/raleway"
             android:padding="22dp"
             android:text="Do more"
-            android:textColor="@color/colorAccent"
+            android:textColor="?attr/deadtextcolor"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -63,7 +62,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/round_btn"
-                    android:backgroundTint="@color/charcoal"
+                    android:backgroundTint="?attr/buttoncolor"
                     android:padding="22dp"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +78,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/raleway"
                     android:text="Paste Text"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/textcolor"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -104,7 +103,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/round_btn"
-                    android:backgroundTint="@color/charcoal"
+                    android:backgroundTint="?attr/buttoncolor"
                     android:padding="22dp"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -120,7 +119,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/raleway"
                     android:text="Open Text"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/textcolor"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -146,7 +145,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/round_btn"
-                    android:backgroundTint="@color/charcoal"
+                    android:backgroundTint="?attr/buttoncolor"
                     android:padding="22dp"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -162,7 +161,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/raleway"
                     android:text="Link Text"
-                    android:textColor="@color/white"
+                    android:textColor="?attr/textcolor"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

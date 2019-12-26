@@ -27,7 +27,6 @@ public class CustomConfirmDialogClass extends AppCompatDialog {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_confirm_dialog);
         Objects.requireNonNull(this.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
         final TextView diacont = findViewById(R.id.dialog_content);
         final TextView diasubcont = findViewById(R.id.dialog_subcontent);
         final ImageView diaimg = findViewById(R.id.dialog_image);

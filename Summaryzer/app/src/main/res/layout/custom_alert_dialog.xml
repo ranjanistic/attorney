@@ -5,13 +5,13 @@
     android:layout_gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/dialog_box"
-    android:backgroundTint="@color/charcoal"
+    android:backgroundTint="?attr/basebackground"
     android:paddingBottom="12dp"
     android:orientation="vertical">
     <ImageView
         android:id="@+id/alert_image"
         android:layout_width="match_parent"
-        android:backgroundTint="@color/charcoal"
+        android:backgroundTint="?attr/basebackground"
         android:paddingTop="32dp"
         android:scaleType="fitCenter"
         android:paddingBottom="22dp"
@@ -37,7 +37,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginBottom="8dp"
             android:text="@string/need_your_credentials_to_proceed"
-            android:textColor="@color/colorAccent"
+            android:textColor="?attr/textcolor"
             android:textSize="20sp"
             android:textStyle="bold"/>
         <TextView
@@ -51,7 +51,7 @@
             android:layout_marginEnd="30dp"
             android:layout_marginStart="30dp"
             android:text="@string/this_action_requires_your_verification_to_proceed"
-            android:textColor="@color/colorAccent"
+            android:textColor="?attr/textcolor"
             android:textSize="14sp"
             android:textStyle="bold"/>
     </LinearLayout>

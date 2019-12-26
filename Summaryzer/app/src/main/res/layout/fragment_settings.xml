@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/charcoal"
+    android:background="?attr/basebackground"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -28,9 +28,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/raleway"
+                
                 android:text="Settings"
-                android:textColor="@color/white"
+                android:textColor="?attr/textcolor"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -75,21 +75,21 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:singleLine="false"
                         android:text="@string/remove_my_data_everywhere"
-                        android:fontFamily="@font/raleway"
+                        
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:text="@string/delete_all_of_your_stored_data_and_activities"
                             android:paddingTop="6dp"
                             android:singleLine="false"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="12sp"/>
                     </LinearLayout>
                     <View
@@ -121,21 +121,21 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:singleLine="false"
                         android:text="@string/factory_reset_the_applicaton"
-                        android:fontFamily="@font/raleway"
+                        
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:singleLine="false"
                             android:paddingTop="6dp"
                             android:text="@string/reset_the_application_to_its_initial_state"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="12sp"/>
                     </LinearLayout>
                     <View
@@ -166,21 +166,21 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:layout_height="wrap_content"
                         android:singleLine="false"
                         android:textStyle="bold"
                         android:text="@string/delete_my_account_permanently"
-                        android:fontFamily="@font/raleway"
+                        
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:paddingTop="6dp"
                             android:singleLine="false"
                             android:text="@string/delete_your_account_and_we_don_t_know_you"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="12sp"/>
                     </LinearLayout>
                     <View
@@ -212,22 +212,22 @@
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
 
                             android:text="@string/kill_the_app_and_restart"
-                            android:fontFamily="@font/raleway"
+                            
                             android:singleLine="false"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:singleLine="false"
                             android:paddingTop="6dp"
                             android:text="@string/in_case_any_problem_occurs_try_this"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="12sp"/>
                     </LinearLayout>
 
@@ -260,22 +260,21 @@
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
-
                             android:text="Change password"
-                            android:fontFamily="@font/raleway"
+                            
                             android:singleLine="false"
                             android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:singleLine="false"
                             android:paddingTop="6dp"
                             android:text="Changing password is good for security."
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="12sp"/>
                     </LinearLayout>
 
@@ -300,6 +299,53 @@
                     android:layout_margin="18dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="0dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="?attr/textcolor"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Change looks"
+
+                            android:singleLine="false"
+                            android:textSize="18sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="?attr/textcolor"
+                            android:layout_height="wrap_content"
+                            android:singleLine="false"
+                            android:paddingTop="6dp"
+                            android:text="Kinda boring having same look everytime? Change here."
+
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+                    <ImageButton
+                        android:id="@+id/themechangebtn"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/square_btn"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/black"
+                        app:srcCompat="@drawable/ic_accountremove"
+                        android:scaleType="fitCenter"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
                     <View
                         android:layout_width="0dp"
                         android:layout_height="0dp"
@@ -311,14 +357,12 @@
                         android:layout_height="50dp"
                         android:background="@drawable/square_btn"
                         android:backgroundTint="@color/dark_red"
-
-                        android:fontFamily="@font/raleway"
                         android:paddingStart="12dp"
                         android:paddingEnd="12dp"
                         android:scaleType="fitCenter"
                         android:text="@string/log_out"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/buttontextcolor"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>

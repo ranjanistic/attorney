@@ -1,14 +1,4 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowLightStatusBar">false</item>
-    </style>
-
     <style name="splashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:background">@drawable/splash</item>
         <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
@@ -22,12 +12,56 @@
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="basebackground">@color/charcoal</item>
+        <item name="foreground">@color/spruce</item>
+        <item name="android:statusBarColor">@color/charcoal</item>
+        <item name="android:navigationBarColor">@color/spruce</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="textcolor">@color/white</item>
+        <item name="deadtextcolor">@color/colorAccent</item>
+        <item name="buttoncolor">@color/spruce</item>
+        <item name="buttontextcolor">@color/white</item>
+    </style>
+
+    <style name="LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/dull_white</item>
+        <item name="colorAccent">@color/dark_grey</item>
+        <item name="basebackground">@color/white</item>
+        <item name="foreground">@color/dull_white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="textcolor">@color/black</item>
+        <item name="deadtextcolor">@color/dark_grey</item>
+        <item name="buttoncolor">@color/blue</item>
+        <item name="buttontextcolor">@color/white</item>
+    </style>
+
+    <style name="joyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/dark_grey</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="basebackground">@color/deep_purple</item>
+        <item name="foreground">@color/dark_blue</item>
+        <item name="textcolor">@color/white</item>
+        <item name="deadtextcolor">@color/pale_yellow</item>
+        <item name="buttoncolor">@color/deep_blue</item>
+        <item name="buttontextcolor">@color/white</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

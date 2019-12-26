@@ -10,7 +10,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:backgroundTint="@color/charcoal"
+        android:backgroundTint="?attr/basebackground"
         android:layout_height="300dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/charcoal"
+            app:contentScrim="?attr/basebackground"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.Toolbar
@@ -29,7 +29,7 @@
                 android:layout_height="140dp"
                 android:layout_marginBottom="14dp"
                 app:layout_collapseMode="pin"
-                android:backgroundTint="@color/charcoal">
+                android:backgroundTint="?attr/basebackground">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                     android:fontFamily="@font/raleway"
                     android:paddingBottom="8dp"
                     android:textSize="16sp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="?attr/deadtextcolor"
                     android:text="Viewing"/>
                 <TextView
                     android:id="@+id/textfilename"
@@ -52,7 +52,7 @@
                     android:fontFamily="@font/raleway"
                     android:textSize="32sp"
                     android:paddingBottom="8dp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="?attr/textcolor"
                     android:textStyle="bold" />
 
                 </LinearLayout>
@@ -65,7 +65,7 @@
                 android:fontFamily="@font/raleway"
                 android:layout_marginStart="14dp"
                 android:paddingBottom="14dp"
-                android:textColor="@color/colorAccent"
+                android:textColor="?attr/deadtextcolor"
                 app:layout_collapseMode="pin"
                 android:layout_gravity="bottom"
                 android:textSize="26sp"
@@ -123,7 +123,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:background="@drawable/toproundview"
-            android:backgroundTint="@color/charcoal">
+            android:backgroundTint="?attr/basebackground">
             <TextView
                 android:id="@+id/textfilelocation"
                 android:layout_width="match_parent"
@@ -131,8 +131,7 @@
                 android:gravity="center_vertical"
                 android:textSize="14sp"
                 android:textStyle="italic"
-                android:textColor="@color/white"
-                android:fontFamily="@font/raleway"
+                android:textColor="?attr/textcolor"
                 android:text="location"/>
         </LinearLayout>
 

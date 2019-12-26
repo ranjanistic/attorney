@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/charcoal"
-    android:background="@color/charcoal"
+    android:backgroundTint="?attr/basebackground"
+    android:background="?attr/basebackground"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
@@ -13,7 +13,7 @@
         android:id="@+id/homeapp_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/charcoal"
+        android:backgroundTint="?attr/basebackground"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/charcoal"
+            app:contentScrim="?attr/basebackground"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 <LinearLayout
     android:layout_width="match_parent"

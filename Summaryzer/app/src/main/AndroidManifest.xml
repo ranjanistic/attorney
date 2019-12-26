@@ -12,11 +12,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:theme="@style/AppTheme"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TextProcessor"></activity>
+
+        <activity android:name=".TextProcessor"/>
         <!--
       FirebaseInstanceIdService performs security checks at runtime,
       no need for explicit permissions despite exported="true"

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.media.Image;
@@ -46,13 +47,8 @@ public class TextOpenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
-
+        themSetter(getThemeStatus());
         setContentView(R.layout.activity_text_open);
-        Window window = this.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
-        window.setNavigationBarColor(this.getResources().getColor(R.color.charcoal));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         contentScrollView = findViewById(R.id.contentView);
@@ -204,5 +200,20 @@ public class TextOpenActivity extends AppCompatActivity {
         filepath = findViewById(R.id.textfilelocation);
         filePath = "at " + filePath;
         filepath.setText(filePath);
+    }
+
+    private void themSetter(int tcode){
+        switch (tcode){
+            case 101: setTheme(R.style.AppTheme);
+                break;
+            case 102: setTheme(R.style.LightTheme);
+                break;
+            case 103: setTheme(R.style.joyTheme);
+                break;
+        }
+    }
+    private int getThemeStatus() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("theme", MODE_PRIVATE);
+        return mSharedPreferences.getInt("themeCode", 0);
     }
 }

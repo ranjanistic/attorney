@@ -8,5 +8,6 @@ public interface OnDialogTextListener {
     String onCallSubText();
     String onCallPos();
     String onCallNeg();
+    String onCallHint();
     Drawable onCallImg();
 }

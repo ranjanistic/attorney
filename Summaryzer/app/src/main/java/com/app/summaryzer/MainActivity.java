@@ -51,20 +51,14 @@ public class MainActivity extends AppCompatActivity {
     ImageButton accountbtn;
     ImageButton openFIle;
     ImageButton openLink;
-    String fileLink, linkDhead, linkDsubhead, linkDpos, linkDneg, loadingtxt;
+    String fileLink, linkDhead, linkDsubhead, linkDpos, linkDneg, loadingtxt, linkDhint;
     Drawable linkDimg;
     private String[] storageReadPermission =  {Manifest.permission.READ_EXTERNAL_STORAGE};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
+        themSetter(getThemeStatus());
         setContentView(R.layout.activity_main);
-        final    Window window = this.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
-        window.setNavigationBarColor(this.getResources().getColor(R.color.spruce));
 
         accountbtn = findViewById(R.id.accountbtn);
         openFIle = findViewById(R.id.fileopenbtn);
@@ -96,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
             public String onCallNeg() {
                 return linkDneg;
             }
-
+            @Override
+            public String onCallHint(){ return linkDhint;}
             @Override
             public Drawable onCallImg() {
                 return linkDimg;
@@ -205,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 linkDsubhead = "txt, doc, docx extensions supported.";
                 linkDpos = "Next";
                 linkDneg = "Cancel";
+                linkDhint = "Hyperlink";
                 linkDimg = getResources().getDrawable(R.drawable.ic_linkico);
                 pastelinkDialog.show();
             }
@@ -292,6 +288,18 @@ public class MainActivity extends AppCompatActivity {
     private boolean getDialogStatus(){
         SharedPreferences mSharedPreferences = getSharedPreferences("CheckItem", MODE_PRIVATE);
         return mSharedPreferences.getBoolean("item", false);
+    }
+
+    private void themSetter(int tcode){
+        switch (tcode){
+            case 101: setTheme(R.style.AppTheme);break;
+            case 102: setTheme(R.style.LightTheme);break;
+            case 103: setTheme(R.style.joyTheme);break;
+        }
+    }
+    private int getThemeStatus(){
+        SharedPreferences mSharedPreferences = getSharedPreferences("theme", MODE_PRIVATE);
+        return mSharedPreferences.getInt("themeCode", 0);
     }
 }
 

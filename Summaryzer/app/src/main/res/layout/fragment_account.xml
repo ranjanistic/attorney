@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:backgroundTint="@color/charcoal"
-    android:background="@color/charcoal"
+    android:backgroundTint="?attr/basebackground"
+    android:background="?attr/basebackground"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -29,9 +29,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/raleway"
+                
                 android:text="@string/account"
-                android:textColor="@color/white"
+                android:textColor="?attr/textcolor"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/raleway"
+                android:textColor="?attr/textcolor"
                 android:textSize="22sp"/>
 
             <Button
@@ -80,11 +80,11 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/square_btn"
-                android:backgroundTint="@color/spruce"
-                android:fontFamily="@font/raleway"
+                android:backgroundTint="?attr/buttoncolor"
+                
                 android:text="@string/sign_in"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/white"
+                android:textColor="?attr/buttontextcolor"
                 android:textStyle="bold" />
         </LinearLayout>
         <ScrollView
@@ -108,20 +108,19 @@
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/deadtextcolor"
                             android:layout_height="wrap_content"
                             android:text="We know you as"
                             android:paddingTop="6dp"
-                            android:fontFamily="@font/raleway"
                             android:textSize="14sp"/>
                         <TextView
                             android:id="@+id/nametext"
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:text="You may tell us your name"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="20sp"/>
 
                     </LinearLayout>
@@ -152,19 +151,19 @@
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/deadtextcolor"
                             android:layout_height="wrap_content"
                             android:paddingTop="6dp"
                             android:text="Logged in as"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="14sp"/>
                         <TextView
                             android:id="@+id/emailtext"
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="20sp"/>
 
                     </LinearLayout>
@@ -193,20 +192,20 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/deadtextcolor"
                             android:layout_height="wrap_content"
                             android:paddingTop="6dp"
                             android:text="Authenticity"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="14sp"/>
                         <TextView
                             android:id="@+id/verifystatustxt"
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:text="@string/unverified_verify_now"
-                            android:fontFamily="@font/raleway"
+                            
                             android:textSize="20sp"/>
                     </LinearLayout>
 

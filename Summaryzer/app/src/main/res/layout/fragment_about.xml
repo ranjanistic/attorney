@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/charcoal">
+    android:background="?attr/basebackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/raleway"
             android:text="About"
-            android:textColor="@color/white"
+            android:textColor="?attr/textcolor"
             android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +60,7 @@
             android:orientation="horizontal">
             <TextView
                 android:layout_width="wrap_content"
-                android:textColor="@color/colorAccent"
+                android:textColor="?attr/textcolor"
                 android:layout_height="wrap_content"
                 android:text="@string/app_version"
                 android:fontFamily="@font/raleway"
@@ -89,7 +89,7 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:textStyle="bold"
                         android:layout_height="wrap_content"
                         android:singleLine="false"
@@ -98,7 +98,7 @@
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:paddingTop="6dp"
                             android:singleLine="false"
@@ -135,7 +135,7 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:singleLine="false"
@@ -144,7 +144,7 @@
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:text="@string/you_liked_this_tell_it_to_google"
                             android:fontFamily="@font/raleway"
@@ -181,7 +181,7 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:layout_height="wrap_content"
                         android:singleLine="false"
                         android:textStyle="bold"
@@ -190,7 +190,7 @@
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:singleLine="false"
                             android:text="@string/preemptive_apology_for_any_error_please_tell_us"
@@ -226,7 +226,7 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:singleLine="false"
@@ -235,7 +235,7 @@
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:paddingTop="6dp"
                             android:layout_height="wrap_content"
                             android:singleLine="false"
@@ -272,7 +272,7 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="@string/for_developers"
@@ -281,7 +281,7 @@
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:singleLine="false"
                             android:text="@string/tough_guy_finger_snapping_starts"
@@ -318,7 +318,7 @@
                         android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="?attr/textcolor"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:singleLine="false"
@@ -327,7 +327,7 @@
                         android:textSize="18sp"/>
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textColor="@color/colorAccent"
+                            android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:singleLine="false"
                             android:text="@string/marketing_of_this_app_at_your_level_keep_sharing"

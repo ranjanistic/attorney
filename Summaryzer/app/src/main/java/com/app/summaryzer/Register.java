@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -45,13 +46,8 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        themSetter(getThemeStatus());
         setContentView(R.layout.activity_register);
-        Window window = this.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
-        window.setNavigationBarColor(this.getResources().getColor(R.color.charcoal));
-
         mAuth = FirebaseAuth.getInstance();
         signupbutt = findViewById(R.id.signupbtn);
         
@@ -225,5 +221,20 @@ public class Register extends AppCompatActivity {
         alertImage = getResources().getDrawable(aimg);
         alheading = h;
         alsubheading = sh;
+    }
+
+    private void themSetter(int tcode){
+        switch (tcode){
+            case 101: setTheme(R.style.AppTheme);
+                break;
+            case 102: setTheme(R.style.LightTheme);
+                break;
+            case 103: setTheme(R.style.joyTheme);
+                break;
+        }
+    }
+    private int getThemeStatus() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("theme", MODE_PRIVATE);
+        return mSharedPreferences.getInt("themeCode", 0);
     }
 }

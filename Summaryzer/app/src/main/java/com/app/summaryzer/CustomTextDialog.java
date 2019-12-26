@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialog;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.util.Objects;
 
 public class CustomTextDialog extends AppCompatDialog {
@@ -36,7 +38,7 @@ public class CustomTextDialog extends AppCompatDialog {
         final ImageView diaimg = findViewById(R.id.text_dialog_image);
         final Button textCancel = findViewById(R.id.text_cancel);
         final Button textSubmit = findViewById(R.id.text_submit);
-
+        TextInputLayout texthint = findViewById(R.id.dialog_text_hint);
         assert textDiaHead != null;
         assert textDiaSubhead != null;
         assert diaimg != null;
@@ -46,11 +48,14 @@ public class CustomTextDialog extends AppCompatDialog {
         String subhead = onDialogTextListener.onCallSubText();
         String accept = onDialogTextListener.onCallPos();
         String reject = onDialogTextListener.onCallNeg();
+        String hint = onDialogTextListener.onCallHint();
         Drawable image = onDialogTextListener.onCallImg();
         final EditText text = findViewById(R.id.dialog_text);
         //    int poscol = onDialogTextListener.onCallPoscol();
         //int negcol = onDialogTextListener.onCallNegcol();
-
+        if (texthint != null) {
+            texthint.setHint(hint);
+        }
         textDiaHead.setText(head);
         textDiaSubhead.setText(subhead);
         textCancel.setText(reject);

@@ -4,9 +4,11 @@ package com.app.summaryzer.ui.settings;
     Settings fragment for AccountVew activity.
  */
 import java.lang.*;
+import java.util.Objects;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -27,9 +29,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.app.summaryzer.AccountView;
 import com.app.summaryzer.CustomAlertDialog;
 import com.app.summaryzer.CustomConfirmDialogClass;
 import com.app.summaryzer.CustomLoadDialogClass;
+import com.app.summaryzer.CustomOnOptListener;
 import com.app.summaryzer.CustomTextDialog;
 import com.app.summaryzer.Login;
 import com.app.summaryzer.MainActivity;
@@ -38,6 +42,7 @@ import com.app.summaryzer.OnDialogApplyListener;
 import com.app.summaryzer.OnDialogConfirmListener;
 import com.app.summaryzer.OnDialogLoadListener;
 import com.app.summaryzer.OnDialogTextListener;
+import com.app.summaryzer.OnOptionChosenListener;
 import com.app.summaryzer.R;
 import com.app.summaryzer.CustomVerificationDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,16 +52,19 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.content.Context.MODE_WORLD_READABLE;
+
 public class SettingsFragment extends Fragment {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private SettingsViewModel settingsViewModel;
-    private CustomConfirmDialogClass dialogClassremdata,dialogClassfactreset,dialogClassdelacc,dialogClasskillres, dialogClasslogout;
+    private CustomConfirmDialogClass dialogClassremdata,dialogClassfactreset,dialogClassdelacc,dialogClasskillres, dialogClasslogout, restartConfirmationDialog;
     private CustomAlertDialog alertDialogBox, netErrorDialog;
-    public CustomLoadDialogClass loadAnim, loadDialogClassWhileReset;
-    Animation rotation;
-    CustomTextDialog passwordResetDialog;
-    ImageView settingIcon;
-    private String emailid, pass, resetEmail,textDhead, textDsubhead, textsubmit, textCancel;
+    private CustomOnOptListener themechoserdialog;
+    private CustomLoadDialogClass loadAnim, loadDialogClassWhileReset;
+    private CustomTextDialog passwordResetDialog;
+    private ImageView settingIcon;
+    private String emailid, pass, resetEmail,textDhead, textDsubhead, textsubmit, textCancel, textDhint;
     private  String heading, subheading, posbtntxt, negbtntxt, alheading, alsubheading;
     private Drawable dialogimage, alertImage, textDimg;
     //actcode 1(remove data), 2(fact reset), 3(delete account), 4(kill and restart)
@@ -66,11 +74,10 @@ public class SettingsFragment extends Fragment {
         settingsViewModel =
                 ViewModelProviders.of(this).get(SettingsViewModel.class);
         final View root = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        final ImageButton killbutt, remdatabutt, factresetbutt,delaccbutt, passwordResetButt ;
+        final ImageButton killbutt, remdatabutt, factresetbutt,delaccbutt, passwordResetButt, themeChangeButt ;
         Button logoutbutt;
         settingIcon = root.findViewById(R.id.appiconsetting);
-        rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.cycle_recycle);
+        Animation rotation = AnimationUtils.loadAnimation(getActivity(), R.anim.cycle_recycle);
         rotation.setFillAfter(true);
         settingIcon.startAnimation(rotation);
         killbutt = root.findViewById(R.id.killrestartbtn);
@@ -78,6 +85,7 @@ public class SettingsFragment extends Fragment {
         factresetbutt = root.findViewById(R.id.resetbtn);
         delaccbutt = root.findViewById(R.id.accdeletebtn);
         passwordResetButt = root.findViewById(R.id.passchangebtn);
+        themeChangeButt = root.findViewById(R.id.themechangebtn);
         logoutbutt = root.findViewById(R.id.signoutbtn);
 
         /* Verification Dialog before account deletion */
@@ -363,11 +371,68 @@ public class SettingsFragment extends Fragment {
             }
 
             @Override
+            public String onCallHint(){
+                return textDhint;
+            }
+
+            @Override
             public Drawable onCallImg() {
                 return textDimg;
             }
         });
 
+        restartConfirmationDialog = new CustomConfirmDialogClass(getContext(), new OnDialogConfirmListener() {
+            @Override
+            public void onApply(Boolean confirm) {
+                Toast.makeText(getContext(),"Theme applied",Toast.LENGTH_LONG).show();
+                killrestart();
+            }
+
+            @Override
+            public String onCallText() {
+                return "Restart to apply changes";
+            }
+
+            @Override
+            public String onCallSub() {
+                return "New theme will be fully functional after a restart.";
+            }
+
+            @Override
+            public String onCallPos() {
+                return "Restart now";
+            }
+
+            @Override
+            public String onCallNeg() {
+                return "Later";
+            }
+
+            @Override
+            public Drawable onCallImg() {
+                return getResources().getDrawable(R.drawable.ic_trashico);
+            }
+        });
+
+        themechoserdialog = new CustomOnOptListener(getContext(), new OnOptionChosenListener() {
+            @Override
+            public void onChoice(int choice) {
+                storeThemeStatus(choice);
+                themSetter(choice);
+                restartConfirmationDialog.setCanceledOnTouchOutside(false);
+                restartConfirmationDialog.show();
+            }
+
+            @Override
+            public String onCallHeader() {
+                return "Choose a theme";
+            }
+
+            @Override
+            public Drawable onCallImage() {
+                return getResources().getDrawable(R.drawable.ic_linkico);
+            }
+        });
         //restart button listener
         killbutt.setOnClickListener(new View.OnClickListener(){
            @Override
@@ -426,7 +491,7 @@ public class SettingsFragment extends Fragment {
                     startActivity(logint);
                 }else {
                     if (checknet()) {
-                        editTextBox(R.drawable.ic_bug, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort");
+                        editTextBox(R.drawable.ic_bug, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort", "Type email ID");
                         passwordResetDialog.show();
                     } else {
                         alertBox(R.drawable.ic_bug, "Network Failure", "Error reaching server. Check your internet connection.");
@@ -435,6 +500,14 @@ public class SettingsFragment extends Fragment {
                 }
             }
         });
+
+        themeChangeButt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                themechoserdialog.show();
+            }
+        });
+
         //logout button listener
         logoutbutt.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -448,7 +521,6 @@ public class SettingsFragment extends Fragment {
                 }
             }
         });
-
 
         return root;
     }
@@ -468,6 +540,9 @@ public class SettingsFragment extends Fragment {
                 * 3 for account deletion
                 * 4 for restarting
                 * 5 for logout
+                * 101 dark theme
+                * 102 light theme
+                * 103 joytheme
                  */
                 case 1: publishProgress("Removing your data");removedata(); text ="Data removed successfully.";  break;
                 case 2:publishProgress("Performing reset");factreset(); text="Application reset successfully"; break;
@@ -638,6 +713,28 @@ public class SettingsFragment extends Fragment {
         }
     }
 
+    private void themSetter(int tcode){
+        switch (tcode){
+            case 101: this.getActivity().setTheme(R.style.AppTheme);break;
+            case 102: this.getActivity().setTheme(R.style.LightTheme);break;
+            case 103: this.getActivity().setTheme(R.style.joyTheme);break;
+            default:this.getActivity().setTheme(R.style.AppTheme);
+        }
+    }
+    private int getThemeStatus(){
+        SharedPreferences mSharedPreferences = this.getActivity().getSharedPreferences("theme", MODE_PRIVATE);
+        return mSharedPreferences.getInt("themeCode", 0);
+    }
+
+    private void storeThemeStatus(int themechoice){
+        SharedPreferences mSharedPreferences = this.getActivity().getSharedPreferences("theme", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putInt("themeCode", themechoice);
+        mEditor.apply();
+    }
+
+
+
 
     //dialog box content loader
     private void dialogbox(int dimg,String h, String sh, String pbt, String nbt){
@@ -656,12 +753,13 @@ public class SettingsFragment extends Fragment {
     }
 
 
-    private void editTextBox(int timg, String h, String sh, String tsubmit, String tcancel){
+    private void editTextBox(int timg, String h, String sh, String tsubmit, String tcancel, String thint){
         textDimg = getResources().getDrawable(timg);
         textDhead = h;
         textDsubhead = sh;
         textsubmit = tsubmit;
         textCancel = tcancel;
+        textDhint = thint;
     }
     
 

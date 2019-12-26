@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -41,19 +42,14 @@ public class Login extends AppCompatActivity {
     CustomTextDialog passwordResetDialog;
     private FirebaseAuth mAuth;
     private static String emailforlogintask = "", passwordforlogintask = "";
-    String alheading,alsubheading, resetEmail, textDhead, textDsubhead, textsubmit, textCancel, loginMessage;
+    String alheading,alsubheading, resetEmail, textDhead, textDsubhead, textsubmit, textCancel, loginMessage, textDhint;
     Drawable alertImage, textDimg;
     CustomAlertDialog netErrorDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        themSetter(getThemeStatus());
         setContentView(R.layout.activity_login);
-        Window window = this.getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(this.getResources().getColor(R.color.charcoal));
-        window.setNavigationBarColor(this.getResources().getColor(R.color.charcoal));
-
         passResetBtn =  findViewById(R.id.forgotpassbtn);
         mAuth = FirebaseAuth.getInstance();
         loginBtn = findViewById(R.id.signinbtn);
@@ -112,6 +108,11 @@ public class Login extends AppCompatActivity {
             }
 
             @Override
+            public String onCallHint() {
+                return textDhint;
+            }
+
+            @Override
             public Drawable onCallImg() {
                 return textDimg;
             }
@@ -147,7 +148,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checknet()) {
-                    editTextBox(R.drawable.ic_bug, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort");
+                    editTextBox(R.drawable.ic_bug, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort", "Type email ID");
                     passwordResetDialog.show();
                 } else{
                     alertBox(R.drawable.ic_bug,"Network Failure","Error reaching server. Check your internet connection.");
@@ -289,12 +290,13 @@ public class Login extends AppCompatActivity {
                 });
     }
 
-    private void editTextBox(int timg, String h, String sh, String tsubmit, String tcancel){
+    private void editTextBox(int timg, String h, String sh, String tsubmit, String tcancel, String thint){
         textDimg = getResources().getDrawable(timg);
         textDhead = h;
         textDsubhead = sh;
         textsubmit = tsubmit;
         textCancel = tcancel;
+        textDhint = thint;
     }
 
     private void alertBox(int aimg, String h, String sh){
@@ -312,5 +314,20 @@ public class Login extends AppCompatActivity {
         } else
             connected = false;
         return connected;
+    }
+
+    private void themSetter(int tcode){
+        switch (tcode){
+            case 101: setTheme(R.style.AppTheme);
+                break;
+            case 102: setTheme(R.style.LightTheme);
+                break;
+            case 103: setTheme(R.style.joyTheme);
+                break;
+        }
+    }
+    private int getThemeStatus() {
+        SharedPreferences mSharedPreferences = getSharedPreferences("theme", MODE_PRIVATE);
+        return mSharedPreferences.getInt("themeCode", 0);
     }
 }

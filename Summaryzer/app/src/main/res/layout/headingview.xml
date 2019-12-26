@@ -21,9 +21,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/raleway"
         android:text="@string/welcomeGreet"
-        android:textColor="@color/white"
+        android:textColor="?attr/textcolor"
         android:textSize="36sp"
         android:textStyle="bold" />
     <View
@@ -39,7 +38,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/round_btn"
-        android:backgroundTint="@color/blue_grey"
+        android:backgroundTint="?attr/buttoncolor"
         android:contentDescription="@string/todo"
         app:srcCompat="@drawable/ic_face"
         tools:targetApi="p" />
@@ -54,9 +53,8 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="0dp"
-        android:fontFamily="@font/raleway"
         android:text="Recently,"
-        android:textColor="@color/white"
+        android:textColor="?attr/textcolor"
         android:textSize="18sp" />
 
 </LinearLayout>
