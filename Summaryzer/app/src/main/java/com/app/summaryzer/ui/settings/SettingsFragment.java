@@ -450,7 +450,7 @@ public class SettingsFragment extends Fragment {
                 dialogbox(R.drawable.ic_trashico,"Delete all existing data?","This includes deleting everything from our servers and your device related to you and the app.\nIrreversible, proceed with caution.","Delete my data","Abort");
                 dialogClassremdata.show();}
                 else {
-                    alertBox(R.drawable.ic_bug,"Network Failure","Error reaching server. Check your internet connection.");
+                    alertBox(R.drawable.ic_disconnectiontower,"Network Failure","Error reaching server. Check your internet connection.");
                     netErrorDialog.show();
                 }
 
@@ -491,10 +491,10 @@ public class SettingsFragment extends Fragment {
                     startActivity(logint);
                 }else {
                     if (checknet()) {
-                        editTextBox(R.drawable.ic_bug, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort", "Type email ID");
+                        editTextBox(R.drawable.ic_changepassword, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort", "Type email ID");
                         passwordResetDialog.show();
                     } else {
-                        alertBox(R.drawable.ic_bug, "Network Failure", "Error reaching server. Check your internet connection.");
+                        alertBox(R.drawable.ic_disconnectiontower, "Network Failure", "Error reaching server. Check your internet connection.");
                         netErrorDialog.show();
                     }
                 }
@@ -516,7 +516,7 @@ public class SettingsFragment extends Fragment {
                     dialogbox(R.drawable.ic_settingico, "Sure to log out?", "This will log you out from application", "Log out", "No, abort");
                     dialogClasslogout.show();
                 } else {
-                    alertBox(R.drawable.ic_bug,"Network Failure","Error reaching server. Check your internet connection.");
+                    alertBox(R.drawable.ic_disconnectiontower,"Network Failure","Error reaching server. Check your internet connection.");
                     netErrorDialog.show();
                 }
             }
@@ -591,7 +591,7 @@ public class SettingsFragment extends Fragment {
                 return 1;
             }
          else {
-                alertBox(R.drawable.ic_bug,"Network Failure","Error reaching server. Check your internet connection.");
+                alertBox(R.drawable.ic_disconnectiontower,"Network Failure","Error reaching server. Check your internet connection.");
                 return 0;
             }
 

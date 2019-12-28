@@ -1,6 +1,7 @@
 package com.app.summaryzer;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -16,11 +18,12 @@ import androidx.appcompat.app.AppCompatDialog;
 
 import java.util.Objects;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class CustomOnOptListener extends AppCompatDialog {
     private OnOptionChosenListener onOptionChosenListener;
     private  Button set, cancel;
-
-
+    private RadioButton r101, r102, r103;
     public CustomOnOptListener(Context context, OnOptionChosenListener onOptionChosenListener) {
         super(context);
         this.onOptionChosenListener = onOptionChosenListener;
@@ -48,6 +51,18 @@ public class CustomOnOptListener extends AppCompatDialog {
         if (choiceimg != null) {
             choiceimg.setImageDrawable(choiceimgreceived);
         }
+        r103 = findViewById(R.id.radio3);
+        r102 = findViewById(R.id.radio2);
+        r101 = findViewById(R.id.radio1);
+        if(getThemeStatus()==101) {r101.setChecked(true);}
+        else if(getThemeStatus()==102){r102.setChecked(true);}
+        else if(getThemeStatus()==103){r103.setChecked(true);}
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
         if (radioGroup != null) {
             radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -69,14 +84,13 @@ public class CustomOnOptListener extends AppCompatDialog {
                             dismiss();
                         }
                     });
-                    cancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            cancel();
-                        }
-                    });
                 }
             });
         }
+    }
+
+    private int getThemeStatus() {
+        SharedPreferences mSharedPreferences = getContext().getSharedPreferences("theme", MODE_PRIVATE);
+        return mSharedPreferences.getInt("themeCode", 0);
     }
 }

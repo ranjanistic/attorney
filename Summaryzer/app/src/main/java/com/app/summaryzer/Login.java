@@ -137,7 +137,7 @@ public class Login extends AppCompatActivity {
                     });
                     loginUserInit();        //initial credential check before actual login
                 } else{
-                    alertBox(R.drawable.ic_bug,"Network Failure","Error reaching server. Check your internet connection.");
+                    alertBox(R.drawable.ic_disconnectiontower,"Network Failure","Error reaching server. Check your internet connection.");
                     netErrorDialog.show();
                 }
             }
@@ -151,7 +151,7 @@ public class Login extends AppCompatActivity {
                     editTextBox(R.drawable.ic_bug, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort", "Type email ID");
                     passwordResetDialog.show();
                 } else{
-                    alertBox(R.drawable.ic_bug,"Network Failure","Error reaching server. Check your internet connection.");
+                    alertBox(R.drawable.ic_disconnectiontower,"Network Failure","Error reaching server. Check your internet connection.");
                     netErrorDialog.show();
                 }
             }
