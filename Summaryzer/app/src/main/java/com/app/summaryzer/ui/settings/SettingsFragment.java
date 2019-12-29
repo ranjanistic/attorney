@@ -637,7 +637,7 @@ public class SettingsFragment extends Fragment {
                                 dialogbox(R.drawable.ic_accountremove, "Confirm to delete your accout?", "This act is permanent, and your account will be unrecoverable.", "Yes, delete my account", "No, abort");
                                 dialogClassdelacc.show();
                             } else {
-                                alertBox(R.drawable.test, "Failed to verify", "Credentials you entered were wrong.");
+                                alertBox(R.drawable.ic_warning, "Failed to verify", "Credentials you entered were wrong.");
                                 alertDialogBox.show();
                             }
                         }

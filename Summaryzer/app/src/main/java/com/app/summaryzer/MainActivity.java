@@ -1,6 +1,8 @@
 package com.app.summaryzer;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
@@ -24,6 +27,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
@@ -48,11 +52,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mauth;
     CustomConfirmDialogClass permitDialog;
     CustomLoadDialogClass loadDialogWhileFileChoose;
-    ImageButton accountbtn;
-    ImageButton openFIle;
-    ImageButton openLink;
+    ImageButton accountbtn,openFIle,openLink, homescrollbtn;
     String fileLink, linkDhead, linkDsubhead, linkDpos, linkDneg, loadingtxt, linkDhint;
     Drawable linkDimg;
+    AppBarLayout appBarLayout;
     private String[] storageReadPermission =  {Manifest.permission.READ_EXTERNAL_STORAGE};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +63,23 @@ public class MainActivity extends AppCompatActivity {
         themSetter(getThemeStatus());
         setContentView(R.layout.activity_main);
 
+        appBarLayout = findViewById(R.id.homeapp_bar);
         accountbtn = findViewById(R.id.accountbtn);
         openFIle = findViewById(R.id.fileopenbtn);
         openLink = findViewById(R.id.linkopenbtn);
         mauth = FirebaseAuth.getInstance();
+        homescrollbtn = findViewById(R.id.homescrollbutt);
+        homescrollbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                      appBarLayout.setExpanded(false,true);
+                    }
+                });
+            }
+        });
 
         final CustomTextDialog pastelinkDialog = new CustomTextDialog(this, new OnDialogTextListener() {
             @Override

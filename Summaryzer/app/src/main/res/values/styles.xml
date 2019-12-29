@@ -1,8 +1,21 @@
 <resources>
     <style name="splashTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="android:background">@drawable/splash</item>
-        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+        <item name="basebackground">@color/charcoal</item>
+        <item name="android:navigationBarColor">@color/charcoal</item>
         <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="splashThemeLight" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:background">@drawable/splash</item>
+        <item name="basebackground">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+    <style name="splashThemeJoy" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:background">@drawable/splash</item>
+        <item name="basebackground">@color/dark_blue</item>
+        <item name="android:navigationBarColor">@color/dark_blue</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.DayNight.DialogWhenLarge">

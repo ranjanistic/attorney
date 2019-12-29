@@ -131,10 +131,8 @@ public class AccountFragment extends Fragment {
             for (UserInfo profile : user.getProviderData()) {
                 // Id of the provider (ex: google.com)
                 providerId = profile.getProviderId();
-
                 // UID specific to the provider
                 uid = profile.getUid();
-
                 // Name, email address, and profile photo Url
                 name = profile.getDisplayName();
                 email = profile.getEmail();
@@ -142,7 +140,12 @@ public class AccountFragment extends Fragment {
             }
         }
         final String text = email;
-
+        if(checkIfEmailVerified(text)){
+            verifytxt.setText(R.string.verified_text);
+            verifytxt.setTextColor(getResources().getColor(R.color.green));
+            verifytxt.setTypeface(Typeface.DEFAULT_BOLD);
+            verifybutt.setImageDrawable(getResources().getDrawable(R.drawable.ic_verifiedbadge));
+        }
         loadDialogWhileLinkGen = new CustomLoadDialogClass(getContext(), new OnDialogLoadListener() {
             @Override
             public void onLoad() {
@@ -176,6 +179,7 @@ public class AccountFragment extends Fragment {
         mailtext.setTextColor(getResources().getColor(R.color.green));
         nametext.setText(dispname);
     }
+
     private void signedout(){
         scrollView.setVisibility(View.INVISIBLE);
         logoutstatus.setVisibility(View.VISIBLE);
@@ -193,15 +197,11 @@ public class AccountFragment extends Fragment {
         });
     }
 
-    private void checkIfEmailVerified(final String address)
+    private boolean checkIfEmailVerified(final String address)
     {
         user = FirebaseAuth.getInstance().getCurrentUser();
-        if (Objects.requireNonNull(user).isEmailVerified())
-        {
-            verifytxt.setText(R.string.verified_text);
-            verifytxt.setTextColor(getResources().getColor(R.color.green));
-            verifytxt.setTypeface(Typeface.DEFAULT_BOLD);
-            verifybutt.setVisibility(View.INVISIBLE);
+        if (Objects.requireNonNull(user).isEmailVerified()) {
+            return true;
         }
         else
         {
@@ -226,7 +226,7 @@ public class AccountFragment extends Fragment {
                             });
                 }
             });
+            return false;
         }
     }
-
 }

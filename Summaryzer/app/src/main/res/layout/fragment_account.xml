@@ -173,9 +173,10 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="30dp"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:padding="8dp"
+                        android:backgroundTint="@color/dull_white"
                         android:background="@drawable/square_btn"
-                        app:srcCompat="@drawable/ic_resetting"
+                        app:srcCompat="@drawable/ic_mailopen"
                         android:scaleType="fitCenter"
                         />
                 </LinearLayout>
@@ -215,9 +216,8 @@
                         android:layout_height="50dp"
                         android:layout_marginStart="30dp"
                         android:background="@drawable/square_btn"
-                        android:padding="8dp"
-                        android:backgroundTint="@color/dark_red"
-                        app:srcCompat="@drawable/ic_accountremove"
+                        android:backgroundTint="@android:color/transparent"
+                        app:srcCompat="@drawable/ic_problembadge"
                         android:scaleType="fitCenter"
                         />
                 </LinearLayout>

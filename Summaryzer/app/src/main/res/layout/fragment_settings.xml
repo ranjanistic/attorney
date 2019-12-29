@@ -288,8 +288,8 @@
                         android:layout_height="50dp"
                         android:background="@drawable/square_btn"
                         android:padding="8dp"
-                        android:backgroundTint="@color/dark_red"
-                        app:srcCompat="@drawable/ic_accountremove"
+                        android:backgroundTint="@color/dull_white"
+                        app:srcCompat="@drawable/ic_passwordico"
                         android:scaleType="fitCenter"
                         />
                 </LinearLayout>
@@ -335,8 +335,8 @@
                         android:layout_height="50dp"
                         android:background="@drawable/square_btn"
                         android:padding="8dp"
-                        android:backgroundTint="@color/black"
-                        app:srcCompat="@drawable/ic_accountremove"
+                        android:backgroundTint="@color/blue_grey"
+                        app:srcCompat="@drawable/ic_looksico"
                         android:scaleType="fitCenter"
                         />
                 </LinearLayout>

@@ -148,7 +148,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checknet()) {
-                    editTextBox(R.drawable.ic_bug, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort", "Type email ID");
+                    editTextBox(R.drawable.ic_changepassword, "Password reset", "Enter your email ID to receive a temporary password reset link..", "Send Link", "Abort", "Type email ID");
                     passwordResetDialog.show();
                 } else{
                     alertBox(R.drawable.ic_disconnectiontower,"Network Failure","Error reaching server. Check your internet connection.");
