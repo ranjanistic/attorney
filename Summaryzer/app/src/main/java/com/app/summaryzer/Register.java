@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -33,15 +34,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class Register extends AppCompatActivity {
 
     EditText emailIdReceived, passNewReceived, passCnfReceived;
     ImageButton signupbutt;
     FirebaseAuth mAuth;
-    String alheading,alsubheading, loginMessage;;
+    FirebaseUser user;
+    String alheading,alsubheading, loginMessage, mail,pass;
     Drawable alertImage;
-    CustomAlertDialog netErrorDialog;
+    CustomAlertDialog netErrorDialog, linkSentAlertDialog;
     CustomLoadDialogClass loadDialogClassWhileRegister;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +85,8 @@ public class Register extends AppCompatActivity {
                     loadDialogClassWhileRegister = new CustomLoadDialogClass(Register.this, new OnDialogLoadListener() {
                         @Override
                         public void onLoad(){
-                            String pass = passNewReceived.getText().toString();
-                            String mail = emailIdReceived.getText().toString();
+                            pass = passNewReceived.getText().toString();
+                            mail = emailIdReceived.getText().toString();
                             if(passNewReceived.getText().toString().equals(passCnfReceived.getText().toString()))
                                 pass = passCnfReceived.getText().toString();
                             new regisTask().execute(mail,pass);
@@ -93,12 +98,28 @@ public class Register extends AppCompatActivity {
                     });
                     registerInit();
                 } else {
-                    alertBox(R.drawable.ic_bug,"Network Failure","Error reaching server. Check your internet connection.");
+                    alertBox(R.drawable.ic_disconnectiontower,"Network Failure","Error reaching server. Check your internet connection.");
                     netErrorDialog.show();
                 }
             }
         });
 
+        linkSentAlertDialog = new CustomAlertDialog(this, new OnDialogAlertListener() {
+            @Override
+            public String onCallText() {
+                return "Verify your Authenticity";
+            }
+
+            @Override
+            public String onCallSub() {
+                return "A link has been sent at "+mail;
+            }
+
+            @Override
+            public Drawable onCallImg() {
+                return getResources().getDrawable(R.drawable.ic_problembadge);
+            }
+        });
         //anonymous login button listener
         ImageButton anonymlogbtn  = findViewById(R.id.anonymloginbtn);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -173,7 +194,6 @@ public class Register extends AppCompatActivity {
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
             return;
-
         }
         if (TextUtils.isEmpty(pass)) {
             Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
@@ -197,9 +217,15 @@ public class Register extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        user = FirebaseAuth.getInstance().getCurrentUser();
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
-                            finish();
+                            if (checkIfEmailVerified()) {
+                                Toast.makeText(getApplicationContext(), "Registration successful!", Toast.LENGTH_LONG).show();
+                                finish();
+                            } else {
+                                linkSentAlertDialog.show();
+                                linkSentAlertDialog.setCanceledOnTouchOutside(false);
+                            }
                         } else {
                             Toast.makeText(getApplicationContext(), "Registration failed! Please try again later", Toast.LENGTH_LONG).show();
                             loadDialogClassWhileRegister.dismiss();
@@ -207,14 +233,17 @@ public class Register extends AppCompatActivity {
                     }
                 });
     }
+
+    private boolean checkIfEmailVerified() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        return Objects.requireNonNull(user).isEmailVerified();
+    }
+
     boolean checknet() {
         boolean connected;
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            connected = true;
-        } else
-            connected = false;
+        connected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
         return connected;
     }
     private void alertBox(int aimg, String h, String sh){
