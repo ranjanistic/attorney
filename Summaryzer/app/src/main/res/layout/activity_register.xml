@@ -191,7 +191,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/round_btn"
-                        android:backgroundTint="@color/blue"
+                        android:backgroundTint="?attr/imageButtonColor"
                         android:contentDescription="@string/sign_up"
                         android:elevation="12dp"
                         android:outlineSpotShadowColor="@color/black"

@@ -159,4 +159,7 @@
     <string name="like_dislike_feautre_request_we_d_love_to_hear">Like? Dislike? Feautre request? We\'d love to hear.</string>
     <string name="preemptive_apology_for_any_error_please_tell_us">Preemptive apology for any error. Please tell us.</string>
     <string name="this_action_requires_your_verification_to_proceed">This action requires your verification to proceed.</string>
+    <string name="few_more_steps">Few more steps</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
 </resources>

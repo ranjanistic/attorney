@@ -1,68 +1,54 @@
 package com.app.summaryzer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.google.android.material.snackbar.Snackbar;
 
 public class TextProcessor extends AppCompatActivity {
-    ViewPager slideViewPager;
-    LinearLayout dotLayoutView;
-    private ViewFlipper mViewFlipper;
-    private Context mContext;
-    private float initialX;
-
+    public static final int FRAG_A = 100;
+    public static final int FRAG_B = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         themSetter(getThemeStatus());
         setContentView(R.layout.activity_text_processor);
-        //slideViewPager = findViewById(R.id.slideView);
-        dotLayoutView = findViewById(R.id.dotView);
-        mContext = this;
-        mViewFlipper = this.findViewById(R.id.view_flipper);
-        mViewFlipper.setAutoStart(true);
-        mViewFlipper.setFlipInterval(1000);
-        mViewFlipper.startFlipping();
-    }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent touchevent) {
-        mViewFlipper.stopFlipping();
-        switch (touchevent.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                initialX = touchevent.getX();
-                break;
-            case MotionEvent.ACTION_UP:
-                float finalX = touchevent.getX();
-                if (initialX > finalX) {
-                    if (mViewFlipper.getDisplayedChild() == 1)
-                        break;
+        final ViewPager viewPager = findViewById(R.id.viewPager);
 
-                    mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_in));
-                    mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_out));
+        Button prevbtn = findViewById(R.id.prevStepButton);
+        Button nextbtn = findViewById(R.id.nextStepButton);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),
+                FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(adapter);
 
-                    mViewFlipper.showNext();
-                } else {
-                    if (mViewFlipper.getDisplayedChild() == 0)
-                        break;
+        prevbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"frag a", Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(FRAG_A, true);
+            }
+        });
 
-                    mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_in));
-                    mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_out));
-
-                    mViewFlipper.showPrevious();
-                }
-                break;
-        }
-        return false;
+        nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"frag b", Toast.LENGTH_SHORT).show();
+                viewPager.setCurrentItem(FRAG_B, true);
+            }
+        });
     }
 
 

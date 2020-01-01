@@ -41,7 +41,7 @@
                     android:layout_margin="100dp"
                     android:padding="50dp"
                     android:background="@drawable/round_btn"
-                    android:backgroundTint="?attr/buttoncolor"
+                    android:backgroundTint="?attr/imageButtonColor"
                     android:rotation="-90"
                     app:srcCompat="@drawable/ic_arrowright"
                     />

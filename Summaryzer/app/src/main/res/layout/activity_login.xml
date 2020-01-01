@@ -166,7 +166,7 @@
             android:outlineSpotShadowColor="@color/black"
             android:elevation="12dp"
             android:background="@drawable/round_btn"
-            android:backgroundTint="?attr/buttoncolor"
+            android:backgroundTint="?attr/imageButtonColor"
             android:translationZ="12dp"
             app:srcCompat="@drawable/ic_arrowright"
             tools:targetApi="q" />

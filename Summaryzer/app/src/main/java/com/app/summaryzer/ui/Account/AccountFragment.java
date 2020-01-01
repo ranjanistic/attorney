@@ -112,6 +112,7 @@ public class AccountFragment extends Fragment {
         if (user != null) {
             logoutstatus.setVisibility(View.GONE);
             signin.setVisibility(View.GONE);
+            checkIfEmailVerified();
             signedin(user);
         } else if( Gaccount!=null){
             logoutstatus.setVisibility(View.GONE);
@@ -124,6 +125,34 @@ public class AccountFragment extends Fragment {
     }
 
     private void signedin(FirebaseUser firebaseUser){
+        if(!checkIfEmailVerified()) {
+            verifytxt.setText(R.string.unverified_verify_now);
+            verifytxt.setTextColor(getResources().getColor(R.color.dark_red));
+            verifytxt.setTypeface(Typeface.DEFAULT);
+            verifybutt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    loadDialogWhileLinkGen.show();
+                    user.sendEmailVerification()
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getActivity(), "Link has been sent", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(getActivity(), "error", Toast.LENGTH_LONG).show();
+                                    }
+                                    loadDialogWhileLinkGen.dismiss();
+                                }
+                            });
+                }
+            });
+        } else {
+            verifytxt.setText(R.string.verified_text);
+            verifytxt.setTextColor(getResources().getColor(R.color.green));
+            verifytxt.setTypeface(Typeface.DEFAULT_BOLD);
+            verifybutt.setImageDrawable(getResources().getDrawable(R.drawable.ic_verifiedbadge));
+        }
         String name = "", email = "";
         String providerId = "", uid="";
         Uri photoUrl;
@@ -140,12 +169,6 @@ public class AccountFragment extends Fragment {
             }
         }
         final String text = email;
-        if(checkIfEmailVerified(text)){
-            verifytxt.setText(R.string.verified_text);
-            verifytxt.setTextColor(getResources().getColor(R.color.green));
-            verifytxt.setTypeface(Typeface.DEFAULT_BOLD);
-            verifybutt.setImageDrawable(getResources().getDrawable(R.drawable.ic_verifiedbadge));
-        }
         loadDialogWhileLinkGen = new CustomLoadDialogClass(getContext(), new OnDialogLoadListener() {
             @Override
             public void onLoad() {
@@ -159,7 +182,7 @@ public class AccountFragment extends Fragment {
 
         mailtext.setText(text);
         mailtext.setTextColor(getResources().getColor(R.color.green));
-        checkIfEmailVerified(text);
+        checkIfEmailVerified();
     }
 
     private void signedinwgoogle(GoogleSignInAccount googleSignInAccount){
@@ -197,36 +220,8 @@ public class AccountFragment extends Fragment {
         });
     }
 
-    private boolean checkIfEmailVerified(final String address)
-    {
+    private boolean checkIfEmailVerified() {
         user = FirebaseAuth.getInstance().getCurrentUser();
-        if (Objects.requireNonNull(user).isEmailVerified()) {
-            return true;
-        }
-        else
-        {
-            verifytxt.setText(R.string.unverified_verify_now);
-            verifytxt.setTextColor(getResources().getColor(R.color.dark_red));
-            verifytxt.setTypeface(Typeface.DEFAULT);
-            verifybutt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    loadDialogWhileLinkGen.show();
-                    user.sendEmailVerification()
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(getActivity(),"Link has been sent at "+address,Toast.LENGTH_LONG).show();
-                                    } else {
-                                        Toast.makeText(getActivity(),"error",Toast.LENGTH_LONG).show();
-                                    }
-                                    loadDialogWhileLinkGen.dismiss();
-                                }
-                            });
-                }
-            });
-            return false;
-        }
+        return Objects.requireNonNull(user).isEmailVerified();
     }
 }

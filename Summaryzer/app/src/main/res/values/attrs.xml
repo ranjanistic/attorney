@@ -7,5 +7,6 @@
         <attr name="deadtextcolor" format="color"/>
         <attr name="buttoncolor" format="color"/>
         <attr name="buttontextcolor" format="color"/>
+        <attr name="imageButtonColor" format="color"/>
     </declare-styleable>
 </resources>
