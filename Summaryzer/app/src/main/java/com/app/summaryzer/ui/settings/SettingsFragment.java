@@ -3,9 +3,6 @@ package com.app.summaryzer.ui.settings;
 /*
     Settings fragment for AccountVew activity.
  */
-import java.lang.*;
-import java.util.Objects;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,12 +26,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.app.summaryzer.AccountView;
 import com.app.summaryzer.CustomAlertDialog;
 import com.app.summaryzer.CustomConfirmDialogClass;
 import com.app.summaryzer.CustomLoadDialogClass;
 import com.app.summaryzer.CustomOnOptListener;
 import com.app.summaryzer.CustomTextDialog;
+import com.app.summaryzer.CustomVerificationDialog;
 import com.app.summaryzer.Login;
 import com.app.summaryzer.MainActivity;
 import com.app.summaryzer.OnDialogAlertListener;
@@ -44,7 +41,6 @@ import com.app.summaryzer.OnDialogLoadListener;
 import com.app.summaryzer.OnDialogTextListener;
 import com.app.summaryzer.OnOptionChosenListener;
 import com.app.summaryzer.R;
-import com.app.summaryzer.CustomVerificationDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -53,7 +49,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.content.Context.MODE_WORLD_READABLE;
 
 public class SettingsFragment extends Fragment {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -430,7 +425,7 @@ public class SettingsFragment extends Fragment {
 
             @Override
             public Drawable onCallImage() {
-                return getResources().getDrawable(R.drawable.ic_linkico);
+                return getResources().getDrawable(R.drawable.ic_looksico);
             }
         });
         //restart button listener

@@ -1,39 +1,24 @@
 package com.app.summaryzer;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.graphics.Typeface;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.provider.OpenableColumns;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 
-import android.os.Environment;
-import android.provider.OpenableColumns;
-import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
@@ -43,6 +28,7 @@ public class TextOpenActivity extends AppCompatActivity {
     String fpath;
     NestedScrollView contentScrollView;
     CustomLoadDialogClass whilefilereadload;
+    String[] recenttext = {"recent0", "recent1", "recent2"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,9 +121,11 @@ public class TextOpenActivity extends AppCompatActivity {
         @Override
         public String doInBackground(String... pathdata){
             String path = pathdata[0];
-            getFileName(Uri.parse(path));
-            getFileContent(Uri.parse(path));
+            String head, body;
+            head = getFileName(Uri.parse(path));
+            body = getFileContent(Uri.parse(path));
             getFilePath(Uri.parse(path));
+            storeFileContent(head,body);
             return null;
         }
         @Override
@@ -148,7 +136,7 @@ public class TextOpenActivity extends AppCompatActivity {
     }
 
 
-    private void getFileContent(Uri uri) {
+    private String getFileContent(Uri uri) {
         InputStream inputStream = null;
         StringBuilder text = new StringBuilder();
         try {
@@ -168,9 +156,10 @@ public class TextOpenActivity extends AppCompatActivity {
         }
         filebody = findViewById(R.id.textfilecontent);
         filebody.setText(text.toString());
+        return text.toString();
     }
 
-    public void getFileName(Uri uri) {
+    public String getFileName(Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {
             Cursor cursor = getContentResolver().query(uri, null, null, null, null);
@@ -191,6 +180,7 @@ public class TextOpenActivity extends AppCompatActivity {
         }
         filehead = findViewById(R.id.textfilename);
         filehead.setText(result);
+        return result;
     }
 
     public void getFilePath(Uri uri){
@@ -200,6 +190,32 @@ public class TextOpenActivity extends AppCompatActivity {
         filepath = findViewById(R.id.textfilelocation);
         filePath = "at " + filePath;
         filepath.setText(filePath);
+    }
+
+    private void storeFileContent(String title, String content){
+        int count = 2;
+        while(count>0) {
+            String[] data = getRecentText(count-1);
+            SharedPreferences mSharedPreferences = getSharedPreferences(recenttext[count], MODE_PRIVATE);
+            SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+            mEditor.putString("heading", data[0]);
+            mEditor.putString("body", data[1]);
+            mEditor.apply();
+            count-=1;
+        }
+        SharedPreferences mSharedPreferences = getSharedPreferences(recenttext[0], MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString("heading", title);
+        mEditor.putString("body", content);
+        mEditor.apply();
+    }
+
+    private String[] getRecentText(int recentCode){
+        String[] path = {null,null};
+        SharedPreferences mSharedPreferences = getSharedPreferences(recenttext[recentCode], MODE_PRIVATE);
+        path[0] = mSharedPreferences.getString("heading", "");
+        path[1] = mSharedPreferences.getString("body", "");
+        return path;
     }
 
     private void themSetter(int tcode){

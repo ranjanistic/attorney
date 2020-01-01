@@ -51,7 +51,6 @@ public class TextProcessor extends AppCompatActivity {
         });
     }
 
-
     private void themSetter(int tcode){
         switch (tcode){
             case 101: setTheme(R.style.AppTheme);

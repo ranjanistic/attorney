@@ -13,10 +13,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position){
         switch (position){
-            case 100: return new FragmentTextProcessorA();
-            case 101: return new FragmentTextProcessorB();
+            case TextProcessor.FRAG_A: return new FragmentTextProcessorA();
+            case TextProcessor.FRAG_B: return new FragmentTextProcessorB();
         }
-        return null;
+        return new FragmentTextProcessorA();
     }
 
     @Override

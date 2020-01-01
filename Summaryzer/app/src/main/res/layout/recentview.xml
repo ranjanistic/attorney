@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <merge xmlns:app="http://schemas.android.com/apk/res-auto">
-        <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <merge xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <HorizontalScrollView
             android:layout_width="match_parent" android:layout_height="3500dp"
             android:scrollbars="none">
             <LinearLayout
@@ -18,21 +19,162 @@
                     android:layout_marginEnd="32dp"
                     app:cardBackgroundColor="?attr/foreground"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="24dp" />
+                    app:cardElevation="24dp" >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/recentHead1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="22dp"
+                            android:paddingEnd="22dp"
+                            android:layout_gravity="center_horizontal"
+                            android:paddingTop="22dp"
+                            android:textColor="?attr/textcolor"
+                            android:textSize="22sp"
+                            android:singleLine="false"
+                            android:textStyle="bold"
+                            android:text="Head"/>
+                        <TextView
+                            android:id="@+id/recentBody1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/textcolor"
+                            android:textSize="18sp"
+                            android:paddingStart="22dp"
+                            android:paddingEnd="22dp"
+                            android:paddingTop="22dp"
+                            android:textIsSelectable="true"
+                            android:singleLine="false"
+                            android:text="The content of the body goes here."/>
+                        <Button
+                            android:id="@+id/recentExpandbutt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:gravity="bottom"
+                            android:foregroundGravity="bottom"
+                            android:background="@android:color/transparent"
+                            android:backgroundTint="@android:color/transparent"
+                            android:shadowColor="@android:color/transparent"
+                            android:padding="22dp"
+                            android:elevation="12dp"
+                            android:translationZ="12dp"
+                            android:text="See result"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/linktextcolor" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_marginEnd="32dp"
                     app:cardBackgroundColor="?attr/foreground"
-                    app:cardCornerRadius="16dp" />
+                    app:cardCornerRadius="16dp" >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/recentHead2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="22dp"
+                            android:paddingEnd="22dp"
+                            android:layout_gravity="center_horizontal"
+                            android:paddingTop="22dp"
+                            android:textColor="?attr/textcolor"
+                            android:textSize="22sp"
+                            android:singleLine="false"
+                            android:textStyle="bold"
+                            android:text="Head"/>
+                        <TextView
+                            android:id="@+id/recentBody2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/textcolor"
+                            android:textSize="18sp"
+                            android:paddingStart="22dp"
+                            android:paddingEnd="22dp"
+                            android:paddingTop="22dp"
+                            android:textIsSelectable="true"
+                            android:singleLine="false"
+                            android:text="The content of the body goes here."/>
+                        <Button
+                            android:id="@+id/recentExpandbutt2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:gravity="bottom"
+                            android:foregroundGravity="bottom"
+                            android:background="@android:color/transparent"
+                            android:backgroundTint="@android:color/transparent"
+                            android:shadowColor="@android:color/transparent"
+                            android:padding="22dp"
+                            android:elevation="12dp"
+                            android:translationZ="12dp"
+                            android:text="See result"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/linktextcolor" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_marginEnd="32dp"
                     app:cardCornerRadius="16dp"
-                    app:cardBackgroundColor="?attr/foreground" />
+                    app:cardBackgroundColor="?attr/foreground" >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/recentHead3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="22dp"
+                            android:paddingEnd="22dp"
+                            android:layout_gravity="center_horizontal"
+                            android:paddingTop="22dp"
+                            android:textColor="?attr/textcolor"
+                            android:textSize="22sp"
+                            android:singleLine="false"
+                            android:textStyle="bold"
+                            android:text="Head"/>
+                        <TextView
+                            android:id="@+id/recentBody3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="?attr/textcolor"
+                            android:textSize="18sp"
+                            android:paddingStart="22dp"
+                            android:paddingEnd="22dp"
+                            android:paddingTop="22dp"
+                            android:textIsSelectable="true"
+                            android:singleLine="false"
+                            android:text="The content of the body goes here."/>
+                        <Button
+                            android:id="@+id/recentExpandbutt3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:gravity="bottom"
+                            android:foregroundGravity="bottom"
+                            android:background="@android:color/transparent"
+                            android:backgroundTint="@android:color/transparent"
+                            android:shadowColor="@android:color/transparent"
+                            android:padding="22dp"
+                            android:elevation="12dp"
+                            android:translationZ="12dp"
+                            android:text="See result"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/linktextcolor" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <ImageButton
                     android:id="@+id/homescrollbutt"

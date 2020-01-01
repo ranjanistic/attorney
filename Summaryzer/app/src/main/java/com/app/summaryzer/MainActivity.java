@@ -1,50 +1,30 @@
 package com.app.summaryzer;
 
-import com.crashlytics.android.Crashlytics;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.util.Objects;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private static final int PICKFILE_RESULT_CODE = 1;
@@ -63,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         themSetter(getThemeStatus());
         setContentView(R.layout.activity_main);
 
+        final TextView rhead0 = findViewById(R.id.recentHead1);
+        final TextView rbody0 = findViewById(R.id.recentBody1);
+        final TextView rhead1 = findViewById(R.id.recentHead2);
+        final TextView rbody1 = findViewById(R.id.recentBody2);
+        final TextView rhead2 = findViewById(R.id.recentHead3);
+        final TextView rbody2 = findViewById(R.id.recentBody3);
         appBarLayout = findViewById(R.id.homeapp_bar);
         accountbtn = findViewById(R.id.accountbtn);
         openFIle = findViewById(R.id.fileopenbtn);
@@ -80,7 +66,44 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-
+        String[] recentData;
+        int getcount = 0;
+        String bpart;
+        while(getcount<3) {
+            recentData = getRecentText(getcount);
+            if(recentData!=null){
+                switch (getcount){
+                    case 0:rhead0.setText(recentData[0]);
+                        if(recentData[1].length()>100) {
+                            rbody0.setText(recentData[1].toCharArray(), 0, 100);
+                            bpart = rbody0.getText().toString() + "...";
+                            rbody0.setText(bpart);
+                        } else {
+                            rbody0.setText(recentData[1]);
+                        }
+                        break;
+                    case 1: rhead1.setText(recentData[0]);
+                    if(recentData[1].length()>100){
+                        rbody1.setText(recentData[1].toCharArray(),0,100);
+                        bpart = rbody1.getText().toString() + "...";
+                        rbody1.setText(bpart); }
+                    else {
+                        rbody1.setText(recentData[1]);
+                    }
+                    break;
+                    case 2: rhead2.setText(recentData[0]);
+                    if(recentData[1].length()>100){
+                        rbody2.setText(recentData[1].toCharArray(),0,100);
+                        bpart = rbody2.getText().toString() + "...";
+                        rbody2.setText(bpart);
+                    } else {
+                        rbody2.setText(recentData[1]);
+                    }
+                    break;
+                }
+            } else continue;
+            getcount+=1;
+        }
         final CustomTextDialog pastelinkDialog = new CustomTextDialog(this, new OnDialogTextListener() {
             @Override
             public void onApply(String text) {
@@ -114,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Intent sumintent = new Intent(MainActivity.this, Summary.class);
+        final Intent sumintent = new Intent(MainActivity.this, TextClipboard.class);
         ImageButton go = findViewById(R.id.gobtn);
         go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,6 +315,15 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"put extra uri string", Toast.LENGTH_SHORT).show();
             viewintent.putExtra("fileUri", UriString);
             startActivity(viewintent);
+    }
+
+    private String[] getRecentText(int recentCode){
+        String[] recenttext = {"recent0", "recent1", "recent2"};
+        String[] path = {null,null};
+        SharedPreferences mSharedPreferences = getSharedPreferences(recenttext[recentCode], MODE_PRIVATE);
+        path[0] = mSharedPreferences.getString("heading", "");
+        path[1] = mSharedPreferences.getString("body", "");
+        return path;
     }
 
     private void storeDialogStatus(boolean isChecked){
