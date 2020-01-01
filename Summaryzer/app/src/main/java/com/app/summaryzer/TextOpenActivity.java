@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
 import android.util.Log;
@@ -24,8 +23,8 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class TextOpenActivity extends AppCompatActivity {
-    TextView filehead, filebody,filepath;
     String fpath;
+    String head, body,location ;
     NestedScrollView contentScrollView;
     CustomLoadDialogClass whilefilereadload;
     String[] recenttext = {"recent0", "recent1", "recent2"};
@@ -38,9 +37,20 @@ public class TextOpenActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         contentScrollView = findViewById(R.id.contentView);
+        TextView filehead, filebody,filepath;
+        filehead = findViewById(R.id.textfilename);
+        filebody = findViewById(R.id.textfilecontent);
+        filepath = findViewById(R.id.textfilelocation);
         if(bundle!=null) {
             fpath = Objects.requireNonNull(bundle).getString("fileUri");
-            new loadFileTask().execute(fpath);
+            //new loadFileTask().execute(fpath);
+            head = getFileName(Uri.parse(fpath));
+            body = getFileContent(Uri.parse(fpath));
+            location = getFilePath(Uri.parse(fpath));
+            storeFileContent(head,body);
+            filehead.setText(head);
+            filebody.setText(body);
+            filepath.setText(location);
         }
 
         if(bundle==null){
@@ -104,38 +114,6 @@ public class TextOpenActivity extends AppCompatActivity {
         }
     }
 
-    public class loadFileTask extends AsyncTask<String,Void,String>{
-        @Override
-        public void onPreExecute(){
-            whilefilereadload = new CustomLoadDialogClass(TextOpenActivity.this, new OnDialogLoadListener() {
-                @Override
-                public void onLoad() {
-                }
-                @Override
-                public String onLoadText() {
-                    return "Loading file";
-                }
-            });
-            whilefilereadload.show();
-        }
-        @Override
-        public String doInBackground(String... pathdata){
-            String path = pathdata[0];
-            String head, body;
-            head = getFileName(Uri.parse(path));
-            body = getFileContent(Uri.parse(path));
-            getFilePath(Uri.parse(path));
-            storeFileContent(head,body);
-            return null;
-        }
-        @Override
-        public void onPostExecute(String value){
-            super.onPostExecute(value);
-            whilefilereadload.dismiss();
-        }
-    }
-
-
     private String getFileContent(Uri uri) {
         InputStream inputStream = null;
         StringBuilder text = new StringBuilder();
@@ -154,8 +132,7 @@ public class TextOpenActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        filebody = findViewById(R.id.textfilecontent);
-        filebody.setText(text.toString());
+
         return text.toString();
     }
 
@@ -178,18 +155,15 @@ public class TextOpenActivity extends AppCompatActivity {
                 result = result.substring(cut + 1);
             }
         }
-        filehead = findViewById(R.id.textfilename);
-        filehead.setText(result);
         return result;
     }
 
-    public void getFilePath(Uri uri){
+    public String getFilePath(Uri uri){
         File file = new File(uri.getPath());//create path from uri
         final String[] split = file.getPath().split(":");//split the path.
         String filePath = split[1];
-        filepath = findViewById(R.id.textfilelocation);
         filePath = "at " + filePath;
-        filepath.setText(filePath);
+        return filePath;
     }
 
     private void storeFileContent(String title, String content){

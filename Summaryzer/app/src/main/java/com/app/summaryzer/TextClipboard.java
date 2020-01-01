@@ -31,6 +31,7 @@ public class TextClipboard extends AppCompatActivity {
             public void onClick(View view) {
                 Intent process = new Intent(TextClipboard.this, TextProcessor.class);
                 startActivity(process);
+                overridePendingTransition(R.anim.bottom_in,R.anim.top_out);
             }
         });
 

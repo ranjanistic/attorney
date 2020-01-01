@@ -256,24 +256,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent accountact = new Intent(MainActivity.this, AccountView.class);
                 startActivity(accountact);
+                overridePendingTransition(R.anim.zoom_in,R.anim.left_out);
             }
         });
     }
 
     public class chooseFileTask extends AsyncTask<Void,Void, String> {
-        @Override
-        public void onPreExecute(){
-            loadDialogWhileFileChoose = new CustomLoadDialogClass(MainActivity.this, new OnDialogLoadListener() {
-                @Override
-                public void onLoad() {
-                }
-                @Override
-                public String onLoadText() {
-                    return "Loading data";
-                }
-            });
-            loadDialogWhileFileChoose.show();
-        }
         @Override
         public String doInBackground(Void... v){
             //Toast.makeText(MainActivity.this,"loading", Toast.LENGTH_SHORT).show();
@@ -287,7 +275,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPostExecute(String value) {
             super.onPostExecute(value);
-            loadDialogWhileFileChoose.dismiss();
         }
     }
 
@@ -295,13 +282,15 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int reqCode, int resCode, Intent resData){
         super.onActivityResult(reqCode,resCode,null);
         if (resCode == Activity.RESULT_OK) {
-            Toast.makeText(getApplicationContext(),"result ok", Toast.LENGTH_SHORT).show();
-            Uri uri = null;
+            Uri uri ;
             if (resData != null) {
                 uri = resData.getData();
-                Toast.makeText(getApplicationContext(),"resdata getdata", Toast.LENGTH_SHORT).show();
-                passFile(uri);
-                Toast.makeText(getApplicationContext(),"passed uri", Toast.LENGTH_SHORT).show();
+                if (uri != null) {
+                    passFile(uri);
+                    Toast.makeText(getApplicationContext(),"passed uri", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(), "urinull", Toast.LENGTH_SHORT).show();
+                }
             }
             else{
                 Toast.makeText(getApplicationContext(),"Data empty", Toast.LENGTH_SHORT).show();
@@ -311,10 +300,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void passFile(Uri uri){
         String UriString = uri.toString();
-            Intent viewintent = new Intent(MainActivity.this, TextOpenActivity.class);
-        Toast.makeText(getApplicationContext(),"put extra uri string", Toast.LENGTH_SHORT).show();
-            viewintent.putExtra("fileUri", UriString);
-            startActivity(viewintent);
+        Intent viewintent = new Intent(MainActivity.this, TextOpenActivity.class);
+        viewintent.putExtra("fileUri", UriString);
+        startActivity(viewintent);
     }
 
     private String[] getRecentText(int recentCode){
