@@ -1,11 +1,13 @@
 package com.app.summaryzer.ui.Account;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,10 +26,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.app.summaryzer.AccountView;
 import com.app.summaryzer.CustomLoadDialogClass;
 import com.app.summaryzer.Login;
 import com.app.summaryzer.OnDialogLoadListener;
+import com.app.summaryzer.ProfileCompletion;
 import com.app.summaryzer.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -36,26 +38,32 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
+import static android.content.ContentValues.TAG;
+
 public class AccountFragment extends Fragment {
     private FirebaseAuth auth;
     private FirebaseUser user;
     private GoogleSignInAccount Gaccount;
     private CustomLoadDialogClass loadDialogWhileLinkGen;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private AccountViewModel accountViewModel;
     private Boolean signed = false;
-    private Button signin;
+    private Button signin, profileCompleteBtn;
     private Animation partRotate;
     private ScrollView scrollView;
-    private TextView mailtext, logoutstatus, verifytxt, nametext;
+    private TextView mailtext, logoutstatus, verifytxt, nametext, usernametxt, phonenum;
     private ImageButton verifybutt;
     private ImageView accountico;
     private Uri personImgUri;
+    private boolean isprofileCompleted;
     private String personname,personemail,personimguristring;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -69,9 +77,12 @@ public class AccountFragment extends Fragment {
         accountViewModel =
                 ViewModelProviders.of(this).get(AccountViewModel.class);
         View root = inflater.inflate(R.layout.fragment_account, container, false);
+
         signin = root.findViewById(R.id.signinbuttabout);
         mailtext = root.findViewById(R.id.emailtext);
         nametext = root.findViewById(R.id.nametext);
+        usernametxt = root.findViewById(R.id.usernametxt);
+        phonenum = root.findViewById(R.id.phonenumbertxt);
         accountico = root.findViewById(R.id.accounticon);
         logoutstatus = root.findViewById(R.id.loggedouttext);
         scrollView = root.findViewById(R.id.loginscrollview);
@@ -79,6 +90,20 @@ public class AccountFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
         verifybutt = root.findViewById(R.id.mailverifybtn);
         verifytxt = root.findViewById(R.id.verifystatustxt);
+        profileCompleteBtn = root.findViewById(R.id.profileEditButt);
+
+        profileCompleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checknet()) {
+                    Intent comProfile = new Intent(getActivity(), ProfileCompletion.class);
+                    startActivity(comProfile);
+                } else {
+                    Toast.makeText(getActivity(), "No internet", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
 
         partRotate = AnimationUtils.loadAnimation(getActivity(), R.anim.ding_dong_ding);
         partRotate.setFillAfter(true);
@@ -179,10 +204,12 @@ public class AccountFragment extends Fragment {
                 return "Sending link at "+ text;
             }
         });
-
         mailtext.setText(text);
         mailtext.setTextColor(getResources().getColor(R.color.green));
-        checkIfEmailVerified();
+        readDatabase(text);
+        if(isprofileCompleted){
+            profileCompleteBtn.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void signedinwgoogle(GoogleSignInAccount googleSignInAccount){
@@ -207,8 +234,10 @@ public class AccountFragment extends Fragment {
         scrollView.setVisibility(View.INVISIBLE);
         logoutstatus.setVisibility(View.VISIBLE);
         signin.setVisibility(View.VISIBLE);
+        profileCompleteBtn.setVisibility(View.INVISIBLE);
         logoutstatus.setText(R.string.loggedas);
         logoutstatus.setTextColor(getResources().getColor(R.color.colorPrimary));
+
         signin.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -220,8 +249,38 @@ public class AccountFragment extends Fragment {
         });
     }
 
+    private void readDatabase(String mailid){
+        db.collection("associatedtextdata").document(mailid)
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                         nametext.setText(document.get("worldname").toString());
+                         usernametxt.setText(document.get("username").toString());
+                         phonenum.setText(document.get("cellnumeral").toString());
+                         isprofileCompleted = true;
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
     private boolean checkIfEmailVerified() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         return Objects.requireNonNull(user).isEmailVerified();
+    }
+    private boolean checknet() {
+        boolean connected;
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        connected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
+        return connected;
     }
 }

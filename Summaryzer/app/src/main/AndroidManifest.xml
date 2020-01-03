@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ProfileCompletion"></activity>
         <activity android:name=".TextClipboard">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -90,7 +90,7 @@
         <ScrollView
             android:id="@+id/loginscrollview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:text="You may tell us your name"
-                            
+                            android:singleLine="false"
                             android:textSize="20sp"/>
 
                     </LinearLayout>
@@ -163,7 +163,7 @@
                             android:textColor="?attr/textcolor"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
-                            
+                            android:singleLine="false"
                             android:textSize="20sp"/>
 
                     </LinearLayout>
@@ -196,6 +196,64 @@
                             android:textColor="?attr/deadtextcolor"
                             android:layout_height="wrap_content"
                             android:paddingTop="6dp"
+                            android:text="Username"
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:id="@+id/usernametxt"
+                            android:layout_width="wrap_content"
+                            android:textColor="?attr/textcolor"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Not provided."
+                            android:singleLine="false"
+                            android:textSize="20sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="?attr/deadtextcolor"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="6dp"
+                            android:text="Cell phone"
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:id="@+id/phonenumbertxt"
+                            android:layout_width="wrap_content"
+                            android:textColor="?attr/textcolor"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Not provided."
+                            android:singleLine="false"
+                            android:textSize="20sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textColor="?attr/deadtextcolor"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="6dp"
                             android:text="Authenticity"
                             
                             android:textSize="14sp"/>
@@ -206,7 +264,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:text="@string/unverified_verify_now"
-                            
+                            android:singleLine="false"
                             android:textSize="20sp"/>
                     </LinearLayout>
 
@@ -221,10 +279,31 @@
                         android:scaleType="fitCenter"
                         />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="18dp"
+                    android:gravity="start"
+                    android:orientation="horizontal">
+
+                </LinearLayout>
             </LinearLayout>
-
         </ScrollView>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
+        <Button
+            android:id="@+id/profileEditButt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:backgroundTint="?attr/buttoncolor"
+            android:text="Complete your profile for additional benefits."
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/linktextcolor"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <ImageView

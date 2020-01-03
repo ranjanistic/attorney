@@ -1,9 +1,12 @@
 package com.app.summaryzer;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
@@ -11,22 +14,37 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+
+import io.reactivex.annotations.NonNull;
 
 public class TextOpenActivity extends AppCompatActivity {
     String fpath;
     String head, body,location ;
     NestedScrollView contentScrollView;
     CustomLoadDialogClass whilefilereadload;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String[] recenttext = {"recent0", "recent1", "recent2"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +69,15 @@ public class TextOpenActivity extends AppCompatActivity {
             filehead.setText(head);
             filebody.setText(body);
             filepath.setText(location);
+            if(user!=null){
+                String email = "";
+                if(checknet()) {
+                    for (UserInfo profile : user.getProviderData()) {
+                        email = profile.getEmail();
+                    }
+                    addContentToDatabase(body, email);
+                }
+            }
         }
 
         if(bundle==null){
@@ -190,6 +217,32 @@ public class TextOpenActivity extends AppCompatActivity {
         path[0] = mSharedPreferences.getString("heading", "");
         path[1] = mSharedPreferences.getString("body", "");
         return path;
+    }
+    boolean checknet() {
+        boolean connected;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        connected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
+        return connected;
+    }
+
+    private void addContentToDatabase(String content, String mailid){
+        Map<String, Object> data = new HashMap<>();
+        data.put("texture", content);
+        db.collection("associatedtextdata").document(mailid).collection("texture")
+                .add(data)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getApplicationContext(),"Done",Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(),"failDone",Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     private void themSetter(int tcode){

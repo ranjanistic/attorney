@@ -34,7 +34,6 @@ public class TextClipboard extends AppCompatActivity {
                 overridePendingTransition(R.anim.bottom_in,R.anim.top_out);
             }
         });
-
     }
     private void themSetter(int tcode){
         switch (tcode){
