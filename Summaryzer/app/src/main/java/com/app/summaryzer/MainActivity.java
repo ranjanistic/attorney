@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mauth;
     CustomConfirmDialogClass permitDialog;
     CustomLoadDialogClass loadDialogWhileFileChoose;
-    ImageButton accountbtn,openFIle,openLink, homescrollbtn;
+    ImageButton accountbtn,openFIle,openLink, homescrollbtn, camerabtn;
     String fileLink, linkDhead, linkDsubhead, linkDpos, linkDneg, loadingtxt, linkDhint;
     Drawable linkDimg;
     AppBarLayout appBarLayout;
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         accountbtn = findViewById(R.id.accountbtn);
         openFIle = findViewById(R.id.fileopenbtn);
         openLink = findViewById(R.id.linkopenbtn);
+        camerabtn = findViewById(R.id.cambtn);
         mauth = FirebaseAuth.getInstance();
         homescrollbtn = findViewById(R.id.homescrollbutt);
         homescrollbtn.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
             } else continue;
             getcount+=1;
         }
+
+        camerabtn.setOnClickListener(view -> {
+            Intent cam = new Intent(MainActivity.this,CameraActivity.class);
+            startActivity(cam);
+        });
+
         final CustomTextDialog pastelinkDialog = new CustomTextDialog(this, new OnDialogTextListener() {
             @Override
             public void onApply(String text) {

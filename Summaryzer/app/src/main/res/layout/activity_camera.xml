@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="?attr/basebackground"
+    android:background="?attr/basebackground"
+    tools:context=".CameraActivity">
+
+    <TextView
+        android:id="@+id/camInstruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:alpha="0.3"
+        android:padding="24dp"
+        android:text="Capture image having readable text in it."
+        android:textAlignment="center"
+        android:textColor="?attr/textcolor"
+        android:textSize="28sp"
+        android:textStyle="normal|bold"
+        android:translationZ="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/capture_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_finder"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/camPermitMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:text="We need your permission to access your device's camera."
+        android:visibility="invisible"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        android:textStyle="normal|bold"
+        android:translationZ="8dp"
+        android:textColor="?attr/textcolor"
+        app:layout_constraintBottom_toTopOf="@+id/capture_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camInstruction" />
+
+    <TextureView
+        android:id="@+id/view_finder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <ImageButton
+        android:id="@+id/capture_button"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_margin="24dp"
+        android:background="@drawable/round_btn"
+        android:backgroundTint="?attr/buttoncolor"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

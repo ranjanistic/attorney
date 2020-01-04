@@ -39,7 +39,7 @@
         <item name="textcolor">@color/white</item>
         <item name="deadtextcolor">@color/colorAccent</item>
         <item name="imageButtonColor">@color/colorPrimaryDark</item>
-        <item name="buttoncolor">@color/dark_blue</item>
+        <item name="buttoncolor">#0044ff</item>
         <item name="buttontextcolor">@color/white</item>
     </style>
 
