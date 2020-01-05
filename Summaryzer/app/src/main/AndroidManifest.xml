@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
     <uses-feature
         android:name="android.hardware.camera2"
         android:required="false" />
@@ -28,7 +32,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".ImageCofirmation"/>
+        <activity android:name=".CameraActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ProfileCompletion" />
         <activity android:name=".TextClipboard">
             <intent-filter>

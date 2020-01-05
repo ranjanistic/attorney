@@ -41,6 +41,8 @@
         <item name="imageButtonColor">@color/colorPrimaryDark</item>
         <item name="buttoncolor">#0044ff</item>
         <item name="buttontextcolor">@color/white</item>
+        <item name="negativeButtonColor">@color/dark_red</item>
+        <item name="neutralButtonColor">@color/spruce</item>
     </style>
 
     <style name="LightTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -58,6 +60,8 @@
         <item name="deadtextcolor">@color/dark_grey</item>
         <item name="buttoncolor">@color/blue</item>
         <item name="buttontextcolor">@color/white</item>
+        <item name="negativeButtonColor">@color/deep_red</item>
+        <item name="neutralButtonColor">@color/dark_grey</item>
     </style>
 
     <style name="joyTheme" parent="Theme.AppCompat.Light.NoActionBar">

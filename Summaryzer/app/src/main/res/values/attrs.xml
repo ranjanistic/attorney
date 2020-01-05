@@ -8,5 +8,7 @@
         <attr name="buttoncolor" format="color"/>
         <attr name="buttontextcolor" format="color"/>
         <attr name="imageButtonColor" format="color"/>
+        <attr name="negativeButtonColor" format="color"/>
+        <attr name="neutralButtonColor" format="color"/>
     </declare-styleable>
 </resources>

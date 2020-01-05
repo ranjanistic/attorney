@@ -18,6 +18,7 @@
                     android:layout_height="300dp"
                     android:layout_marginEnd="32dp"
                     app:cardBackgroundColor="?attr/foreground"
+                    android:background="@drawable/square_btn"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="24dp" >
                     <LinearLayout
@@ -49,26 +50,11 @@
                             android:textIsSelectable="true"
                             android:singleLine="false"
                             android:text="The content of the body goes here."/>
-                        <Button
-                            android:id="@+id/recentExpandbutt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:gravity="bottom"
-                            android:foregroundGravity="bottom"
-                            android:background="@android:color/transparent"
-                            android:backgroundTint="@android:color/transparent"
-                            android:shadowColor="@android:color/transparent"
-                            android:padding="22dp"
-                            android:elevation="12dp"
-                            android:translationZ="12dp"
-                            android:text="See result"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="@color/linktextcolor" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/recent2"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_marginEnd="32dp"
@@ -103,26 +89,11 @@
                             android:textIsSelectable="true"
                             android:singleLine="false"
                             android:text="The content of the body goes here."/>
-                        <Button
-                            android:id="@+id/recentExpandbutt2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:gravity="bottom"
-                            android:foregroundGravity="bottom"
-                            android:background="@android:color/transparent"
-                            android:backgroundTint="@android:color/transparent"
-                            android:shadowColor="@android:color/transparent"
-                            android:padding="22dp"
-                            android:elevation="12dp"
-                            android:translationZ="12dp"
-                            android:text="See result"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="@color/linktextcolor" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/recent3"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_marginEnd="32dp"
@@ -157,22 +128,6 @@
                             android:textIsSelectable="true"
                             android:singleLine="false"
                             android:text="The content of the body goes here."/>
-                        <Button
-                            android:id="@+id/recentExpandbutt3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|end"
-                            android:gravity="bottom"
-                            android:foregroundGravity="bottom"
-                            android:background="@android:color/transparent"
-                            android:backgroundTint="@android:color/transparent"
-                            android:shadowColor="@android:color/transparent"
-                            android:padding="22dp"
-                            android:elevation="12dp"
-                            android:translationZ="12dp"
-                            android:text="See result"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:textColor="@color/linktextcolor" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 

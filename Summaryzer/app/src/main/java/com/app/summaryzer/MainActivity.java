@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.appbar.AppBarLayout;
@@ -30,12 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private static final int PICKFILE_RESULT_CODE = 1;
     private static final int REQUEST_CODE_PERMISSIONS = 0;
     private FirebaseAuth mauth;
+    CardView cardView1, cardView2, cardView3;
     CustomConfirmDialogClass permitDialog;
     CustomLoadDialogClass loadDialogWhileFileChoose;
     ImageButton accountbtn,openFIle,openLink, homescrollbtn, camerabtn;
     String fileLink, linkDhead, linkDsubhead, linkDpos, linkDneg, loadingtxt, linkDhint;
     Drawable linkDimg;
     AppBarLayout appBarLayout;
+    String[] recentData = {"",""};
     private String[] storageReadPermission =  {Manifest.permission.READ_EXTERNAL_STORAGE};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        String[] recentData;
+        final String[] fullbody = {"","",""};
         int getcount = 0;
         String bpart;
         while(getcount<3) {
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             if(recentData!=null){
                 switch (getcount){
                     case 0:rhead0.setText(recentData[0]);
+                    fullbody[0] = recentData[1];
                         if(recentData[1].length()>100) {
                             rbody0.setText(recentData[1].toCharArray(), 0, 100);
                             bpart = rbody0.getText().toString() + "...";
@@ -84,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         break;
                     case 1: rhead1.setText(recentData[0]);
+                    fullbody[1] = recentData[1];
                     if(recentData[1].length()>100){
                         rbody1.setText(recentData[1].toCharArray(),0,100);
                         bpart = rbody1.getText().toString() + "...";
@@ -93,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                     case 2: rhead2.setText(recentData[0]);
+                    fullbody[2] = recentData[1];
                     if(recentData[1].length()>100){
                         rbody2.setText(recentData[1].toCharArray(),0,100);
                         bpart = rbody2.getText().toString() + "...";
@@ -105,6 +111,24 @@ public class MainActivity extends AppCompatActivity {
             } else continue;
             getcount+=1;
         }
+        cardView1 = findViewById(R.id.recent1);
+        cardView1.setOnClickListener(view -> {
+            setRecentDataToOpen(rhead0.getText().toString(), fullbody[0]);
+            Intent i = new Intent(MainActivity.this,TextOpenActivity.class);
+            startActivity(i);
+        });
+        cardView2 = findViewById(R.id.recent2);
+        cardView2.setOnClickListener(view -> {
+            setRecentDataToOpen(rhead1.getText().toString(), fullbody[1]);
+            Intent i = new Intent(MainActivity.this,TextOpenActivity.class);
+            startActivity(i);
+        });
+        cardView3 = findViewById(R.id.recent3);
+        cardView3.setOnClickListener(view -> {
+            setRecentDataToOpen(rhead2.getText().toString(), fullbody[2]);
+            Intent i = new Intent(MainActivity.this,TextOpenActivity.class);
+            startActivity(i);
+        });
 
         camerabtn.setOnClickListener(view -> {
             Intent cam = new Intent(MainActivity.this,CameraActivity.class);
@@ -319,6 +343,13 @@ public class MainActivity extends AppCompatActivity {
         path[0] = mSharedPreferences.getString("heading", "");
         path[1] = mSharedPreferences.getString("body", "");
         return path;
+    }
+    private void setRecentDataToOpen(String head, String body){
+        SharedPreferences mSharedPreferences = getSharedPreferences("recentviewdata", MODE_PRIVATE);
+        SharedPreferences.Editor mEditor = mSharedPreferences.edit();
+        mEditor.putString("heading", head);
+        mEditor.putString("body", body);
+        mEditor.apply();
     }
 
     private void storeDialogStatus(boolean isChecked){

@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Matrix
 import android.graphics.Point
+import android.hardware.camera2.CameraAccessException
+import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -23,17 +25,20 @@ import java.io.File
 import java.util.concurrent.Executors
 
 
-
 class CameraActivity : AppCompatActivity() {
     // This is an arbitrary number we are using to keep track of the permission
 // request. Where an app has multiple context for requesting permission,
 // this can help differentiate the different contexts.
     private  val REQUEST_CODE_PERMISSIONS = 10
-var width = 0
+    var width = 0
     var height = 0
     private lateinit var caminst: TextView
     private lateinit var campermit: TextView
-    // This is an array of all the permission specified in the manifest.
+    private var isTorchOn: Boolean = false
+    var mCameraId: String = ""
+    private lateinit var objCameraManager: CameraManager
+    private lateinit var flashButton: ImageButton
+
     private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
     @TargetApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,8 +48,32 @@ var width = 0
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         val attrib = window.attributes
         attrib.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        flashButton = findViewById(R.id.torch_button)
         caminst = findViewById(R.id.camInstruction)
         campermit = findViewById(R.id.camPermitMsg)
+        isTorchOn = false
+
+        val isFlashAvailable = applicationContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
+
+        flashButton.setOnClickListener {
+            if (!isFlashAvailable) {
+                showNoFlashError()
+            } else {
+                objCameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
+                try {
+                    this.mCameraId = objCameraManager.cameraIdList[0]
+                    isTorchOn = if (isTorchOn) {
+                        turnOffLight()
+                        false
+                    }else {
+                            turnOnLight()
+                            true
+                        }
+                } catch (e: CameraAccessException) {
+                    e.printStackTrace()
+                }
+            }
+        }
         val display = windowManager.defaultDisplay
         val size = Point()
         display.getSize(size)
@@ -113,7 +142,7 @@ var width = 0
 
         // Build the image capture use case and attach button click listener
         val imageCapture = ImageCapture(imageCaptureConfig)
-        findViewById<ImageButton>(R.id.capture_button).setOnClickListener {
+        findViewById<ImageButton>(R.id.capture_button).setOnClickListener{
             if (!allPermissionsGranted()) {
                 ActivityCompat.requestPermissions(
                         this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
@@ -140,7 +169,8 @@ var width = 0
                                 Log.d("CameraXApp", msg)
                                 viewFinder.post {
                                     Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                                    val processintent = Intent(this@CameraActivity, TextProcessor::class.java)
+                                    storeImagePath(file.absolutePath.toString())
+                                    val processintent = Intent(this@CameraActivity, ImageCofirmation::class.java)
                                     startActivity(processintent)
                                 }
                             }
@@ -197,7 +227,6 @@ var width = 0
             }
         }
     }
-
     /**
      * Check if all permission specified in the manifest have been granted
      */
@@ -211,6 +240,29 @@ var width = 0
         return context.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)
     }
 
+
+    private fun showNoFlashError(){
+        Toast.makeText(applicationContext,"No flash available", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun turnOnLight() {
+        try {
+                objCameraManager.setTorchMode(mCameraId, true)
+                flashButton.setImageResource(R.drawable.common_full_open_on_phone)
+        } catch (e:CameraAccessException){
+            e.printStackTrace()
+        }
+    }
+
+    private fun turnOffLight() {
+        try {
+            objCameraManager.setTorchMode(mCameraId, false)
+            flashButton.setImageResource(R.drawable.test)
+        } catch (e:CameraAccessException){
+            e.printStackTrace()
+        }
+
+    }
     private fun themSetter(tcode: Int) {
         when (tcode) {
             101 -> setTheme(R.style.AppTheme)
@@ -223,4 +275,11 @@ var width = 0
         val mSharedPreferences = getSharedPreferences("theme", Context.MODE_PRIVATE)
         return mSharedPreferences.getInt("themeCode", 0)
     }
+    private fun storeImagePath(Imagepath: String) {
+        val mSharedPreferences = this.getSharedPreferences("ImageCaptured", MODE_PRIVATE)
+        val mEditor = mSharedPreferences.edit()
+        mEditor.putString("imagepath", Imagepath)
+        mEditor.apply()
+    }
+
 }

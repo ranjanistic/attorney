@@ -1,6 +1,5 @@
 package com.app.summaryzer;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -81,7 +80,11 @@ public class TextOpenActivity extends AppCompatActivity {
         }
 
         if(bundle==null){
-            Intent textintent = getIntent();
+            String[] recentClickData = getRecentDataToOpen();
+            filehead.setText(recentClickData[0]);
+            filebody.setText(recentClickData[1]);
+            filepath.setVisibility(View.INVISIBLE);
+            /*Intent textintent = getIntent();
             if(textintent.getAction()!=null&&textintent.getAction().equals(Intent.ACTION_VIEW)){
                 String scheme = textintent.getScheme();
                 if(scheme!=null && scheme.equals(ContentResolver.SCHEME_CONTENT)){
@@ -92,7 +95,7 @@ public class TextOpenActivity extends AppCompatActivity {
                         getFilePath(uri);
                     }
                 }
-            }
+            }*/
         }
 
         ImageButton processBtn = findViewById(R.id.processbutt);
@@ -243,6 +246,12 @@ public class TextOpenActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"failDone",Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+
+    private String[] getRecentDataToOpen(){
+        SharedPreferences mSharedPreferences = getSharedPreferences("recentviewdata", MODE_PRIVATE);
+        String[] rdata = {mSharedPreferences.getString("heading", ""), mSharedPreferences.getString("body", "")};
+        return rdata;
     }
 
     private void themSetter(int tcode){

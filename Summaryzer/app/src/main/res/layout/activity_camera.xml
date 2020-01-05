@@ -53,6 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
     <ImageButton
         android:id="@+id/capture_button"
         android:layout_width="72dp"
@@ -60,8 +61,25 @@
         android:layout_margin="24dp"
         android:background="@drawable/round_btn"
         android:backgroundTint="?attr/buttoncolor"
-        app:srcCompat="@android:drawable/ic_menu_camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <ImageButton
+        android:id="@+id/torch_button"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_margin="24dp"
+        android:background="@drawable/round_btn"
+        android:backgroundTint="?attr/buttoncolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/capture_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_eye"
+        android:scaleType="centerInside"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
