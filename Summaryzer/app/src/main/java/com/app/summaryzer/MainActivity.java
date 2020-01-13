@@ -1,6 +1,7 @@
 package com.app.summaryzer;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,10 +13,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +30,18 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
     private static final int PICKFILE_RESULT_CODE = 1;
     private static final int REQUEST_CODE_PERMISSIONS = 0;
     private FirebaseAuth mauth;
     CardView cardView1, cardView2, cardView3;
+    ProgressBar progressBar;
+    CustomProgressDialog customProgressDialog;
     CustomConfirmDialogClass permitDialog;
     CustomLoadDialogClass loadDialogWhileFileChoose;
     ImageButton accountbtn,openFIle,openLink, homescrollbtn, camerabtn;
@@ -57,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         openFIle = findViewById(R.id.fileopenbtn);
         openLink = findViewById(R.id.linkopenbtn);
         camerabtn = findViewById(R.id.cambtn);
+        progressBar = findViewById(R.id.loadingprogress);
         mauth = FirebaseAuth.getInstance();
         homescrollbtn = findViewById(R.id.homescrollbutt);
         homescrollbtn.setOnClickListener(new View.OnClickListener() {
@@ -134,11 +145,17 @@ public class MainActivity extends AppCompatActivity {
             Intent cam = new Intent(MainActivity.this,CameraActivity.class);
             startActivity(cam);
         });
-
+        customProgressDialog = new CustomProgressDialog(this, new OnProgressLoadListener() {
+            @Override
+            public void onStart() {
+            }
+        });
         final CustomTextDialog pastelinkDialog = new CustomTextDialog(this, new OnDialogTextListener() {
             @Override
             public void onApply(String text) {
                 fileLink = text;
+                new linkTextGenTask().execute(fileLink);
+                customProgressDialog.show();
             }
 
             @Override
@@ -277,6 +294,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             accountbtn.setTooltipText("Settings");
         }
@@ -350,6 +368,53 @@ public class MainActivity extends AppCompatActivity {
         mEditor.putString("heading", head);
         mEditor.putString("body", body);
         mEditor.apply();
+    }
+
+
+
+    private class linkTextGenTask extends AsyncTask<String,Integer,String>{
+        @Override
+        protected void onPreExecute(){
+        }
+        @Override
+        protected String doInBackground(String... hyperlink){
+            String link  = hyperlink[0];
+            StringBuilder text = new StringBuilder();
+            try {
+                URL url = new URL(link); //My text file location
+                HttpURLConnection conn=(HttpURLConnection) url.openConnection();
+                conn.setConnectTimeout(60000); // timing out in a minute
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String str;
+                int prog = 0;
+                while ((str = in.readLine()) != null) {
+                    text.append(str);
+                    prog++;
+                    publishProgress(prog);
+                }
+                in.close();
+                return text.toString();
+            } catch (Exception e) {
+                Log.d("MyTag",e.toString());
+                return "";
+            }
+        }
+        @TargetApi(Build.VERSION_CODES.P)
+        @Override
+        protected void onProgressUpdate(Integer... progress){
+            progressBar.setProgress(progress[0], true);
+        }
+        @Override
+        protected void onPostExecute(String result){
+            if(!result.equals("")) {
+                setRecentDataToOpen("Link file", result);
+                Intent intent = new Intent(MainActivity.this, TextOpenActivity.class);
+                startActivity(intent);
+                super.onPostExecute(result);
+            } else {
+                customProgressDialog.hide();
+            }
+        }
     }
 
     private void storeDialogStatus(boolean isChecked){

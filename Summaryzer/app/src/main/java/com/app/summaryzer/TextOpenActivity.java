@@ -84,18 +84,6 @@ public class TextOpenActivity extends AppCompatActivity {
             filehead.setText(recentClickData[0]);
             filebody.setText(recentClickData[1]);
             filepath.setVisibility(View.INVISIBLE);
-            /*Intent textintent = getIntent();
-            if(textintent.getAction()!=null&&textintent.getAction().equals(Intent.ACTION_VIEW)){
-                String scheme = textintent.getScheme();
-                if(scheme!=null && scheme.equals(ContentResolver.SCHEME_CONTENT)){
-                    Uri uri = textintent.getData();
-                    if (uri != null) {
-                        getFileName(uri);
-                        getFileContent(uri);
-                        getFilePath(uri);
-                    }
-                }
-            }*/
         }
 
         ImageButton processBtn = findViewById(R.id.processbutt);
