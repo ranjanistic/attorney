@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="org.ranjanistic.attorney.TextOpenActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:backgroundTint="?attr/basebackground"
+        android:layout_height="300dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/basebackground"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginBottom="14dp"
+                app:layout_collapseMode="pin"
+                android:backgroundTint="?attr/basebackground">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textfilecaption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:paddingBottom="8dp"
+                    android:textSize="16sp"
+                    android:textColor="?attr/deadtextcolor"
+                    android:text="Viewing"/>
+                <TextView
+                    android:id="@+id/textfilename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway"
+                    android:textSize="32sp"
+                    android:paddingBottom="8dp"
+                    android:textColor="?attr/textcolor"
+                    android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+            <TextView
+                android:id="@+id/textfilecontentcaption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway"
+                android:layout_marginStart="14dp"
+                android:paddingBottom="14dp"
+                android:textColor="?attr/deadtextcolor"
+                app:layout_collapseMode="pin"
+                android:layout_gravity="bottom"
+                android:textSize="26sp"
+                android:text="Content"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include
+        android:id="@+id/contentView"
+        layout="@layout/content_text_open" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/fullScrollButt"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/round_btn"
+                android:backgroundTint="@color/deep_purple"
+                android:rotation="90"
+                android:scaleType="center"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_arrowright" />
+
+            <ImageButton
+                android:id="@+id/processbutt"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/round_btn"
+                android:backgroundTint="@color/blue"
+                android:scaleType="center"
+                app:elevation="10dp"
+                app:srcCompat="@drawable/ic_arrowright" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/locationbottombar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:gravity="center_vertical"
+            android:paddingTop="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:background="@drawable/toproundview"
+            android:backgroundTint="?attr/basebackground">
+            <TextView
+                android:id="@+id/textfilelocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:textColor="?attr/textcolor"
+                android:text="location"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

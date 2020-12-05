@@ -1,2 +1,33 @@
+*.iml
+.idea
+.DS_Store
+build/
+captures/
+.gradle
+.externalNativeBuild
+app/google-services.json
+#built application files
+*.apk
+*.ap_
+*.aab
 
-Summaryzer/app/google-services.json
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+
+#NDK
+obj/
