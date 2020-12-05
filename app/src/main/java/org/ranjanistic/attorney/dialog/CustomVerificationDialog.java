@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialog;
 
-import com.app.summaryzer.R;
+import org.ranjanistic.attorney.R;
 import org.ranjanistic.attorney.listener.OnDialogApplyListener;
 
 import java.util.Objects;

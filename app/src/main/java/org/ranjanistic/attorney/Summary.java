@@ -1,11 +1,9 @@
 package org.ranjanistic.attorney;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.app.summaryzer.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Summary extends AppCompatActivity {
 

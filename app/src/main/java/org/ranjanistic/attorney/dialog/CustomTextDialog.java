@@ -16,9 +16,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialog;
 
-import com.app.summaryzer.R;
-import org.ranjanistic.attorney.listener.OnDialogTextListener;
 import com.google.android.material.textfield.TextInputLayout;
+
+import org.ranjanistic.attorney.R;
+import org.ranjanistic.attorney.listener.OnDialogTextListener;
 
 import java.util.Objects;
 
@@ -79,7 +80,7 @@ public class CustomTextDialog extends AppCompatDialog {
             public void onClick(View view) {
                 String entryTxt = text.getText().toString();
                 if ( TextUtils.isEmpty(entryTxt)){
-                    Toast.makeText(getContext(),"This field can\'t be empty.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "This field can't be empty.", Toast.LENGTH_LONG).show();
                 } else{
                     onDialogTextListener.onApply(entryTxt);
                     dismiss();

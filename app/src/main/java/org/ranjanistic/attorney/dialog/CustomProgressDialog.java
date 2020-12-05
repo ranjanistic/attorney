@@ -8,7 +8,7 @@ import android.view.Window;
 
 import androidx.appcompat.app.AppCompatDialog;
 
-import com.app.summaryzer.R;
+import org.ranjanistic.attorney.R;
 import org.ranjanistic.attorney.listener.OnProgressLoadListener;
 
 import java.util.Objects;

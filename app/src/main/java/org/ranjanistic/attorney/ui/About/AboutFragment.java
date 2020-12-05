@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.app.summaryzer.R;
+import org.ranjanistic.attorney.R;
 
 public class AboutFragment extends Fragment {
 

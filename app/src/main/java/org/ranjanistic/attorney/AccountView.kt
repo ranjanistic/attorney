@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.app.summaryzer.R
-import org.ranjanistic.attorney.ui.Account.AccountFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.ranjanistic.attorney.ui.Account.AccountFragment
 import java.util.*
 
 class AccountView : AppCompatActivity() {

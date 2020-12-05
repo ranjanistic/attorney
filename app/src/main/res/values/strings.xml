@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Summaryzer</string>
+    <string name="app_name">Attorney</string>
     <string name="title_howto_list">Steps</string>
     <string name="title_howto_detail">HowTo Detail</string>
     <string name="pastehint">Paste here to summarize</string>

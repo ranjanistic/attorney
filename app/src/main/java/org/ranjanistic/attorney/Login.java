@@ -1,9 +1,7 @@
 package org.ranjanistic.attorney;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -11,9 +9,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.content.Intent;
-
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +17,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.app.summaryzer.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.ranjanistic.attorney.dialog.CustomAlertDialog;
 import org.ranjanistic.attorney.dialog.CustomLoadDialogClass;
@@ -30,10 +31,6 @@ import org.ranjanistic.attorney.dialog.CustomTextDialog;
 import org.ranjanistic.attorney.listener.OnDialogAlertListener;
 import org.ranjanistic.attorney.listener.OnDialogLoadListener;
 import org.ranjanistic.attorney.listener.OnDialogTextListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
 
@@ -134,7 +131,7 @@ public class Login extends AppCompatActivity {
                         }
                         @Override
                         public String onLoadText() {
-                            return "Verifying \'"+emailforlogintask+"\'";
+                            return "Verifying '" + emailforlogintask + "'";
                         }
                     });
                     loginUserInit();        //initial credential check before actual login
@@ -310,11 +307,8 @@ public class Login extends AppCompatActivity {
     boolean checknet() {
         boolean connected;
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            connected = true;
-        } else
-            connected = false;
+        connected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
         return connected;
     }
 

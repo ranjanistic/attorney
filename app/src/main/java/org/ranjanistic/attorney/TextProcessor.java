@@ -10,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.app.summaryzer.R;
-
 import org.ranjanistic.attorney.adapter.ViewPagerAdapter;
 
 public class TextProcessor extends AppCompatActivity {

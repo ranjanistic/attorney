@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.app.summaryzer.R
 
 class ImageCofirmation : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

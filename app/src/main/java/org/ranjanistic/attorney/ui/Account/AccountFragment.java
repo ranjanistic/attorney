@@ -26,11 +26,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import org.ranjanistic.attorney.dialog.CustomLoadDialogClass;
-import org.ranjanistic.attorney.Login;
-import org.ranjanistic.attorney.listener.OnDialogLoadListener;
-import org.ranjanistic.attorney.ProfileCompletion;
-import com.app.summaryzer.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +36,12 @@ import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
+
+import org.ranjanistic.attorney.Login;
+import org.ranjanistic.attorney.ProfileCompletion;
+import org.ranjanistic.attorney.R;
+import org.ranjanistic.attorney.dialog.CustomLoadDialogClass;
+import org.ranjanistic.attorney.listener.OnDialogLoadListener;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -126,7 +127,7 @@ public class AccountFragment extends Fragment {
             }catch (FileNotFoundException e){
                 e.printStackTrace();
             }catch (IOException e){
-                Log.println(1,"ioexeption",e.getMessage());
+                Log.println(Log.ERROR, "ioexeption", Objects.requireNonNull(e.getMessage()));
             }
         }
         // Check for existing Google Sign In account, if the user is already signed in
@@ -223,7 +224,7 @@ public class AccountFragment extends Fragment {
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }catch (IOException e){
-            Log.println(1,"ioexeption",e.getMessage());
+            Log.println(Log.ERROR, "ioexeption", Objects.requireNonNull(e.getMessage()));
         }
         mailtext.setText(email);
         mailtext.setTextColor(getResources().getColor(R.color.green));

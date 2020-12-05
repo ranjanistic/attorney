@@ -27,7 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
-import com.app.summaryzer.R;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.ranjanistic.attorney.dialog.CustomConfirmDialogClass;
 import org.ranjanistic.attorney.dialog.CustomLoadDialogClass;
@@ -36,8 +37,6 @@ import org.ranjanistic.attorney.dialog.CustomTextDialog;
 import org.ranjanistic.attorney.listener.OnDialogConfirmListener;
 import org.ranjanistic.attorney.listener.OnDialogTextListener;
 import org.ranjanistic.attorney.listener.OnProgressLoadListener;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

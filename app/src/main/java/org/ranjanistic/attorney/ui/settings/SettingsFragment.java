@@ -3,6 +3,7 @@ package org.ranjanistic.attorney.ui.settings;
 /*
     Settings fragment for AccountVew activity.
  */
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,27 +27,28 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import org.ranjanistic.attorney.dialog.CustomAlertDialog;
-import org.ranjanistic.attorney.dialog.CustomConfirmDialogClass;
-import org.ranjanistic.attorney.dialog.CustomLoadDialogClass;
-import org.ranjanistic.attorney.dialog.CustomOnOptListener;
-import org.ranjanistic.attorney.dialog.CustomTextDialog;
-import org.ranjanistic.attorney.dialog.CustomVerificationDialog;
-import org.ranjanistic.attorney.Login;
-import org.ranjanistic.attorney.MainActivity;
-import org.ranjanistic.attorney.listener.OnDialogAlertListener;
-import org.ranjanistic.attorney.listener.OnDialogApplyListener;
-import org.ranjanistic.attorney.listener.OnDialogConfirmListener;
-import org.ranjanistic.attorney.listener.OnDialogLoadListener;
-import org.ranjanistic.attorney.listener.OnDialogTextListener;
-import org.ranjanistic.attorney.listener.OnOptionChosenListener;
-import com.app.summaryzer.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.ranjanistic.attorney.Login;
+import org.ranjanistic.attorney.MainActivity;
+import org.ranjanistic.attorney.R;
+import org.ranjanistic.attorney.dialog.CustomAlertDialog;
+import org.ranjanistic.attorney.dialog.CustomConfirmDialogClass;
+import org.ranjanistic.attorney.dialog.CustomLoadDialogClass;
+import org.ranjanistic.attorney.dialog.CustomOnOptListener;
+import org.ranjanistic.attorney.dialog.CustomTextDialog;
+import org.ranjanistic.attorney.dialog.CustomVerificationDialog;
+import org.ranjanistic.attorney.listener.OnDialogAlertListener;
+import org.ranjanistic.attorney.listener.OnDialogApplyListener;
+import org.ranjanistic.attorney.listener.OnDialogConfirmListener;
+import org.ranjanistic.attorney.listener.OnDialogLoadListener;
+import org.ranjanistic.attorney.listener.OnDialogTextListener;
+import org.ranjanistic.attorney.listener.OnOptionChosenListener;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -645,7 +647,7 @@ public class SettingsFragment extends Fragment {
         try {
             // clearing app data
             Runtime runtime = Runtime.getRuntime();
-            runtime.exec("pm clear com.app.summaryzer");
+            runtime.exec("pm clear org.ranjanistic.attorney");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -762,11 +764,8 @@ public class SettingsFragment extends Fragment {
     boolean checknet() {
         boolean connected;
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            connected = true;
-        } else
-            connected = false;
+        connected = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED;
         return connected;
     }
 

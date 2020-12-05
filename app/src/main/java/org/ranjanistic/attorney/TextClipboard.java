@@ -8,8 +8,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.summaryzer.R;
-
 public class TextClipboard extends AppCompatActivity {
 
     @Override

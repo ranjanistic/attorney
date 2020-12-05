@@ -5,14 +5,12 @@ import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.app.summaryzer.R
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -21,7 +19,6 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import org.ranjanistic.attorney.ConfirmationActivity
 import org.ranjanistic.attorney.dialog.CustomLoadDialogClass
 import org.ranjanistic.attorney.listener.OnDialogLoadListener
 import java.util.*
@@ -46,10 +43,10 @@ class ConfirmationActivity : AppCompatActivity() {
     var pPhoto: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = intent.extras
-        caption = Objects.requireNonNull(bundle)?.getString("contTitle")
-        loginpath = Objects.requireNonNull(bundle)?.getString("contVia")
-        continueMessage = Objects.requireNonNull(bundle)?.getString("contText")
-        imageCode = Objects.requireNonNull(bundle)?.getString("contCode")
+        caption = Objects.requireNonNull(bundle).getString("contTitle")
+        loginpath = Objects.requireNonNull(bundle).getString("contVia")
+        continueMessage = Objects.requireNonNull(bundle).getString("contText")
+        imageCode = Objects.requireNonNull(bundle).getString("contCode")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirmation)
         val activityFull = findViewById<View>(R.id.confirmationActivity)
@@ -60,12 +57,12 @@ class ConfirmationActivity : AppCompatActivity() {
         cLoginPath = findViewById(R.id.continueAs)
         cMessage = findViewById(R.id.continueInfo)
         cBackImg = findViewById(R.id.continueBackImage)
-        cCaption?.setText(caption)
-        cLoginPath?.setText(loginpath)
-        cMessage?.setText(continueMessage)
+        cCaption?.text = caption
+        cLoginPath?.text = loginpath
+        cMessage?.text = continueMessage
         if (imageCode == "g") {
-            window.setStatusBarColor(this.resources.getColor(R.color.white))
-            window.setNavigationBarColor(this.resources.getColor(R.color.white))
+            window.statusBarColor = this.resources.getColor(R.color.white)
+            window.navigationBarColor = this.resources.getColor(R.color.white)
             cMessage?.setTypeface(Typeface.DEFAULT_BOLD)
             cCaption?.setTextColor(resources.getColor(R.color.black))
             cLoginPath?.setTextColor(resources.getColor(R.color.black))
@@ -73,8 +70,8 @@ class ConfirmationActivity : AppCompatActivity() {
             cBackImg?.setImageDrawable(resources.getDrawable(R.drawable.ic_googleglogo))
             activityFull.setBackgroundColor(resources.getColor(R.color.white))
         } else if (imageCode == "a") {
-            window.setStatusBarColor(this.resources.getColor(R.color.black))
-            window.setNavigationBarColor(this.resources.getColor(R.color.black))
+            window.statusBarColor = this.resources.getColor(R.color.black)
+            window.navigationBarColor = this.resources.getColor(R.color.black)
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             cCaption?.setTextColor(resources.getColor(R.color.white))
             cLoginPath?.setTextColor(resources.getColor(R.color.white))

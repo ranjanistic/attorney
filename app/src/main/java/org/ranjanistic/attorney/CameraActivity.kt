@@ -3,7 +3,6 @@ package org.ranjanistic.attorney
 import android.Manifest
 import android.annotation.TargetApi
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Matrix
 import android.graphics.Point
@@ -11,22 +10,17 @@ import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.util.Size
-import android.view.*
+import android.view.Surface
+import android.view.TextureView
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.*
-import androidx.camera.core.impl.ImageCaptureConfig
-import androidx.camera.core.impl.PreviewConfig
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.app.summaryzer.R
-import java.io.File
 import java.util.concurrent.Executors
-import androidx.camera.core.Preview as Preview1
 
 
 class CameraActivity : AppCompatActivity() {
