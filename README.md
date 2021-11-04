@@ -1,3 +1,3 @@
 # Attorney
 
-An android application to summarize large texts.
+An android application intended to summarize large texts.
